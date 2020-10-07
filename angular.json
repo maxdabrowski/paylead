@@ -25,10 +25,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/data"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss",
+              "src/styles/_theme.scss"
             ],
             "scripts": []
           },
@@ -89,10 +91,12 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/data"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss",
+              "src/styles/_theme.scss"
             ],
             "scripts": []
           }
@@ -123,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng-auction"
+    }
+  },
+  "defaultProject": "ng-auction",
+  "cli": {
+    "analytics": "b3f561ee-17e3-4ac6-84a6-ba26748ebd48"
+  }
 }

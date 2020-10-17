@@ -8,9 +8,9 @@
   <div fxFlex="50%">
     <img class="thumbnail"
     [attr.alt]="product.title"
-    [attr.src]="product.imageUrl">
+    [attr.src]="urlFor(product)">
   </div>
-  <div fxFlex="50%">
+  <div fxFlex="50%" *ngIf="latestBids$ | async as price">
     <div class="info">
       <h1 class="info__title">{{ product?.title }}</h1>
       <div class="info__description">{{ product?.description }}</div>
@@ -30,7 +30,8 @@
       </div>
       <button class="info__bid-button"
         mat-raised-button
-        color="accent">
+        color="accent"
+        (click)="placeBid(price + 5)">
         ZŁÓŻ OFERTĘ {{ (product?.price + 5) | currency:'USD':'symbol':'.0' }}
       </button>
     </div>

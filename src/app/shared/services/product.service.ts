@@ -1,7 +1,8 @@
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap} from 'rxjs/operators'
+import { map } from 'rxjs/operators';
+import { API_BASE_URL } from '../../app.tokens';
 
 export interface Product {
   id: number;
@@ -10,36 +11,64 @@ export interface Product {
   imageUrl: string;
   description: string;
   categories: string[];
-};
+}
 
 export interface ProductSearchParams {
+  [key: string]: any; // To make compatible with HttpParams type.
   title?: string;
   minPrice?: number;
   maxPrice?: number;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ProductService {
+export abstract class ProductService {
+  abstract getAll(): Observable<Product[]>;
+  abstract getById(productId: number): Observable<Product>;
+  abstract getByCategory(category: string): Observable<Product[]>;
+  abstract getAllCategories(): Observable<string[]>;
+  abstract search(params: ProductSearchParams): Observable<Product[]>;
+}
 
-  private _url: string = "../../../data/products.json";
+@Injectable()
+export class HttpProductService implements ProductService {
+  constructor(
+    @Inject(API_BASE_URL) private baseUrl: string,
+    private http: HttpClient
+  ) {}
 
-  constructor(private http:HttpClient) { }
-
-  getAll(): Observable<Product[]>{
-    return this.http.get<Product[]>(this._url);
-  }
-
-  handleError(handleError: any): import("rxjs").OperatorFunction<Product[], any> {
-    throw new Error('Method not implemented.');
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/api/products`);
   }
 
   getById(productId: number): Observable<Product> {
-    return this.http.get<Product[]>(this._url)
-    .pipe(
-      map(products => <Product>products.find(p => p.id === productId))
-    );
+    return this.http.get<Product>(`${this.baseUrl}/api/products/${productId}`);
+  }
+
+  getByCategory(category: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/api/categories/${category}`);
+  }
+
+  getAllCategories(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/api/categories`);
+  }
+
+  search(params: ProductSearchParams): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/api/products`, { params });
+  }
+}
+
+@Injectable()
+export class _StaticProductService implements ProductService {
+  
+  private _url: string = "../../../data/products.json";
+  constructor(private http: HttpClient) {}
+
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(this._url);
+  }
+
+  getById(productId: number): Observable<Product> {
+    return this.http.get<Product[]>(this._url).pipe(
+      map(products => <Product>products.find(p => p.id === productId)));
   }
 
   getByCategory(category: string): Observable<Product[]> {
@@ -47,33 +76,36 @@ export class ProductService {
       map(products => products.filter(p => p.categories.includes(category))));
   }
 
-  getDistinctCategories(): Observable<string[]> {
+  getAllCategories(): Observable<string[]> {
     return this.http.get<Product[]>(this._url)
       .pipe(
-        tap(value => console.log('Przed zredukowaniem kategorii', JSON.stringify(value[0]['categories']))),
         map(this.reduceCategories),
-        tap(value => console.log(`Po zredukowaniu kategorii ${value}`)),
-        map(categories => Array.from(new Set(categories))),
-        tap(value => console.log(`Po utworzeniu tablicy kategorii ${value}`))
+        map(categories => Array.from(new Set(categories)))
       );
   }
+
   search(params: ProductSearchParams): Observable<Product[]> {
     return this.http.get<Product[]>(this._url).pipe(
       map(products => this.filterProducts(products, params))
     );
   }
 
-  // Populate an array with categories values of each product
   private reduceCategories(products: Product[]): string[] {
     return products.reduce((all, product) => all.concat(product.categories), new Array<string>());
   }
 
-  // Keep only those product that meet the criteria from search params
   private filterProducts(products: Product[], params: ProductSearchParams): Product[] {
-    return products
-      .filter(p => params.title ? p.title.toLowerCase().includes((<string>params.title).toLowerCase()) : products)
-      .filter(p => params.minPrice ? p.price >= params.minPrice : products)
-      .filter(p => params.maxPrice ? p.price <= params.maxPrice : products);
+    return products.filter(p => {
+      if (params.title && !p.title.toLowerCase().includes(params.title.toLowerCase())) {
+        return false;
+      }
+      if (params.minPrice && p.price < params.minPrice) {
+        return false;
+      }
+      if (params.maxPrice && p.price > params.maxPrice) {
+        return false;
+      }
+      return true;
+    });
   }
-
 }

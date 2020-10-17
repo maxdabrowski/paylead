@@ -19,7 +19,7 @@ export class CategoriesComponent {
     private productService: ProductService,
     private route: ActivatedRoute
   ) {
-    this.categoriesNames$ = this.productService.getDistinctCategories().pipe(
+    this.categoriesNames$ = this.productService.getAllCategories().pipe(
       map(categories => ['wszystkie produkty', ...categories]));
 
     this.products$ = this.route.params.pipe(

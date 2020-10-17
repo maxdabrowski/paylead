@@ -12,8 +12,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductService } from './shared/services';
+import { ProductService, SHARED_SERVICES } from './shared/services';
 import { SearchFormModule } from './shared/components/search-form/search-form.module';
+import { API_BASE_URL, WS_URL } from './app.tokens';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -33,7 +35,11 @@ import { SearchFormModule } from './shared/components/search-form/search-form.mo
     SearchFormModule,
 
   ],
-  providers: [ProductService],
+  providers: [
+    ...SHARED_SERVICES,
+    { provide: API_BASE_URL, useValue: environment.apiBaseUrl },
+    { provide: WS_URL, useValue: environment.wsUrl }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

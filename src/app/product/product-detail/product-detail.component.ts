@@ -3,35 +3,46 @@ import {
   Component,
   Inject,
   Input,
-  OnChanges, OnInit,
+  OnChanges,
+  OnInit,
   SimpleChange
 } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subject, combineLatest } from 'rxjs';
-import { startWith} from 'rxjs/operators';
+import { startWith } from 'rxjs/operators';
 import { API_BASE_URL } from '../../app.tokens';
-import { BidMessage, BidService, Product } from '../../shared/services';
+import { Product } from '../../shared/services';
+import { getBids, PlaceBid } from '../store';
+
 
 @Component({
   selector: 'nga-product-detail',
+  styleUrls: [ './product-detail.component.scss' ],
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductDetailComponent implements OnInit, OnChanges {
+export class ProductDetailComponent implements OnChanges, OnInit {
+  price$: Observable<number>;
+  @Input() product: Product = <Product>{};
   private readonly productChange$ = new Subject<Product>();
-  latestBids$: Observable<number>;
-  @Input() product: Product;
 
   constructor(
     @Inject(API_BASE_URL) private readonly baseUrl: string,
-    private readonly bidService: BidService
-  ) {}
+    private readonly store: Store<any>
+  ) {
+  }
 
   ngOnInit() {
-    this.latestBids$ = combineLatest<Observable<Product>, Observable<BidMessage>, number>(
+    this.price$ = combineLatest(
       this.productChange$.pipe(startWith(this.product)),
-      this.bidService.priceUpdates$.pipe(startWith<BidMessage|null>(null)),
-      (product, bid) =>  bid && bid.productId === product.id ? bid.price : product.price
+      this.store.pipe(
+        select(getBids),
+        startWith<{} | null>(new Map())
+      ),
+      (product, bids) => {
+        const amount = bids[product.id];
+        return amount ? amount : product.price;
+      }
     );
   }
 
@@ -40,7 +51,10 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   }
 
   placeBid(price: number) {
-    this.bidService.placeBid(this.product.id, price);
+    this.store.dispatch(new PlaceBid({
+      productId: this.product.id,
+      amount: price
+    }));
   }
 
   urlFor(product: Product): string {

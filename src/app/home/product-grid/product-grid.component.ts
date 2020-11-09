@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
 import {MediaObserver} from '@angular/flex-layout';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { API_BASE_URL } from 'src/app/app.tokens';
 import { Product } from '../../shared/services';
 
 @Component({
@@ -21,12 +22,18 @@ export class ProductGridComponent {
     [ 'xl', 5 ],
   ]);
 
-  constructor(private media: MediaObserver) {
+  constructor(
+    @Inject(API_BASE_URL) private readonly baseUrl: string,
+    private media: MediaObserver) {
 
     this.columns$ = this.media.asObservable()
       .pipe(
         map(mc => <number>this.breakpointsToColumnsNumber.get(mc[0].mqAlias)),
         startWith(3)
       );
+  }
+
+  urlFor(product: Product): string {
+    return `${this.baseUrl}/${product.imageUrl}`;
   }
 }

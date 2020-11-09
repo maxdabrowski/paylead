@@ -1,0 +1,14 @@
+<form class="form" [formGroup]="loginForm" (submit)="login()">
+  <div class="form-row">
+    <label>Podaj swój login:</label>
+    <input type="text" formControlName="nick">
+  </div>
+  <div class="form-row">
+  <label>Podaj hasło:</label>
+  <input type="text" formControlName="password">
+</div>
+<button type="submit" class="submit-btn">zaloguj się</button>
+<p *ngIf="loginError$ | async" class="warn">Błędne dane logowania, spróbuj ponownie</p>
+</form>
+
+

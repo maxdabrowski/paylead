@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  {path:'', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
-  {path:'products/:productId', loadChildren: () => import('./product/product.module').then(m => m.ProductModule)}
+  {path:'', loadChildren: () => import('./login/login.module').then(m => m.LoginModule)},
+  {path:'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  {path:'area', loadChildren: () => import('./area/area.module').then(m => m.AreaModule)},
+  {path:'region', loadChildren: () => import('./region/region.module').then(m => m.RegionModule)},
+  {path:'agent', loadChildren: () => import('./agent/agent.module').then(m => m.AgentModule)},
 ];
 
 @NgModule({

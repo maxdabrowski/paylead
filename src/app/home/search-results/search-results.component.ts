@@ -1,8 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { Product, ProductService } from '../../shared/services';
+import { select, Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { Product } from '../../shared/services';
+import { State } from '../store';
+import { SearchProducts } from '../store/actions';
+import { getProductsData } from '../store/reducers';
+
 
 @Component({
   selector: 'nga-search',
@@ -10,15 +14,21 @@ import { Product, ProductService } from '../../shared/services';
   templateUrl: './search-results.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnDestroy {
   readonly products$: Observable<Product[]>;
+  private readonly paramsSubscription: Subscription;
 
   constructor(
-    private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store<State>
   ) {
-    this.products$ = this.route.queryParams.pipe(
-      switchMap(queryParams => this.productService.search(queryParams))
+    this.products$ = this.store.pipe(select(getProductsData));
+    this.paramsSubscription = this.route.queryParams.subscribe(
+      params => this.store.dispatch(new SearchProducts({ params }))
     );
+  }
+
+  ngOnDestroy() {
+    this.paramsSubscription.unsubscribe();
   }
 }

@@ -1,0 +1,18 @@
+<div>
+  <div *ngIf ="loginUser$ | async  as loginUser ">
+    <p>Agent: {{loginUser.name}} {{loginUser.surname }}</p>
+    <p>Region: {{loginUser.region}}</p>
+    <p>Obszar: {{loginUser.area}}</p> 
+  </div>
+</div>
+
+<mat-toolbar>
+  <mat-toolbar-row>
+      <a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'shop'"> Kontkaty - Sklep</a>
+      <a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'my_kontakt'" >Moje Kontakty</a>
+      <a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'add_kontakt'" >Dodaj Kontakt</a>
+      <a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'my_count'" >Moje Konto</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

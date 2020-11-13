@@ -10,7 +10,7 @@ import { LoginDataRes } from '../../models/loginDataRes.model';
 })
 export class LoginService {
 
-  base_url = 'http://localhost:9090/api/login';
+  base_url = 'http://localhost:9090/api';
 
   constructor(
     private http:HttpClient,
@@ -18,7 +18,6 @@ export class LoginService {
     ) { }
 
   login(loginData: LoginData): Observable<LoginDataRes>{
-    //return this.http.post<LoginData>(`${this.baseUrl}/login`, loginData)
-    return this.http.post<LoginDataRes>(this.base_url, loginData)
+    return this.http.post<LoginDataRes>(`${this.base_url}/login`, loginData)
   }
 }

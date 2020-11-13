@@ -57,3 +57,7 @@ export function reducer(state = initialState, action: LoginActions): State {
 
 export const getLoginError = (state: State) => state.loginError;
 export const getUserData = (state: State) => state.loginUser;
+export const getUserRole = (state: State) => state.loginUser.role;
+export const getUserArea = (state: State) => state.loginUser.area;
+export const getUserRegion = (state: State) => state.loginUser.region;
+export const getUserNick = (state: State) => state.loginUser.nick;

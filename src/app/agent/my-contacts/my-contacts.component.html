@@ -1,1 +1,23 @@
-<p>my-contacts works!</p>
+<p>Tutaj znajdziesz swoje zakupione kontakty, kliknij w kontakt w celu uzyskania szczegółów i podjecia działań na kontakcie</p>
+<p>filtruj po typie kontaktu</p>
+<button mat-button > Majątek</button>
+<button mat-button > Życie</button>
+<p>filtruj po kampanii</p>
+<select> </select>
+
+
+<p>kontakty</p>
+
+<div *ngIf="leadOwn$ |async as leadTab">
+<ul>
+  <li *ngFor="let lead of leadTab">
+    <a [routerLink]="'/agent/lead'"  [queryParams]="{id:lead.lead_id}">
+      <span>Identyfikator: {{lead.lead_id}}</span>
+      <span>Imię i nazwisko klienta: {{lead.name}} {{lead.surname}}</span>
+      <span>Imię klienta: {{lead.phone}}</span>
+      <span>Typ kontaktu: {{lead.type}}</span>
+      <span>Kampania: {{lead.campaign}}</span>
+    </a>
+  </li>
+ </ul>
+</div>

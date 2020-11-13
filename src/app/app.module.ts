@@ -26,6 +26,7 @@ import { AdminModule } from './admin/admin.module';
 import { AgentModule } from './agent/agent.module';
 import { AreaModule } from './area/area.module';
 import { RegionModule } from './region/region.module';
+import { LeadEffects } from './store/effects/lead';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { RegionModule } from './region/region.module';
       name: 'NgAuction DevTools',
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([ RouterEffects, LoginEffects ]),
+    EffectsModule.forRoot([ RouterEffects, LoginEffects, LeadEffects ]),
     LoginModule,
     AdminModule,
     AgentModule,

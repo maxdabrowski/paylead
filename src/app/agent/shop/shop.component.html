@@ -1,1 +1,13 @@
-<p>shop works!</p>
+<div *ngIf="leadToBuy$ |async as leadTab">
+ <ul *ngFor="let lead of leadTab">
+  <li>
+    <span>Identyfikator: {{lead.lead_id}}</span>
+    <span>Imię klienta: {{lead.name}}</span>
+    <span>Typ kontaktu: {{lead.type}}</span>
+    <span>Kampania: {{lead.campaign}}</span>
+    <span>Region klienta: {{lead.area}}</span>
+    <span>Cena kontaktu: {{lead.price}}zł </span>
+    <button mat-button color="primary" (click)="buyLead(lead.lead_id)">Kup</button>
+  </li>
+ </ul>
+</div>

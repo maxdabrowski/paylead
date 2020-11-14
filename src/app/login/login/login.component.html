@@ -1,14 +1,23 @@
-<form class="form" [formGroup]="loginForm" (submit)="login()">
-  <div class="form-row">
-    <label>Podaj swój login:</label>
-    <input type="text" formControlName="nick">
-  </div>
-  <div class="form-row">
-  <label>Podaj hasło:</label>
-  <input type="text" formControlName="password">
-</div>
-<button type="submit" class="submit-btn">zaloguj się</button>
-<p *ngIf="loginError$ | async" class="warn">Błędne dane logowania, spróbuj ponownie</p>
+<form class="form" [formGroup]="loginForm" (submit)="login()"> 
+  <p class="decsript">Zaloguj się</p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>login</mat-label>
+      <input matInput formControlName="nick">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>hasło</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'"  formControlName="password">
+      <button class="icon_button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </p>
+  <button type="submit" class="submit-btn" >zaloguj się</button>
+  <p *ngIf="loginError$ | async" class="warn">Błędne dane logowania, spróbuj ponownie</p>
+  <p>
+    <a href="#">Nie pamiętam hasła</a>
+  </p>
 </form>
-
-

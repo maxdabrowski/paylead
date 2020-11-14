@@ -1,7 +1,7 @@
 import { LeadToBuy } from 'src/app/models/leadToBuy.model';
 import { LeadOwn } from 'src/app/models/leadOwn.model';
 
-import { LeadActions, LeadActionTypes } from '../actions';
+import { LeadActions, LeadActionTypes, LoginActions, LoginActionTypes } from '../actions';
 
 export interface State {
   leadsToBuy: LeadToBuy[];
@@ -13,7 +13,7 @@ const initialState: State = {
   leadsOwn: []
 };
 
-export function reducer(state = initialState, action: LeadActions): State {
+export function reducer(state = initialState, action: LeadActions | LoginActions): State {
 
   switch (action.type) {
 
@@ -47,6 +47,17 @@ export function reducer(state = initialState, action: LeadActions): State {
         
       };
     }
+
+    case LoginActionTypes.LogOff: {
+      return {
+        ...state,
+        leadsToBuy: [],
+        leadsOwn: []
+      }
+    }
+   
+
+
     default: {
       return state;
     }

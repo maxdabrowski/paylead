@@ -1,3 +1,38 @@
+img{
+  height: 80px;
+  margin-right: 20px ;
+}
+
+.user{
+  margin: 15px;
+  padding: 8px;
+  border: solid 1px #c4e6f7;
+  border-radius: 20px;
+  display: flex;
+  width: 40%;
+}
+
+.user_data p{
+  line-height: 8px;
+}
+
+.user_data{
+  display: flex;
+}
+
+.user_data_title{
+  text-align: right;
+  font-weight: bold;
+}
+
+.user_data_result{
+  text-align: left;
+  margin-left: 10px;;
+}
+
+
+
+
 .nav-link{
   width: 25%;
   border-radius: 0px;
@@ -8,3 +43,4 @@
   font-weight: bold;
   border-bottom: 3px solid #234678;
 }
+

@@ -32,10 +32,17 @@ export function reducer(state = initialState, action: LoginActions): State {
       };
     }
 
-    case LoginActionTypes.LogOff: {
+    case LoginActionTypes.LogInFailed: {
       return {
         ...state,
         loginError: true,
+      };
+    }
+
+    case LoginActionTypes.LogOff: {
+      return {
+        ...state,
+        loginError: false,
         loginUser: {  
           id: 0,
           name: '',
@@ -45,7 +52,7 @@ export function reducer(state = initialState, action: LoginActions): State {
           region: '',
           area: '',
           role: ''
-        }
+        },
       };
     }
 

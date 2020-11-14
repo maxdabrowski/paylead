@@ -17,6 +17,7 @@ import {
 export class LoginComponent {
 
   loginError$: Observable<boolean>
+  hide = true;
 
   loginForm = this.fb.group({
     nick:[""],

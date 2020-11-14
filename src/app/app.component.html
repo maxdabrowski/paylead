@@ -1,12 +1,11 @@
-<mat-sidenav-container>
-  <div class="app">
-    <i class="fab fa-themeisle tukan_logo"></i>
-    <span class="title">TUKAN - Sklep z leadami dla Agentów PZU</span>
-    <!-- <span *ngIf="!loginError$ | async"> -->
-      <button *ngIf="!loginError$ | async" mat-stroked-button color="primary"  class="warn" (click) = "logoff()">Wyloguj się</button>
-  <!-- </span> -->
+<div class="app">
+  <div class='header'>
+    <img src='../data/img/title.png'>
+    <p class="title">Sklep z kontaktami dla Agentów</p>
+      <button *ngIf="userNick$ !== '' " mat-stroked-button color="primary" (click) = "logoff()">Wyloguj się</button>
   </div>
   <div class="app-router">
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
   </div>
-</mat-sidenav-container>
+</div>
+

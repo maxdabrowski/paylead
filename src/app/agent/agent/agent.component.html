@@ -1,10 +1,20 @@
-<div>
-  <div *ngIf ="loginUser$ | async  as loginUser ">
-    <p>Agent: {{loginUser.name}} {{loginUser.surname }}</p>
-    <p>Region: {{loginUser.region}}</p>
-    <p>Obszar: {{loginUser.area}}</p> 
+<div class="user">
+  <img src='../../../data//img/agent.png'>
+  <div class="user_data"  *ngIf ="loginUser$ | async  as loginUser ">
+    <div class="user_data_title">
+      <p>Agent:</p>
+      <p>Region:</p>
+      <p>Obszar:</p> 
+    </div>
+    <div class="user_data_result">
+      <p>{{loginUser.name}} {{loginUser.surname }}</p>
+      <p>{{loginUser.region}}</p>
+      <p>{{loginUser.area}}</p> 
+  </div>
   </div>
 </div>
+
+
 
 <mat-toolbar>
   <mat-toolbar-row>

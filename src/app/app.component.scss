@@ -1,58 +1,32 @@
-@import '../styles/theme';
 
-:host {
+.header{
+  border-bottom: solid 1px #c4e6f7; 
   display: block;
-  height: 100%;
-}
-.toolbar {
-  background-color: mat-color($nga-background, card);
-  position: relative;
-  box-shadow: 0 1px mat-color($nga-foreground, divider);
-}
-.toolbar__logo-title-group {
-  position: absolute;
-  right: 50%;
-  left: 50%;
-}
-.toolbar__logo {
-  height: 32px;
-  margin-right: 16px;
-}
-.toolbar__title {
-  color: mat-color($nga-foreground, text);
-  font-family: 'Titillium Web', sans-serif;
-  font-weight: 600;
-  text-decoration: none;
-}
-.toolbar__icon-button {
-  color: mat-color($nga-foreground, icon);
-}
-.toolbar__shopping-cart-button {
-  margin-right: 8px;
-}
-
-.app{
-  height: 100%;
-}
-app-router{
-  width: 100%;
-}
-
-.tukan_logo{
-  margin: 10px;
-  width: 50px;
   height: 50px;
-  color:#234678
+}
+
+img{
+  height: 36px;
+  margin: 7px;
 }
 
 .title{
-  display: block;
-  text-align: left;
-  float:right;
-  margin-top: 25px;
-  width: 90%;
-  height: 150px;
-  font-family: 'Acme', sans-serif;
+  position: absolute;
+  display: inline-block;
   font-size: 25px;
-  color:#234678
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  margin-left: 5px;
+  top: 15px;
+
+}
+
+button{
+  float: right;
+  top: 7px;
+  right: 7px;
+}
+
+.mat-button-wrapper{
+  font-family: 'Open Sans', sans-serif !important
 }

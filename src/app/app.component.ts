@@ -5,7 +5,8 @@ import { select,Store } from '@ngrx/store';
 
 
 import {
-  getLoginErrorLogin,
+
+  getUserNickData,
   State
 } from './store'
 
@@ -17,10 +18,10 @@ import {
 })
 export class AppComponent{
 
-  loginError$: Observable<boolean>
+ userNick$: string
 
   constructor(private store: Store<State>) {
-    this.loginError$ = this.store.pipe(select(getLoginErrorLogin))
+   this.store.pipe(select(getUserNickData)).subscribe(value => this.userNick$ = value)
   }
 
   logoff(){

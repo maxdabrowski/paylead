@@ -1,23 +1,64 @@
-img{
-  height: 80px;
-  margin-right: 20px ;
-}
-
+//style dla użytkownika
 .user{
   margin: 15px;
   padding: 8px;
   border: solid 1px #c4e6f7;
   border-radius: 20px;
   display: flex;
-  width: 40%;
+  width: 500px;
+  height: 100px;
 }
 
+.user_link {
+  position: relative;
+  height: 90px;
+  width: 90px;
+  border: solid 1px #c4e6f7;
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+}
+
+.user_link:hover{
+  background-color: #eef7fc ;
+}
+
+.link{
+ text-decoration: none;
+}
+
+.agent{
+  top: 0px;
+  left: 0px  
+  };
+
+.wallet {
+  top: 0px;
+  right: 0px   
+}
+
+
+img {
+  height: 70px;
+}
+
+.link_descript{
+  font-size: 10px;
+  font-weight: bold;
+}
+
+
+
+
 .user_data p{
-  line-height: 8px;
+  line-height: 30px;
+  margin: 0px;
 }
 
 .user_data{
   display: flex;
+  width: 300px;
+  padding: 5px;
 }
 
 .user_data_title{
@@ -32,15 +73,58 @@ img{
 
 
 
+//style dla nawigacji
+.active{
+  background-color: #eef7fc;
+}
 
-.nav-link{
+.navigation{
+  width: 100%;
+  margin: 0 auto;
+}
+
+ul{
+  padding-left: 0px;
+}
+
+ li {
+  display: inline;
+  text-align: center;
+}
+
+li a {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: inherit;
+  font-size: 17px;
+  display: inline-block;
   width: 25%;
   border-radius: 0px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #c4e6f7;
+  text-decoration: none;
 }
 
-.active{
-  font-weight: bold;
-  border-bottom: 3px solid #234678;
+.one:hover ~ hr {
+  margin-left: 0%;
 }
 
+.two:hover ~ hr {
+  margin-left: 25%;
+}
+
+.three:hover ~ hr {
+  margin-left: 50%;
+}
+
+.four:hover ~ hr {
+  margin-left: 75%;
+}
+
+hr {
+  height: 2px;
+  width: 25%;
+  margin-top: -2px;
+  margin-left: -400px;
+  background:#234678;;
+  border: none;
+  transition: .4s ease-in-out;
+}

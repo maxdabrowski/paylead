@@ -1,13 +1,48 @@
-<div *ngIf="leadToBuy$ |async as leadTab">
- <ul *ngFor="let lead of leadTab">
-  <li>
-    <span>Identyfikator: {{lead.lead_id}}</span>
-    <span>Imię klienta: {{lead.name}}</span>
-    <span>Typ kontaktu: {{lead.type}}</span>
-    <span>Kampania: {{lead.campaign}}</span>
-    <span>Region klienta: {{lead.area}}</span>
-    <span>Cena kontaktu: {{lead.price}}zł </span>
-    <button mat-button color="primary" (click)="buyLead(lead.lead_id)">Kup</button>
-  </li>
- </ul>
+<div class="lead_buy">
+  <div class="description">
+    Możesz dokonać zakupu wybierajać z listy poniższych kontaktów. Wszystkie kontakty pochodzą z twojego Obszaru. Po dokonaniu zakupy pojawi się on w zakładce "Moje Kontakty", gdzie będziesz mógł podjąć na nim działania sprzedażowe. Cena kontaktu zostanie odliczona od twojej prowizji, rozliczenie znajdziesz w zakładce portfela.
+  </div>
+
+  <div *ngIf ="dataSource !== []; else emptyDataSource"> 
+
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="lead_id" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"> Id kontaku </th>
+        <td mat-cell *matCellDef="let row" class="small"> {{row.lead_id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="big"> Imię </th>
+        <td mat-cell *matCellDef="let row" class="big"> {{row.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"> Typ  </th>
+        <td mat-cell *matCellDef="let row" class="small"> {{row.type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="campaign">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="big"> Kampania </th>
+        <td mat-cell *matCellDef="let row" class="big"> {{row.campaign}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"> Cena </th>
+        <td mat-cell *matCellDef="let row" class="small"> {{row.price}} zł </td>
+      </ng-container>
+
+      <ng-container matColumnDef="buy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"></th>
+        <td mat-cell *matCellDef="let row" class="small"><button mat-flat-button color="primary" (click) = 'buyLead(row.lead_id)'>Zakup</button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+  </div>
+  <ng-template #emptyDataSource><div class="empty">Brak kontaktów do kupienia w twoim obszarze </div></ng-template>
+
 </div>

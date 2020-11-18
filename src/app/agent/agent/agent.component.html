@@ -1,5 +1,12 @@
 <div class="user">
-  <img src='../../../data//img/agent.png'>
+
+  <a class="link" routerLinkActive="active" [routerLink]="'my_count'" >
+    <div class="user_link agent">
+      <img src='../../../data//img/agent.png'>
+      <span class="link_descript">AGENT</span>
+    </div>
+  </a>
+
   <div class="user_data"  *ngIf ="loginUser$ | async  as loginUser ">
     <div class="user_data_title">
       <p>Agent:</p>
@@ -10,19 +17,24 @@
       <p>{{loginUser.name}} {{loginUser.surname }}</p>
       <p>{{loginUser.region}}</p>
       <p>{{loginUser.area}}</p> 
+    </div>
   </div>
-  </div>
+
+  <a class="link" routerLinkActive="active" [routerLink]="'wallet'" >
+    <div class="user_link wallet">
+      <img src='../../../data//img/wallet.png'>
+      <span class="link_descript" >PORTFEL</span>
+    </div>
+  </a>
+
 </div>
-
-
-
-<mat-toolbar>
-  <mat-toolbar-row>
-      <a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'shop'"> Kontkaty - Sklep</a>
-      <a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'my_kontakt'" >Moje Kontakty</a>
-      <a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'add_kontakt'" >Dodaj Kontakt</a>
-      <a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'my_count'" >Moje Konto</a>
-  </mat-toolbar-row>
-</mat-toolbar>
-
+<div class="navigation">
+  <ul>
+    <li class="one"><a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'shop'"> Kontkaty - Sklep</a></li>
+    <li class="two"><a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'my_kontakt'" >Moje Kontakty</a></li>
+    <li class="three"><a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'add_kontakt'" >Dodaj Kontakt</a></li>
+    <li class="four"><a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'results'" >Moje Wyniki</a></li>
+    <hr />
+  </ul>
+</div>
 <router-outlet></router-outlet>

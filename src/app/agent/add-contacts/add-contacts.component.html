@@ -1,1 +1,74 @@
-<p>add-contacts works!</p>
+<div class="add_contact">
+  <div class="description">
+    Jeżlei posiadasz kontkat możesz dodać go do swojego portfela, wtedy masz pewność, że nie stracisz danych klienta, następnie możesz podjąć się obsługi kontaktu.
+  </div>
+  <form class="form" [formGroup]="contactForm" (submit)="addContact()"> 
+    <p class="req_alert">pola oznaczone gwizadką są polami wymaganymi</p>
+    <mat-form-field>
+      <mat-label>Typ kontaktu *</mat-label>
+      <mat-select formControlName="type">
+        <mat-option  value="Majątek">Majątek</mat-option>
+        <mat-option  value="Życie">Życie</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Kampania *</mat-label>
+      <mat-select formControlName="campaign" disabled>
+        <mat-option *ngFor="let campaign of  campaignList" [value]="campaign">
+        {{campaign}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Imię *</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf=true>błędne imię</mat-error>     
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nazwisko *</mat-label>
+      <input matInput formControlName="surname">
+      <mat-error *ngIf=true>błędne nazwisko</mat-error> 
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Kod pocztowy *</mat-label>
+      <input matInput formControlName="post_code">
+      <mat-error *ngIf=true>błędny kod poczowy</mat-error> 
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Miejscowość *</mat-label>
+      <input matInput formControlName="town">
+      <mat-error *ngIf=true>błędna nazwa miejscowości</mat-error> 
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ulica, nr. domu</mat-label>
+      <input matInput formControlName="adress">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Wiek</mat-label>
+      <input matInput formControlName="age">
+      <mat-error *ngIf=true>wiek powinien wynisić od 1 do 100 lat</mat-error>     
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Typ kontaktu *</mat-label>
+      <mat-select formControlName="client_type">
+        <mat-option  value="Klient indywidualny">Klient indywidualny</mat-option>
+        <mat-option  value="Klient grupowy">Klient grupowy</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Produkt sprzedaży</mat-label>
+      <input matInput formControlName="product">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Numer telefonu *</mat-label>
+      <input matInput formControlName="phone">
+      <mat-error *ngIf=true>numer telefonu powinien składać sie z 9 liczb</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Adres e-mail</mat-label>
+      <input matInput formControlName="mail">
+      <mat-error *ngIf=true>błędny adres email</mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit" class="submit-btn" >dodaj kontakt</button>
+  </form>
+</div>

@@ -10,10 +10,10 @@ export enum LeadActionTypes {
   GetLeadsToBuySuccess = '[Shop Component] Sukces pobrania kontaktów do kupienia',
   GetLeadsOwnSuccess = '[Shop Componrnt] Sukces pobrania kontaktów zajętych',
 
-  GetLeadsToBuyFailed = '[Shop Component]  niepowodzenie kontaktów do kupienia',
-  GetLeadsOwnFailed = '[Shop Componrnt] niepowodzenie pobrania kontaktów zajętych',
+  GetLeadsToBuyFailed = '[Shop Component]  Niepowodzenie kontaktów do kupienia',
+  GetLeadsOwnFailed = '[Shop Componrnt] Niepowodzenie pobrania kontaktów zajętych',
 
-  LeadBuy = '[Shop Component] kupno leada z listy dostępnych',
+  LeadBuy = '[Shop Component] Kupno leada z listy dostępnych',
 }
 
 export class GetLeadsToBuy implements Action {
@@ -48,10 +48,6 @@ export class LeadBuyAgent implements Action {
   readonly type = LeadActionTypes.LeadBuy;
   constructor(public readonly payload: {leadData: LeadData}) {}
 }
-
-
-
-
 
 export type LeadActions
   = GetLeadsToBuy

@@ -1,0 +1,135 @@
+.contact_detail{
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.lead_data, .lead_details{
+  display: flex;
+}
+
+.lead_details{
+  width: 60%;
+}
+
+.lead_status{
+  width: 40%;
+  font-size: 13px;
+  text-align: justify;
+}
+
+ul{
+  margin-left:0px;
+}
+
+li{
+  list-style-type:none;
+}
+
+.campaign_specifics{
+  width: 30%;
+  text-align: right;
+}
+
+.client_specifics{
+  width: 70%;
+  text-align: center;
+  border-right: solid 1px #b9babb;
+}
+
+mat-icon{
+  font-size: 12px;
+} 
+
+.status{
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-top: 25px;
+}
+
+form{
+  margin:0 auto;
+  padding-bottom: 50px;
+  min-width: 80px;
+  width: 80%;
+  text-align: center;
+}
+
+.req_alert {
+  text-align: center;
+  font-size: 12px;
+  font-style: italic;
+  margin: 0 auto;
+  padding-bottom: 7px ;
+}
+
+input, select {
+  height: 20px;
+}
+
+mat-form-field{
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+mat-option{
+  font-family: 'Open Sans', sans-serif;
+}
+
+mat-select{
+  font-family: 'Open Sans', sans-serif;
+  height: 20px;
+}
+
+.submit-btn{
+  width: 100%;
+  border-radius: 25px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+.content_specifics{
+  width: 120px;
+  float: right;
+  text-align: center;
+  padding: 20px;
+  margin-top: 15px;
+  border: solid 1px #b9babb;
+  border-radius: 20px;
+}
+
+.client_data img {
+  height: 100px;
+  padding-top: 50px;
+}
+  
+.client_img{
+  text-align: center;
+}
+
+.campaign_specifics p {
+  margin: 0px;
+  line-height: 25px;
+}
+
+.status_stat_row{
+  display: flex
+}
+
+.stat_p {
+  width: 50%;
+  margin: 0 ;
+  font-size: 12px;
+}
+
+.status_note{
+  margin: 0;
+  font-size: 12px;
+}
+
+.stat_li{
+  padding-bottom: 10px;
+  padding-top: 10px
+}

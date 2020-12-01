@@ -1,1 +1,44 @@
-<p>my-count works!</p>
+<div class="my_count">
+  <div class="user_data">
+    <p class="header">TWOJE DANE</p>
+    <div class="user_data_all"  *ngIf ="loginUser$ | async  as loginUser ">
+      <div class="user_data_title">
+        <p>Identyfikator:</p>
+        <p>Imię:</p>
+        <p>Nazwisko:</p>
+        <p>Login:</p>
+        <p>Hasło:</p>
+        <p>Rola:</p>
+        <p>Region:</p>
+        <p>Obszar:</p>
+        <p>Telefon:</p>
+        <p>Email:</p>
+      </div>
+      <div class="user_data_result">
+        <p>{{loginUser.id}}</p>
+        <p>{{loginUser.name}}</p>     
+        <p>{{loginUser.surname }}</p>
+        <p>{{loginUser.nick}}</p>
+        <p><span class="btn" (click)= "hangePassword()">zmień hasło</span></p>
+        <p>{{loginUser.role}}</p>
+        <p>{{loginUser.region}}</p>
+        <p>{{loginUser.area}}</p>
+        <p>{{loginUser.phone}}</p>
+        <p>{{loginUser.mail}}</p>
+      </div>
+    </div>
+    <p class="user_footer">W celu zaktualizowania swoich danych osobowych skontaktuj się ze swoim bezpośrednim przełożonym.</p>
+  </div>
+  <div class="user_structure">
+    <p class="header">TWOJA STRUKTURA</p>
+    <div *ngIf ="userStructure$ | async  as userStructure">
+      <div class="structure_item" *ngFor="let user of  userStructure">
+        <p>
+          <span *ngIf="user.role == 'area' "><b>dyrektor regionu: </b></span>
+          <span *ngIf="user.role == 'agent' "><b>{{user.role}}: </b></span>
+          {{user.name}} {{user.surname}}</p>
+        <p><mat-icon [inline]="true"> phone</mat-icon> {{user.phone}}</p>
+        <p><mat-icon [inline]="true">alternate_email</mat-icon> {{user.mail}}</p>
+      </div>
+  </div>  
+</div>

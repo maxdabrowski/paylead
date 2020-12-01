@@ -8,15 +8,29 @@ export interface State {
 
 const initialState: State = {
   loginError: false,
-  loginUser: {
+
+  /*loginUser: {
     id: 0,
     name: '',
     surname: '',
     nick: '',
-    password: '',
     region: '',
     area: '',
-    role: ''
+    role: '',
+    phone: '',
+    mail: ''
+  }*/
+
+  loginUser: {
+    id: 29,
+    name: 'Damian',
+    surname: 'Zając',
+    nick: 'damzajac',
+    region: 'Południe',
+    area: 'Łódzkie',
+    role: 'agent',
+    phone: '723325576',
+    mail: 'makdabrowski@pzu.pl'
   }
 };
 
@@ -48,10 +62,11 @@ export function reducer(state = initialState, action: LoginActions): State {
           name: '',
           surname: '',
           nick: '',
-          password: '',
           region: '',
           area: '',
-          role: ''
+          role: '',
+          phone: '',
+          mail: ''
         },
       };
     }

@@ -1,0 +1,54 @@
+.add_contact{
+  width: 95%;
+  margin: 0 auto;
+
+}
+
+.description{
+margin-top: 15px;
+margin-bottom: 15px;
+line-height: 1.5rem;
+}
+
+form{
+  margin:0 auto;
+padding-bottom: 50px;
+  min-width: 150px;
+  max-width: 300px;
+  width: 100%;
+}
+
+.req_alert {
+  text-align: center;
+  font-size: 12px;
+  font-style: italic;
+  margin: 0 auto;
+  padding-bottom: 7px ;
+}
+
+input, select {
+  height: 20px;
+}
+
+
+mat-form-field{
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+mat-option{
+  font-family: 'Open Sans', sans-serif;
+}
+
+mat-select{
+  font-family: 'Open Sans', sans-serif;
+  height: 20px;
+}
+
+.submit-btn{
+  width: 100%;
+  border-radius: 25px;
+  font-family: 'Open Sans', sans-serif;
+
+}

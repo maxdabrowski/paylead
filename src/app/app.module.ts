@@ -13,7 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
-import { LoginEffects, reducers, RouterEffects, LeadEffects} from './store';
+import { LoginEffects, reducers, RouterEffects, LeadEffects, StatusEffects } from './store';
 import { LoginModule } from './login/login.module';
 import { AdminModule } from './admin/admin.module';
 import { AgentModule } from './agent/agent.module';
@@ -37,7 +37,7 @@ import { RegionModule } from './region/region.module';
       name: 'DevTools',
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([ RouterEffects, LoginEffects, LeadEffects ]),
+    EffectsModule.forRoot([ RouterEffects, LoginEffects, LeadEffects, StatusEffects ]),
     LoginModule,
     AdminModule,
     AgentModule,

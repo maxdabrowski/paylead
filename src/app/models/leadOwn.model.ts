@@ -12,8 +12,10 @@ export interface LeadOwn {
   type: string;
   campaign: string;
   campaign_image: string;
+  product: string;
   price: number;
   region: string;
   area: string;
-  owner:string
+  owner:string;
+  status: string
 }

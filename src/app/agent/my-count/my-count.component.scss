@@ -1,0 +1,62 @@
+.my_count{
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.header{
+  text-align: center;
+  font-size: 20px;
+}
+
+.user_data, .user_structure{
+  width: 50%;
+}
+
+.user_data_all{
+  display: flex;
+}
+
+.user_data_title{
+  text-align: right;
+  font-weight: bold;
+  width: 50%;
+}
+
+.user_data_result{
+  text-align: left;
+  margin-left: 10px;
+  width: 50%;
+}
+
+.btn{
+  border-radius: 20px;
+  background-color:#2196F3;
+  color: white;
+  padding-left:10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.btn:hover{
+  cursor: pointer;
+}
+
+.user_footer{
+  text-align: center;
+}
+
+.structure_item{
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.structure_item p{
+  margin: 0;
+ padding: 2px;
+}
+
+

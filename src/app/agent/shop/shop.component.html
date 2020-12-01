@@ -8,27 +8,27 @@
     <table mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="lead_id" >
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"> Id kontaku </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"> Id </th>
         <td mat-cell *matCellDef="let row" class="small"> {{row.lead_id}} </td>
       </ng-container>
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="big"> Imię </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="big"> IMIĘ </th>
         <td mat-cell *matCellDef="let row" class="big"> {{row.name}} </td>
       </ng-container>
 
       <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"> Typ  </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"> TYP  </th>
         <td mat-cell *matCellDef="let row" class="small"> {{row.type}} </td>
       </ng-container>
 
       <ng-container matColumnDef="campaign">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="big"> Kampania </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="big"> KAMPANIA </th>
         <td mat-cell *matCellDef="let row" class="big"> {{row.campaign}} </td>
       </ng-container>
 
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"> Cena </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="small"> CENA </th>
         <td mat-cell *matCellDef="let row" class="small"> {{row.price}} zł </td>
       </ng-container>
 

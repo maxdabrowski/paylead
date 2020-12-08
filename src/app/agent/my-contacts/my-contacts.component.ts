@@ -57,7 +57,7 @@ export class MyContactsComponent implements OnInit{
     this.store.pipe(select(getUserRoleData)).subscribe((value) => this.userRola$ = value);
     this.store.pipe(select(getUserAreaData)).subscribe((value) => this.userArea$ = value);
     this.store.pipe(select(getUserNickData)).subscribe((value) => this.userNick$ = value);
-    this.store.dispatch(new GetLeadsOwn({ leadData: {role: this.userRola$ , type: this.userArea$, agent: this.userNick$} }));
+    this.store.dispatch(new GetLeadsOwn({ leadData: {agent: this.userNick$} }));
 
     this.store.pipe(select(getLeadsOwnLead)).subscribe(value => {
       this.dataSource = new MatTableDataSource(value);

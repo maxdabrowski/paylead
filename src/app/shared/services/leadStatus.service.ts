@@ -21,7 +21,6 @@ export class LeadStatusService {
   }
 
   postLeadStatus(leadStatusPost: LeadStatusPost): Observable<LeadStatus[]>{
-    console.log(leadStatusPost)
     return this.http.post<any>(`${this.baseUrl}/status_post`, leadStatusPost)
   }
 }

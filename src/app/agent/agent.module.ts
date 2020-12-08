@@ -21,6 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './add-contacts/modal/modal.component';
 import { ModalPasswordComponent } from './my-count/modal-password/modal-password.component';
+//import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
 
 const routes: Route[] = [
   {path: '', pathMatch: 'full', redirectTo: 'shop'}, 

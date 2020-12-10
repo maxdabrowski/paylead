@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_BASE_URL } from 'src/app/app.tokens';
 import { LeadData } from 'src/app/models/leadData.model';
+import { LeadDataCharts } from 'src/app/models/leadDataCharts.model ';
 import { LeadOwn } from 'src/app/models/leadOwn.model';
 import { LeadToBuy } from 'src/app/models/leadToBuy.model';
 
@@ -31,5 +32,9 @@ export class LeadService {
 
   addLead(leadToAdd: LeadOwn ): Observable<boolean>{
     return this.http.post<any>(`${this.baseUrl}/lead_add_agent`, leadToAdd)
+  }
+
+  getDataToRoundCharts(user:{user:string}): Observable<LeadDataCharts>{
+    return this.http.post<LeadDataCharts>(`${this.baseUrl}/lead_to_charts`, user)
   }
 }

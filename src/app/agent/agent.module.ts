@@ -21,7 +21,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './add-contacts/modal/modal.component';
 import { ModalPasswordComponent } from './my-count/modal-password/modal-password.component';
-//import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
+import { RoudChartComponent } from './results/roud-chart/roud-chart.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { ColumnChartComponent } from './results/column-chart/column-chart.component';
 
 const routes: Route[] = [
   {path: '', pathMatch: 'full', redirectTo: 'shop'}, 
@@ -37,7 +39,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [AgentComponent, ShopComponent, MyContactsComponent, AddContactsComponent, MyCountComponent, ContactDetailComponent, WalletComponent, ResultsComponent, ModalComponent, ModalPasswordComponent],
+  declarations: [AgentComponent, ShopComponent, MyContactsComponent, AddContactsComponent, MyCountComponent, ContactDetailComponent, WalletComponent, ResultsComponent, ModalComponent, ModalPasswordComponent, RoudChartComponent, ColumnChartComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -51,6 +53,7 @@ const routes: Route[] = [
     MatInputModule,
     MatIconModule,
     MatDialogModule,
+    NgApexchartsModule,
     RouterModule.forChild(routes),
   ],
   exports: [],

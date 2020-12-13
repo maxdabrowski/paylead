@@ -7,5 +7,6 @@ export interface User {
   area: string;
   role: string;
   phone: string;
-  mail: string
+  mail: string;
+  active: boolean
 }

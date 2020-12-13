@@ -18,7 +18,8 @@ const initialState: State = {
     area: '',
     role: '',
     phone: '',
-    mail: ''
+    mail: '',
+    active: true
   }*/
 
   loginUser: {
@@ -30,7 +31,8 @@ const initialState: State = {
     area: 'Łódzkie',
     role: 'agent',
     phone: '723325576',
-    mail: 'makdabrowski@pzu.pl'
+    mail: 'makdabrowski@pzu.pl',
+    active: true
   }
 };
 
@@ -66,7 +68,8 @@ export function reducer(state = initialState, action: LoginActions): State {
           area: '',
           role: '',
           phone: '',
-          mail: ''
+          mail: '',
+          active: true,
         },
       };
     }

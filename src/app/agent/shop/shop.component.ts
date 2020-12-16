@@ -1,10 +1,9 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, OnChanges, ViewChild} from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { LeadToBuy } from 'src/app/models/leadToBuy.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-
 import {
   getUserRoleData,
   getUserAreaData,
@@ -14,6 +13,7 @@ import {
   getUserNickData,
   LeadBuyAgent
 } from '../../store'
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'nga-shop',
@@ -44,11 +44,10 @@ export class ShopComponent {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-
   }
 
    buyLead(lead_id: number){
     this.store.dispatch(new LeadBuyAgent({leadData: {role: this.userRola$ , type: this.userArea$, agent: this.userNick$ ,lead_id: lead_id} }));
   }
-
+  
 }

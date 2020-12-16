@@ -28,7 +28,7 @@ export class LoginComponent {
               private store: Store<State>) { 
         this.loginError$ = this.store.pipe(select(getLoginErrorLogin))
      }
-     
+  //funkcja do wykonania logowania   
   login(){
     this.store.dispatch( new LogIn({LoginData: this.loginForm.value}))
   }

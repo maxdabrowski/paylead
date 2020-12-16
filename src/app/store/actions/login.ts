@@ -3,10 +3,12 @@ import { LoginData} from 'src/app/models/loginData.model'
 import { LoginDataRes} from 'src/app/models/loginDataRes.model'
 
 export enum LoginActionTypes {
+
   LogIn = '[Login Component] Logowanie użytkownika',
   LogInSucces = '[Login Component] Sukces logowania użytkownika',
   LogInFailed = '[Login Component] Błąd lolowania użytkownika', 
   LogOff = '[App Component] Wylogowanie użytkownika',
+
 }
 
 export class LogIn implements Action {

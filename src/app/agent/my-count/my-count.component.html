@@ -1,4 +1,5 @@
 <div class="my_count">
+
   <div class="user_data">
     <p class="header">TWOJE DANE</p>
     <div class="user_data_all"  *ngIf ="loginUser$ | async  as loginUser ">
@@ -29,6 +30,7 @@
     </div>
     <p class="user_footer">W celu zaktualizowania swoich danych osobowych skontaktuj się ze swoim bezpośrednim przełożonym.</p>
   </div>
+
   <div class="user_structure">
     <p class="header">TWOJA STRUKTURA</p>
     <div *ngIf ="userStructure$ | async  as userStructure">
@@ -40,5 +42,7 @@
         <p><mat-icon [inline]="true"> phone</mat-icon> {{user.phone}}</p>
         <p><mat-icon [inline]="true">alternate_email</mat-icon> {{user.mail}}</p>
       </div>
-  </div>  
+    </div>  
+  </div>
+  
 </div>

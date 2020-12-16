@@ -35,7 +35,6 @@ li{
 .client_specifics{
   width: 70%;
   text-align: center;
-  border-right: solid 1px #b9babb;
 }
 
 mat-icon{
@@ -132,4 +131,33 @@ mat-select{
 .stat_li{
   padding-bottom: 10px;
   padding-top: 10px
+}
+
+@media (max-width:768px){
+  .campaign_specifics{
+    display: none;
+  }
+  .lead_status{
+    width: 50%;
+  }
+  .lead_details{
+    width: 50%;
+  }
+  .client_specifics{
+    width: 100%;
+  }
+}
+@media (max-width:425px){
+  .lead_data{
+    display: block;
+  }
+  .campaign_specifics{
+    display: none;
+  }
+  .lead_status{
+    width: 100%;
+  }
+  .lead_details{
+    width: 100%;
+  }
 }

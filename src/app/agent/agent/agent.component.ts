@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { select,Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
-
 import {
   getUserDataLogin,
   State

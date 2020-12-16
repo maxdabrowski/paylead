@@ -28,4 +28,5 @@ export class LoginService {
   changePassword(changePasswordData:ChangePassword): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}/change_password`, changePasswordData)
   }
+  
 }

@@ -4,6 +4,7 @@ import { LeadOwn} from 'src/app/models/leadOwn.model';
 import { LeadToBuy} from 'src/app/models/leadToBuy.model';
 
 export enum LeadActionTypes {
+
   GetLeadsToBuy = '[Shop Component] Pobranie kontaktów do kupienia',
   GetLeadsOwn = '[Shop Componrnt] Pobranie kontaktów zajętych',
 
@@ -14,6 +15,7 @@ export enum LeadActionTypes {
   GetLeadsOwnFailed = '[Shop Componrnt] Niepowodzenie pobrania kontaktów zajętych',
 
   LeadBuy = '[Shop Component] Kupno leada z listy dostępnych',
+  
 }
 
 export class GetLeadsToBuy implements Action {

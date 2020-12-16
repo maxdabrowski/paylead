@@ -4,9 +4,10 @@
 }
 
 .description{
-margin-top: 15px;
-margin-bottom: 15px;
-line-height: 1.5rem;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.5rem;
 }
 
 table {
@@ -19,11 +20,6 @@ button{
   border-radius: 30px;
 }
 
-.mat-form-field {
-  font-size: 14px;
- width: 100%;
-}
-
 .small{
   width: 12%;
 }
@@ -32,11 +28,16 @@ button{
   width: 25%;
 }
 
-.empty{
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  color:  #A60E0E;
+@media (max-width:425px){
+  td{
+    font-size: 10px !important;
+    padding: 0px !important;
+  }
+  button{
+    font-size: 10px;
+    width: 40px !important;
+  }
 }
+
 
 

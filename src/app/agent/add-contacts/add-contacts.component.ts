@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select,Store } from '@ngrx/store';
 import { LeadOwn } from 'src/app/models/leadOwn.model';
 import { LeadService } from 'src/app/shared/services/lead.service';
 import {MatDialog} from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
-
 import {
   getUserAreaData,
   getUserNickData,
   getUserRegionData,
   State
-} from '../../store'
+} from '../../store';
+
 
 @Component({
   selector: 'nga-add-contacts',
@@ -22,17 +22,34 @@ import {
 
 export class AddContactsComponent implements OnInit {
 
+  @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
+
   userRegion$: string;
   userArea$: string;
   userNick$: string;
   contactForm: FormGroup;
   campaignList: string [];
+  campaignLiveList = [];
+  campaingnAssetsList = [];
   contactToSend: LeadOwn;
 
   constructor(private fb:FormBuilder, private store: Store<State>, private leadService: LeadService, public dialog: MatDialog ) {
     this.store.pipe(select(getUserRegionData)).subscribe((value) => this.userRegion$ = value);
     this.store.pipe(select(getUserAreaData)).subscribe((value) => this.userArea$ = value);
     this.store.pipe(select(getUserNickData)).subscribe((value) => this.userNick$ = value);
+    this.leadService.getCampaign().subscribe(data =>  {
+
+      data.forEach(el => {
+        if(el.type === "Życie"){
+          let campaign = el.campaign   
+          this.campaignLiveList.push(campaign)
+        }else if (el.type === "Majątek"){
+          let campaign = el.campaign
+          this.campaingnAssetsList.push(campaign)
+        }
+      })
+    })
+
   }
 
   openDialog(): void {
@@ -67,16 +84,16 @@ export class AddContactsComponent implements OnInit {
     this.contactForm.get('type').valueChanges.subscribe(selectedType => {
       if(selectedType === 'Majątek') {
         this.contactForm.get('campaign').enable();
-        this.campaignList = ['Auto', 'Dom', 'Gospodarstwo','Uprawy', 'Nowonabywcy', 'Dobra luksusowe'];
+        this.campaignList = this.campaingnAssetsList;
       }
       if(selectedType === 'Życie') {
         this.contactForm.get('campaign').enable();
-        this.campaignList = ['Ochrona życia', 'Zdrowie', 'Opieka Medyczna', 'Emerytura', 'Poświadczeniowa', 'Wojażer'];
+        this.campaignList = this.campaignLiveList;
       }
     });
   };
 
-  addContact(){
+  onSubmit(){
     if(this.contactForm.dirty && this.contactForm.valid){
 
       this.contactToSend = {
@@ -103,9 +120,8 @@ export class AddContactsComponent implements OnInit {
       
       this.leadService.addLead(this.contactToSend).subscribe(data => {
         if(data){
-          this.contactForm.reset();
-          //this.contactForm.markAsPristine();
           this.openDialog();
+          this.formDirective.resetForm();
         }
       });
     }

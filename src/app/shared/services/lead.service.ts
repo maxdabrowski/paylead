@@ -28,7 +28,6 @@ export class LeadService {
     return this.http.post<LeadToBuy[]>(`${this.baseUrl}/lead_buy`, leadData)
   }
 
-
   leadOwn(leadData: LeadData): Observable<LeadOwn[]>{
     return this.http.post<LeadOwn[]>(`${this.baseUrl}/lead_own`, leadData)
   }
@@ -48,6 +47,7 @@ export class LeadService {
   getOwnLeadWallet(user:{user:string}): Observable<OwnLeadWallet[]>{
     return this.http.post<OwnLeadWallet[]>(`${this.baseUrl}/own_lead_wallet`, user)
   }
+
   getCampaign(): Observable<Campaign[]>{
     return this.http.get<Campaign[]>(`${this.baseUrl}/campaign`)
   }

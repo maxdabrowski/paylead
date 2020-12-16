@@ -1,11 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { RouterReducerState } from '@ngrx/router-store';
-
 import { RouterStateUrl } from '../../shared/services';
 import * as fromLogin from './login';
 import * as fromLead from './lead';
 import * as fromLeadStatus from './leadStatus';
-import { LeadOwn } from 'src/app/models/leadOwn.model';
 
 export interface State {
   router: RouterReducerState<RouterStateUrl>;
@@ -19,7 +17,6 @@ export const reducers = {
  lead: fromLead.reducer,
  status: fromLeadStatus.reducer
 };
-
 
 //pobieranie danych dla router
 export const getRouterState = createFeatureSelector<RouterReducerState<RouterStateUrl>>('router');
@@ -41,17 +38,6 @@ export const getLeadState = createFeatureSelector<fromLead.State>('lead');
 export const getLeadsToBuyLead = createSelector(getLeadState, fromLead.getLeadsToBuy);
 export const getLeadsOwnLead = createSelector(getLeadState, fromLead.getLeadsOwn);
 
-export const getLeadOwnLeadById = createSelector(
-  getLeadsOwnLead,
-  getRouteQueryParams,
-  (ownLeads: LeadOwn[], queryParams: any) => {
-    return ownLeads. find((lead: LeadOwn) => lead.lead_id === parseInt(queryParams.id))
-  }
-);
-
 //pobranie danych dla statusów
 export const getLeadStatus = createFeatureSelector<fromLeadStatus.State>('status');
 export const getLeadStatusLead = createSelector(getLeadStatus, fromLeadStatus.getStatus);
-
-
-

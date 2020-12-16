@@ -91,9 +91,31 @@ tr.element-row:not(.example-expanded-row):hover {
   border-bottom-width: 0;
 }
 
-.empty{
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  color:  #A60E0E;
+@media (max-width:768px){
+  td{
+    font-size: 12px !important;
+    padding: 0px !important;
+  }
+  mat-form-field{
+    width: 100px;
+  }
+  button{
+    font-size: 12px;
+  }
+}
+
+@media (max-width:425px){
+  td{
+    font-size: 10px !important;
+    padding: 0px !important;
+  }
+  mat-form-field{
+    width: 20px;
+  }
+  .detal_campaign{
+    display: none;
+  }
+  button{
+  font-size: 10px;
+}
 }

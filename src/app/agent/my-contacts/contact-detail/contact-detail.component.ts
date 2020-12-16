@@ -32,7 +32,7 @@ export class ContactDetailComponent implements OnInit {
     this.status$ = this.store.pipe(select(getLeadStatusLead))
   }
 
-  ngOnInit(): void {  
+  ngOnInit(){  
     this.initStatusForm();
     this.onChanges();
   }
@@ -45,22 +45,22 @@ export class ContactDetailComponent implements OnInit {
     });
   };
 
-  success(): FormArray {
+  success(): FormArray{
     return this.statusForm.get("success") as FormArray
   };
 
-  successForm(): FormGroup {
+  successForm(): FormGroup{
     return this.fb.group({
       policy:["", [Validators.required, Validators.pattern("[0-9]{9}") ]],
       income:[ , [Validators.required,Validators.min(1),Validators.max(100000)]],
     })
   };
 
-  addSuccessForm() {
+  addSuccessForm(){
     this.success().push(this.successForm());
   }
 
-  removeSuccessForm() {
+  removeSuccessForm(){
     this.success().removeAt(0);
   }
 
@@ -71,8 +71,8 @@ export class ContactDetailComponent implements OnInit {
         this.removeSuccessForm();
       }
       else if(selectedType === 'Sukces') {
-        this.addSuccessForm()
         this.visibleNote = true;
+        this.addSuccessForm();
       }
     });
   };
@@ -90,6 +90,7 @@ export class ContactDetailComponent implements OnInit {
         if(data){
           this.store.dispatch(new GetStatus({ leadStatusData: {lead_id: parseInt(this.leadId$)} }));
           this.store.dispatch(new GetLeadsOwn({ leadData: {lead_id: parseInt(this.leadId$)} }));
+          this.statusForm.reset();
         }
       });
     }

@@ -7,7 +7,7 @@ import { ShopComponent } from './shop/shop.component';
 import { MyContactsComponent } from './my-contacts/my-contacts.component';
 import { AddContactsComponent } from './add-contacts/add-contacts.component';
 import { MyCountComponent } from './my-count/my-count.component';
-import { ContactDetailComponent } from './contact-detail/contact-detail.component';
+import { ContactDetailComponent } from './my-contacts/contact-detail/contact-detail.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -24,17 +24,18 @@ import { ModalPasswordComponent } from './my-count/modal-password/modal-password
 import { RoudChartComponent } from './results/roud-chart/roud-chart.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ColumnChartComponent } from './results/column-chart/column-chart.component';
+import { LoginGuard } from '../login.guard';
 
 const routes: Route[] = [
   {path: '', pathMatch: 'full', redirectTo: 'shop'}, 
   {path: '', component: AgentComponent, children: [
-    { path: 'shop', component: ShopComponent},
-    { path: 'my_kontakt', component: MyContactsComponent},
-    { path: 'lead', component:  ContactDetailComponent},
-    { path: 'add_kontakt', component: AddContactsComponent},
-    { path: 'my_count', component: MyCountComponent},
-    { path: 'wallet', component: WalletComponent},
-    { path: 'results', component: ResultsComponent}
+    { path: 'shop', component: ShopComponent, canActivate: [LoginGuard]},
+    { path: 'my_kontakt', component: MyContactsComponent, canActivate: [LoginGuard]},
+    { path: 'lead', component:  ContactDetailComponent, canActivate: [LoginGuard]},
+    { path: 'add_kontakt', component: AddContactsComponent, canActivate: [LoginGuard]},
+    { path: 'my_count', component: MyCountComponent, canActivate: [LoginGuard]},
+    { path: 'wallet', component: WalletComponent, canActivate: [LoginGuard]},
+    { path: 'results', component: ResultsComponent, canActivate: [LoginGuard]}
   ]},
 ];
 

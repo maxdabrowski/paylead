@@ -56,8 +56,6 @@ export function reducer(state = initialState, action: LeadActions | LoginActions
       }
     }
    
-
-
     default: {
       return state;
     }

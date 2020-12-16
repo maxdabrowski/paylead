@@ -3,8 +3,6 @@
     Możesz dokonać zakupu wybierajać z listy poniższych kontaktów. Wszystkie kontakty pochodzą z twojego Obszaru. Po dokonaniu zakupy pojawi się on w zakładce "Moje Kontakty", gdzie będziesz mógł podjąć na nim działania sprzedażowe. Cena kontaktu zostanie odliczona od twojej prowizji, rozliczenie znajdziesz w zakładce portfela.
   </div>
 
-  <div *ngIf ="dataSource !== []; else emptyDataSource"> 
-
     <table mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="lead_id" >
@@ -42,7 +40,5 @@
 
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
-  </div>
-  <ng-template #emptyDataSource><div class="empty">Brak kontaktów do kupienia w twoim obszarze </div></ng-template>
 
 </div>

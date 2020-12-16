@@ -7,6 +7,7 @@ export enum LeadStatusActionTypes {
   GetStatus = '[Contact-detail Component] Pobranie danych o akcjach',
   GetStatusSuccess = '[Contact-detail Component] Sukces pobrania akcji ',
   GetStatusFailed = '[Contact-detail Component]  Niepowodzenie pobrania akcji',
+  
 }
 
 export class GetStatus implements Action {

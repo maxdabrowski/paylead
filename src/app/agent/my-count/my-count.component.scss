@@ -58,5 +58,14 @@
   margin: 0;
  padding: 2px;
 }
+@media (max-width:425px){
+  .my_count{
+    display: block;
+  }
+  .user_data, .user_structure{
+    width: 100%;
+  }
+}
+
 
 

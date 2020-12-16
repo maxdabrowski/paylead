@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable, of  } from 'rxjs';
-import { map, switchMap, catchError, tap} from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
 import { GetLeadsToBuySuccess, GetLeadsOwnSuccess, GetLeadsOwn, GetLeadsToBuy, LeadActionTypes, GetLeadsToBuyFailed, LeadBuyAgent, GetLeadsOwnFailed } from '../actions';
 import { LeadService } from 'src/app/shared/services/lead.service';
 

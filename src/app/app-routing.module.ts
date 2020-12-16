@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+//ścieżki do ładowanych leniwie modułów
 const routes: Routes = [
   {path:'', loadChildren: () => import('./login/login.module').then(m => m.LoginModule)},
   {path:'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},

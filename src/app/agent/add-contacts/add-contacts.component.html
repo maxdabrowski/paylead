@@ -2,7 +2,7 @@
   <div class="description">
     Jeżlei posiadasz kontkat możesz dodać go do swojego portfela, wtedy masz pewność, że nie stracisz danych klienta, następnie możesz podjąć się obsługi kontaktu.
   </div>
-  <form class="form" [formGroup]="contactForm" (submit)="addContact()"> 
+  <form class="form" [formGroup]="contactForm"  (ngSubmit)="onSubmit()"> 
     <p class="req_alert">pola oznaczone gwizadką są polami wymaganymi</p>
     <mat-form-field>
       <mat-label>Typ kontaktu *</mat-label>

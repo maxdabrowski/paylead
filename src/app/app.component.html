@@ -2,7 +2,7 @@
   <div class='header'>
     <img src='../data/img/title.png'>
     <p class="title">Sklep z kontaktami dla Agentów</p>
-      <button *ngIf="userNick$ !== '' " mat-stroked-button color="primary" (click) = "logoff()">Wyloguj się</button>
+      <button *ngIf="userNick$ !== '' " mat-stroked-button color="primary" (click)="logoff()">Wyloguj się</button>
   </div>
   <div class="app-router">
     <router-outlet></router-outlet>

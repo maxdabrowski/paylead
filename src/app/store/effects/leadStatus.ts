@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable, of  } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, switchMap, catchError, tap} from 'rxjs/operators';
 import { GetStatus, GetStatusFailed, GetStatusSuccess, LeadStatusActionTypes } from '../actions';
 import { LeadStatusService } from 'src/app/shared/services/leadStatus.service';

@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SHARED_SERVICES } from './shared/services';
-import { API_BASE_URL} from './app.tokens';
+import { API_BASE_URL } from './app.tokens';
 import { environment } from 'src/environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -19,6 +18,7 @@ import { AdminModule } from './admin/admin.module';
 import { AgentModule } from './agent/agent.module';
 import { AreaModule } from './area/area.module';
 import { RegionModule } from './region/region.module';
+import { LoginGuard } from './login.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +27,6 @@ import { RegionModule } from './region/region.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     MatButtonModule,
-    FlexLayoutModule,
     HttpClientModule,
     StoreModule.forRoot({ ...reducers, router: routerReducer }),
     StoreRouterConnectingModule.forRoot({
@@ -46,7 +45,8 @@ import { RegionModule } from './region/region.module';
   ],
   providers: [
     ...SHARED_SERVICES,
-    { provide: API_BASE_URL, useValue: environment.apiBaseUrl }
+    { provide: API_BASE_URL, useValue: environment.apiBaseUrl },
+    LoginGuard
   ],
   bootstrap: [AppComponent]
 })

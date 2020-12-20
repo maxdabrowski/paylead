@@ -1,28 +1,36 @@
 <div class="results">
   <div class="charts">
     <h1>TWOJE WYNIKI</h1> 
-    <div *ngIf="dataLeadcharts$ | async as dataRoundChart"  class="round_charts_group">
-      <nga-roud-chart [dataLabel] = "dataRoundChart.dataLiveLabel" [dataValue] = "dataRoundChart.dataLiveValue"   class="round_chart"></nga-roud-chart>
-      <nga-roud-chart [dataLabel] = "dataRoundChart.dataTypeLabel" [dataValue] = "dataRoundChart.dataTypeValue"   class="round_chart"></nga-roud-chart>
-      <nga-roud-chart [dataLabel] = "dataRoundChart.dataAssetsLabel" [dataValue] = "dataRoundChart.dataAssetsValue"   class="round_chart"></nga-roud-chart>
-    </div>
 
+    <div *ngIf="dataLeadcharts$ | async as dataRoundChart"  class="round_charts_group">
+      <div class="round_chart">
+        <p>podział kontaktów żyiowych</p>
+        <nga-roud-chart [dataLabel] = "dataRoundChart.dataLiveLabel" [dataValue] = "dataRoundChart.dataLiveValue"   class="round_chart"></nga-roud-chart>
+      </div>
+      <div class="round_chart">
+        <p>podział kontaktów ze wzgledu na typ</p>
+        <nga-roud-chart [dataLabel] = "dataRoundChart.dataTypeLabel" [dataValue] = "dataRoundChart.dataTypeValue"   class="round_chart"></nga-roud-chart>
+      </div>
+      <div class="round_chart">
+        <p>podział kontaktów majątkowych</p>
+        <nga-roud-chart [dataLabel] = "dataRoundChart.dataAssetsLabel" [dataValue] = "dataRoundChart.dataAssetsValue"   class="round_chart"></nga-roud-chart>
+      </div>
+    </div>
 
     <div *ngIf="dataStatuscharts$ | async as DataColumnChart">
       <nga-column-chart [dataLabel] = "DataColumnChart.statusLabel" [dataValue] = "DataColumnChart.statusValue" ></nga-column-chart>
-     </div>
+    </div>
 
   </div>
   <div class="download_data">
     <div class="download_data_row">
-      <p>Dane dotyczące twoich kontaktów w pliku kontakty.csv</p>
+      <p>kontakty w pliku <b>kontakty.csv</b></p>
       <button mat-flat-button color="primary" (click)="downloadFile('lead')">Pobierz</button>
     </div>
     <div class="download_data_row">
-      <p>Dane dotyczące statusów twoich kontaktów w pliku statusy.csv</p>
+      <p>statusy w pliku <b>statusy.csv</b></p>
       <button mat-flat-button color="primary" (click)="downloadFile('status')">Pobierz</button>
     </div>
   </div>
-
 
 </div>

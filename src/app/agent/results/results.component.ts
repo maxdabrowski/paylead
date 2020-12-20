@@ -8,7 +8,6 @@ import { StatusDataCharts } from 'src/app/models/statusDataCharts.model';
 import { LeadService, LeadStatusService } from 'src/app/shared/services';
 import { GetLeadsOwn, getLeadsOwnLead, getLeadStatusLead, GetStatus, getUserNickData, State } from 'src/app/store';
 
-
 @Component({
   selector: 'nga-results',
   templateUrl: './results.component.html',

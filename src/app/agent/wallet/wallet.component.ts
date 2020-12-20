@@ -17,7 +17,7 @@ export class WalletComponent{
 
   userNick$: string;
   campaign$: Observable<Campaign[]>;
-  monthList: string[] = ['Wszystkie'];
+  monthList: string[] = [];
   selectedMonth: string;
   public expense = 0;
   public income = 0;
@@ -46,7 +46,8 @@ export class WalletComponent{
         this.monthList.push(el.month)
         this.expense += el.price
       })
-      this.monthList = [...new Set(this.monthList)];
+      const tabSet = [...new Set(this.monthList)].sort();
+      this.monthList = ['Wszystkie', ...tabSet];
       this.bilans = this.income - this.expense
       this.ownLeadWalletSource = new MatTableDataSource(value);
       this.ownLeadWalletSource.filterPredicate = this.createFilter();

@@ -28,6 +28,7 @@ export class RoudChartComponent implements OnChanges {
   public chartOptions: Partial<ChartOptions>;
 
   constructor() {}
+
   ngOnChanges() {
     this.chartOptions = {
       series: this.dataValue,
@@ -35,34 +36,23 @@ export class RoudChartComponent implements OnChanges {
         type: "donut",
       },
       labels: this.dataLabel,
+      
       responsive: [
         {
-          breakpoint: 300,
+          breakpoint: 1100,
           options: {
-            chart: {
-              width: 500
-            },
             legend: {
               show: false,
-              position: "bottom"
+            },
+            style:{
+              fontSize: '5px',
             }
           }
         }
       ]
     };
-
-
-
-
-
-
   }
-
-
-
-
-
-   }
+  }
 
 
 

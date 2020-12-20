@@ -39,7 +39,7 @@
           <p><mat-icon>phone</mat-icon>{{lead[0].phone}} <mat-icon>alternate_email</mat-icon>{{lead[0].mail}}</p>
           <p>Typ klienta: {{lead[0].client_type}}</p>
           <p class="status"><b>{{lead[0].status}}</b></p>
-          <p><i>Uwaga! Status sukcesu z przypisem można zgłosić tylko raz</i></p>
+          <p class="status_info"><i>Uwaga! Status sukcesu z przypisem można zgłosić tylko raz, po zaraportowaniu sukcesu nie można już zmieniać statusów</i></p>
           <form class="form" [formGroup]="statusForm" (submit)="addStatus()"> 
             <mat-form-field>
               <mat-label>Wybierz status</mat-label>

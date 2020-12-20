@@ -1,5 +1,4 @@
-import { Component,ViewChild, OnChanges, Input, OnInit} from '@angular/core';
-
+import { Component,ViewChild, Input, OnInit} from '@angular/core';
 import {
   ApexChart,
   ApexAxisChartSeries,
@@ -49,65 +48,62 @@ export class ColumnChartComponent implements OnInit{
 
   constructor() {}
 
-ngOnInit(){
-  console.log(this.dataLabel);
-  console.log(this.dataValue)
-  this.chartOptions = {
-    series: [
-      {
-        name: "distibuted",
-        data: this.dataValue
-      }
-    ],
-    chart: {
-      height: 350,
-      type: "bar",
-      events: {
-        click: function(chart, w, e) {
+  ngOnInit(){
+    this.chartOptions = {
+      series: [
+        {
+          name: "distibuted",
+          data: this.dataValue
         }
-      }
-    },
-    colors: [
-      "#008FFB",
-      "#00E396",
-      "#FEB019",
-      "#FF4560",
-      "#775DD0",
-      "#546E7A",
-      "#26a69a",
-      "#D10CE8"
-    ],
-    plotOptions: {
-      bar: {
-        columnWidth: "45%",
-        distributed: true
-      }
-    },
-    dataLabels: {
-      enabled: false
-    },
-    legend: {
-      show: false
-    },
-    grid: {
-      show: false
-    },
-    xaxis: {
-      categories:this.dataLabel,
-       
-      labels: {
-        style: {
-          colors: [
-            "#008FFB",
-            "#00E396",
-            "#FEB019",
-            "#FF4560",
-            "#775DD0",
-            "#546E7A",
-            "#26a69a",
-            "#D10CE8"
-          ],
-          fontSize: "12px"
+      ],
+      chart: {
+        height: 350,
+        type: "bar",
+        events: {
+          click: function(chart, w, e) {
+          }
+        }
+      },
+      colors: [
+        "#008FFB",
+        "#00E396",
+        "#FEB019",
+        "#FF4560",
+        "#775DD0",
+        "#546E7A",
+        "#26a69a",
+        "#D10CE8"
+      ],
+      plotOptions: {
+        bar: {
+          columnWidth: "45%",
+          distributed: true
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show: false
+      },
+      grid: {
+        show: false
+      },
+      xaxis: {
+        categories:this.dataLabel,       
+        labels: {
+          style: {
+            colors: [
+              "#008FFB",
+              "#00E396",
+              "#FEB019",
+              "#FF4560",
+              "#775DD0",
+              "#546E7A",
+              "#26a69a",
+              "#D10CE8"
+            ],
+            fontSize: "12px"
         }
       }
     }

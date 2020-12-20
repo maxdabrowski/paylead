@@ -1,88 +1,85 @@
 <div class="wallet">
   <div class="settlement">
 
-    <p class="tab_header">Kontakty na których nastąpiła sprzedaż</p>
-    <div *ngIf ="commisionSource !== []; else emptyDataSourceCommision"> 
-      <table mat-table [dataSource]="commisionSource">
-        <ng-container matColumnDef="lead_id" >
-          <th mat-header-cell *matHeaderCellDef class="small"> Id </th>
-          <td mat-cell *matCellDef="let row" class="small">{{row.lead_id}}</td>
-        </ng-container>
-        <ng-container matColumnDef="campaign">
-          <th mat-header-cell *matHeaderCellDef class="small"> KAMPANIA  </th>
-          <td mat-cell *matCellDef="let row" class="small">{{row.campaign}}</td>
-        </ng-container>
-        <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef class="big"> DATA SUKCESU </th>
-          <td mat-cell *matCellDef="let row" class="big">{{row.date}}</td>
-        </ng-container>
-        <ng-container matColumnDef="income">
-          <th mat-header-cell *matHeaderCellDef class="small"> PRZYCHÓD </th>
-          <td mat-cell *matCellDef="let row" class="small">{{row.income}} zł</td>
-        </ng-container>
-        <ng-container matColumnDef="commision">
-          <th mat-header-cell *matHeaderCellDef class="small"> PROWIZJA </th>
-          <td mat-cell *matCellDef="let row" class="small">{{row.commision}} zł</td>
-        </ng-container>
-        <ng-container matColumnDef="policy">
-          <th mat-header-cell *matHeaderCellDef class="small"> NR. POLISY </th>
-          <td mat-cell *matCellDef="let row" class="small">{{row.policy}}</td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="commisionDisplayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: commisionDisplayedColumns;"></tr>
-      </table>
-    </div>
-    <ng-template #emptyDataSourceCommision><div class="empty">Brak kontaków z przychodem </div></ng-template>
+    <p class="tab_header">Kontakty na których nastąpiła sprzedaż</p> 
+    <table mat-table [dataSource]="commisionSource">
+      <ng-container matColumnDef="lead_id" >
+        <th mat-header-cell *matHeaderCellDef class="small"> Id </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.lead_id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="campaign">
+        <th mat-header-cell *matHeaderCellDef class="small"> KAMPANIA  </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.campaign}}</td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef class="big"> DATA SUKCESU </th>
+        <td mat-cell *matCellDef="let row" class="big">{{row.date}}</td>
+      </ng-container>
+      <ng-container matColumnDef="income">
+        <th mat-header-cell *matHeaderCellDef class="small"> PRZYCHÓD </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.income}} zł</td>
+      </ng-container>
+      <ng-container matColumnDef="commision">
+        <th mat-header-cell *matHeaderCellDef class="small"> PROWIZJA </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.commision}} zł</td>
+      </ng-container>
+      <ng-container matColumnDef="policy">
+        <th mat-header-cell *matHeaderCellDef class="small"> NR. POLISY </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.policy}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="commisionDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: commisionDisplayedColumns;"></tr>
+    </table>
 
     <p class="tab_header">Kontakty zakupione</p>
-    <div *ngIf ="ownLeadWalletSource !== []; else emptyDataSourceWallet"> 
-      <table mat-table [dataSource]="ownLeadWalletSource">
-        <ng-container matColumnDef="lead_id" >
-          <th mat-header-cell *matHeaderCellDef class="small"> Id </th>
-          <td mat-cell *matCellDef="let row" class="small">{{row.lead_id}}</td>
-        </ng-container>
-        <ng-container matColumnDef="campaign">
-          <th mat-header-cell *matHeaderCellDef class="small"> KAMPANIA  </th>
-          <td mat-cell *matCellDef="let row" class="small">{{row.campaign}}</td>
-        </ng-container>
-        <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef class="big"> DATA SUKCESU </th>
-          <td mat-cell *matCellDef="let row" class="big">{{row.date}}</td>
-        </ng-container>
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef class="small"> CENA </th>
-          <td mat-cell *matCellDef="let row" class="small">{{row.price}} zł</td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="ownLeadWalletDisplayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: ownLeadWalletDisplayedColumns;"></tr>
-      </table>
-    </div>
-    <ng-template #emptyDataSourceWallet><div class="empty">Brak własnch kontaktów z portfela</div></ng-template>
+    <table mat-table [dataSource]="ownLeadWalletSource">
+      <ng-container matColumnDef="lead_id" >
+        <th mat-header-cell *matHeaderCellDef class="small"> Id </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.lead_id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="campaign">
+        <th mat-header-cell *matHeaderCellDef class="small"> KAMPANIA  </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.campaign}}</td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef class="big"> DATA ZAKUPU </th>
+        <td mat-cell *matCellDef="let row" class="big">{{row.date}}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef class="small"> CENA </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.price}} zł</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="ownLeadWalletDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: ownLeadWalletDisplayedColumns;"></tr>
+    </table>
 
   </div>
+
   <div class="score_wallet">
 
-    <div class="selectMonthForm">
-      <mat-form-field>
-        <mat-label>Wybierz miesiąc rozliczenia</mat-label>
-        <mat-select [(ngModel)]="selectedMonth" (ngModelChange)="changeSelect($event)">
-          <mat-option *ngFor="let select of  monthList" [value]="select">
-          {{select}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="bilans_data">
-      <div class="bilans_data_title">
-        <p>Wydatek:</p>
-        <p>Przychód:</p>
-        <p>Bilans:</p> 
+    <div class="bilans">
+      <div class="selectMonthForm">
+        <mat-form-field>
+          <mat-label>Wybierz miesiąc rozliczenia</mat-label>
+          <mat-select [(ngModel)]="selectedMonth" (ngModelChange)="changeSelect($event)">
+            <mat-option *ngFor="let select of  monthList" [value]="select">
+            {{select}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div class="bilans_data_result">
-        <p>{{expense}} zł</p>
-        <p>{{income}} zł</p>
-        <p>{{bilans}} zł</p> 
+
+      <div class="bilans_data">
+        <div class="bilans_data_title">
+          <p>Wydatek:</p>
+          <p>Przychód:</p>
+          <p>Bilans:</p> 
+        </div>
+        <div class="bilans_data_result">
+          <p>{{expense}} zł</p>
+          <p>{{income}} zł</p>
+          <p>{{bilans}} zł</p> 
+        </div>
       </div>
     </div>
 

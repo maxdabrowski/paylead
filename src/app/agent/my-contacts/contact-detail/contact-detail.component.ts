@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { LeadOwn } from 'src/app/models/leadOwn.model';
@@ -14,6 +14,8 @@ import { GetLeadsOwn, getLeadsOwnLead, getLeadStatusLead, getRouteQueryParams, G
   styleUrls: ['./contact-detail.component.scss']
 })
 export class ContactDetailComponent implements OnInit {
+
+  @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
 
   leadId$: string;
   lead$: Observable<LeadOwn[]>;
@@ -89,9 +91,15 @@ export class ContactDetailComponent implements OnInit {
       this.leadStatusService.postLeadStatus(this.statusToSend).subscribe(data => {
         if(data){
           this.store.dispatch(new GetStatus({ leadStatusData: {lead_id: parseInt(this.leadId$)} }));
-          this.store.dispatch(new GetLeadsOwn({ leadData: {lead_id: parseInt(this.leadId$)} }));
-          this.statusForm.reset();
+          this.store.dispatch(new GetLeadsOwn({ leadData: {lead_id: parseInt(this.leadId$)}}));
+          this.formDirective.resetForm();
+        }if (!data){
+          this.formDirective.resetForm();
+          this.statusForm.get('status').disable();
+          this.statusForm.get('note').disable();
         }
+
+
       });
     }
   }

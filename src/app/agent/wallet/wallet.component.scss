@@ -71,3 +71,34 @@ mat-form-field{
 .campaingCommision{
   text-align: center;
 }
+
+@media (max-width:768px){
+  .wallet{
+    display: block
+  }
+  .settlement{
+    width: 100%;
+  }
+  .score_wallet{
+    margin-bottom: 20px;
+  }
+  .campaingCommision{
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width:425px){
+  th, td{
+    font-size: 10px;
+  }
+  .campaingCommision{
+    padding-bottom: 250px;
+  }
+  .bilans{
+    position: fixed;
+    bottom: 0;
+    width: 95%;
+    background-color: white;
+
+  }
+}

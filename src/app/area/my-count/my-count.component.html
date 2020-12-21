@@ -28,24 +28,7 @@
         <p>{{loginUser.mail}}</p>
       </div>
     </div>
-    <p class="user_footer">W celu zaktualizowania swoich danych osobowych skontaktuj się ze swoim bezpośrednim przełożonym.</p>
+    <p class="user_footer">W celu zaktualizowania danych agentów Twojej sieci przejdz do zakładki "Struktura sieci".</p>
   </div>
-
-  <div class="user_structure">
-    <p class="header">TWOJA STRUKTURA</p>
-    <div *ngIf ="userStructure$ | async  as userStructure">
-      <div class="structure_item" *ngFor="let user of  userStructure">
-        <div *ngIf="user.active">
-        <p>
-          <span *ngIf="user.role == 'area' "><b>dyrektor regionu: </b></span>
-          <span *ngIf="user.role == 'agent' "><b>{{user.role}}: </b></span>
-          {{user.name}} {{user.surname}}
-        </p>
-        <p><mat-icon [inline]="true"> phone</mat-icon> {{user.phone}}</p>
-        <p><mat-icon [inline]="true">alternate_email</mat-icon> {{user.mail}}</p>
-      </div>
-      </div>
-    </div>  
-  </div>
-  
+ 
 </div>

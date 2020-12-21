@@ -42,6 +42,7 @@ import { LoginGuard } from './login.guard';
     AgentModule,
     AreaModule,
     RegionModule,
+
   ],
   providers: [
     ...SHARED_SERVICES,

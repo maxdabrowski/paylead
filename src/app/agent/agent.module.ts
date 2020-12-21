@@ -20,11 +20,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './add-contacts/modal/modal.component';
-import { ModalPasswordComponent } from './my-count/modal-password/modal-password.component';
 import { RoudChartComponent } from './results/roud-chart/roud-chart.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ColumnChartComponent } from './results/column-chart/column-chart.component';
 import { LoginGuard } from '../login.guard';
+import { ComponentsModule } from '../shared/components/components.module';
 
 const routes: Route[] = [
   {path: '', pathMatch: 'full', redirectTo: 'shop'}, 
@@ -40,7 +40,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [AgentComponent, ShopComponent, MyContactsComponent, AddContactsComponent, MyCountComponent, ContactDetailComponent, WalletComponent, ResultsComponent, ModalComponent, ModalPasswordComponent, RoudChartComponent, ColumnChartComponent],
+  declarations: [AgentComponent, ShopComponent, MyContactsComponent, AddContactsComponent, MyCountComponent, ContactDetailComponent, WalletComponent, ResultsComponent, ModalComponent, RoudChartComponent, ColumnChartComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -56,6 +56,7 @@ const routes: Route[] = [
     MatDialogModule,
     NgApexchartsModule,
     RouterModule.forChild(routes),
+    ComponentsModule
   ],
   exports: [],
 })

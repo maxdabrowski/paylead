@@ -25,8 +25,8 @@ export class LeadStatusService {
     return this.http.post<any>(`${this.baseUrl}/status_post`, leadStatusPost)
   }
 
-  getDataToColumnChart(user:{user:string}): Observable<StatusDataCharts>{
-    return this.http.post<StatusDataCharts>(`${this.baseUrl}/status_to_charts`, user)
+  getDataToColumnChart(data:{user?:string, area?:string, region?: string}): Observable<StatusDataCharts>{
+    return this.http.post<StatusDataCharts>(`${this.baseUrl}/status_to_charts`, data)
   }
   
 }

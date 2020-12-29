@@ -18,20 +18,27 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentsModule } from '../shared/components/components.module';
+import { DetailComponent } from './contacts/detail/detail.component';
+import { MatIconModule } from '@angular/material/icon';
+import { AddAgentComponent } from './structure/add-agent/add-agent.component';
+import { ChangeDataModalComponent } from './structure/change-data-modal/change-data-modal.component';
+import { DeactivationModalComponent } from './structure/deactivation-modal/deactivation-modal.component';
 
 
 const routes: Route[] = [
   {path: '', pathMatch: 'full', redirectTo: 'contacts'}, 
   {path: '', component: AreaComponent, children: [
     { path: 'contacts', component: ContactsComponent, canActivate: [LoginGuard]},
+    { path: 'lead', component: DetailComponent, canActivate: [LoginGuard]},
     { path: 'structure', component: StructureComponent, canActivate: [LoginGuard]},
+    { path: 'add_agent', component: AddAgentComponent, canActivate: [LoginGuard]},
     { path: 'my_count', component: MyCountComponent, canActivate: [LoginGuard]},
     { path: 'results', component: AreaResultsComponent, canActivate: [LoginGuard]}
   ]},
 ];
 
 @NgModule({
-  declarations: [AreaComponent, ContactsComponent, StructureComponent, AreaResultsComponent, MyCountComponent],
+  declarations: [AreaComponent, ContactsComponent, StructureComponent, AreaResultsComponent, MyCountComponent, DetailComponent, AddAgentComponent, ChangeDataModalComponent, DeactivationModalComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -46,6 +53,7 @@ const routes: Route[] = [
     MatInputModule,
     MatDialogModule,
     NgApexchartsModule,
+    MatIconModule,
     RouterModule.forChild(routes),
     ComponentsModule
   ],

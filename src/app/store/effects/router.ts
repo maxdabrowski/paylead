@@ -14,7 +14,7 @@ export class RouterEffects {
     .pipe(
       ofType<Go>(RouterActionTypes.Go),
       map(action => action.payload),
-      tap(({ commands, extras }) => this.router.navigate(commands, extras))
+      tap(({ commands, extras }) => this.router.navigate(commands, extras)),
   )
 
   @Effect({ dispatch: false })

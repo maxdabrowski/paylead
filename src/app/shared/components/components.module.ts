@@ -6,11 +6,13 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { RoudChartComponent } from './roud-chart/roud-chart.component';
+import { ColumnChartComponent } from './column-chart/column-chart.component';
 
 
 
 @NgModule({
-  declarations: [ModalPasswordComponent],
+  declarations: [ModalPasswordComponent, RoudChartComponent, ColumnChartComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -22,7 +24,9 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     NgApexchartsModule,
   ],
   exports:[
-    ModalPasswordComponent
+    ModalPasswordComponent,
+    RoudChartComponent,
+    ColumnChartComponent
   ]
 })
 export class ComponentsModule { }

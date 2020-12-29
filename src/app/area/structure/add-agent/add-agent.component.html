@@ -1,0 +1,26 @@
+<div class="add_agent">
+  <form class="form" [formGroup]="userForm"  (ngSubmit)="onSubmit()"> 
+    <p class="req_alert">Uwaga!! Podczas tworzenia użytkownika powstaje potrzebny do zalogowania się na konto Login oraz Hasło. Hasło podczas towrzenia zawsze jest równe "test", po dodaniu agenta jesgo login można sprawdzić w zakładce "Struktura obszaru". Po utworzeniu nowego konta skontakuj się z agentem i poleć zmianę hasła.</p>
+    <mat-form-field>
+      <mat-label>Imię</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf=true>błędne imię</mat-error>     
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nazwisko</mat-label>
+      <input matInput formControlName="surname">
+      <mat-error *ngIf=true>błędne nazwisko</mat-error> 
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Numer telefonu</mat-label>
+      <input matInput formControlName="phone">
+      <mat-error *ngIf=true>numer telefonu powinien składać sie z 9 liczb</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Adres e-mail</mat-label>
+      <input matInput formControlName="mail">
+      <mat-error *ngIf=true>błędny adres email</mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit" class="submit-btn" >dodaj nowego agenta</button>
+  </form>
+</div>

@@ -1,0 +1,15 @@
+<div class="modal">
+  <div>
+    <p class="req_alert">Jeżeli dezaktywujesz agenta będzie to równoznaczne z tym, że utraci on możliwość logowania się na swoje konto w serwisie, i nie będzie on już widoczny w strukturze aktywnych agentów. </p>
+    <p class="req_alert">Aby dane z z porfela danego agenta nie przepadły musisz przepiąć jego portfel na innego aktywnego agenta z twojej sieci.</p>
+    <mat-form-field>
+      <mat-label>Wybierz agenta do przepięcia portfela</mat-label>
+      <mat-select [(ngModel)]="selectedAgent">
+        <mat-option *ngFor="let select of  agentsList" [value]="select.nick">
+        {{select.name}} ({{(select.nick)}})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit" class="submit-btn" (click)="deactivateAgent()">dezeaktywacja agenta</button>
+  </div>
+</div>

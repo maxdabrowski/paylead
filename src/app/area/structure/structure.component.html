@@ -1,1 +1,45 @@
-<p>structure works!</p>
+<div class="structure">
+  <div class="head_structure">
+    <div class="region_director" *ngIf ="directorRegion$ | async  as director" >
+      <p><b>Dyrektor regionu: </b>{{director.name}} {{director.surname}}</p>
+      <p><mat-icon [inline]="true"> phone</mat-icon> {{director.phone}}</p>
+      <p><mat-icon [inline]="true">alternate_email</mat-icon> {{director.mail}}</p>
+    </div>
+    <div class="add_user">
+      <p>dodaj nowego agenta dla swojego obszaru</p>
+      <button  mat-flat-button color="primary"[routerLink]="'/area/add_agent'">dodaj nowego agenta</button>
+    </div>
+</div>
+  
+  <div #usersStructure *ngIf ="userStructure$ | async  as userStructure" class="area_structure">
+    <div class="structure_item" *ngFor="let user of  userStructure" class="user_data">
+      <div class="user_data_title">
+        <p>
+          <span *ngIf="user.role == 'area' "><b>Dyrektor obszaru : </b></span>
+          <span *ngIf="user.role == 'agent' "><b>Agent: </b></span>
+        </p>
+        <p>Login:</p>
+        <p>Telefon:</p>
+        <p>Adres mailowy:</p>
+        <p>Region:</p>
+        <p>Obszar:</p>
+        <p>Status aktywności:</p>
+        <button *ngIf="user.active" mat-flat-button color="primary" (click) = changeUserData(user)>zmień dane</button>
+      </div>
+      <div class="user_data_result">
+        <p>{{user.name}} {{user.surname}}</p>
+        <p> {{user.nick}}</p>
+        <p>{{user.phone}}</p>
+        <p>{{user.mail}}</p>
+        <p>{{user.region}}</p>
+        <p>{{user.area}}</p>
+        <p>
+          <span *ngIf="user.active"><b class="active">Aktywny</b></span>
+          <span *ngIf="!user.active"><b class="unactive">Nieaktywny</b></span>
+        </p>
+        <button *ngIf="user.active && user.role=='agent'" mat-flat-button color="primary" (click) = unactiveUser(user.nick)>dezaktywacja agenta</button>
+      </div>
+    </div>
+  </div> 
+
+</div>

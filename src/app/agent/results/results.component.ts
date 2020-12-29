@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { LeadDataCharts } from 'src/app/models/leadDataCharts.model ';
+import { LeadDataCharts } from 'src/app/models/leadDataCharts.model';
 import { LeadOwn } from 'src/app/models/leadOwn.model';
 import { LeadStatus } from 'src/app/models/leadStatus.model';
 import { StatusDataCharts } from 'src/app/models/statusDataCharts.model';
@@ -38,7 +38,7 @@ export class ResultsComponent{
               csv += el.lead_id+", "+el.owner+", "+el.area+", "+el.region+", "+el.date+", "+el.status+", "+el.note+", "+el.policy+", "+el.income;
               csv += "\n";
       });
-      createCsvFile(csv,'statusy.csv');
+      createCsvFile(csv,`statusy_${this.userNick$}.csv`);
 
     }else if(type === 'lead'){
       let csv = 'lead_id, imię, nazwisko, telefon, mail, miejscowość, kod pocztowy, adres, typ klienta, wiek, typ, kampania, produkt, cena, region, obszar, agent, status\n';
@@ -46,7 +46,7 @@ export class ResultsComponent{
               csv +=el.lead_id +", "+el.name+", "+el.surname+", "+el.phone+", "+el.mail+", " +el.town+", "+el.post_code+", "+el.adress+", "+el.client_type+", "+el.age+", "+el.type+", "+el.campaign+", "+el.product+", "+el.price+", "+el.region+", "+el.area+", "+el.owner+", "+el.status;
               csv += "\n";
       });
-      createCsvFile(csv,'kontakty.csv');
+      createCsvFile(csv,`kontakty_${this.userNick$}.csv`);
     } 
 
     function createCsvFile(fileContent: string, fileName:string){

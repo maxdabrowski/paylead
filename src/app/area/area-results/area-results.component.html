@@ -1,1 +1,41 @@
-<p>area-results works!</p>
+<div class="results">
+  <div class="charts">
+    <h1>WYNIKI OBSZARU {{userArea$.toUpperCase()}}</h1> 
+
+    <div *ngIf="dataLeadcharts$ | async as dataRoundChart"  class="round_charts_group">
+      <div class="round_chart">
+        <p>podział kontaktów niezakupionych</p>
+        <nga-roud-chart [dataLabel] = "dataRoundChart.dataOneLabel" [dataValue] = "dataRoundChart.dataOneValue"   class="round_chart"></nga-roud-chart>
+      </div>
+      <div class="round_chart">
+        <p>podział kontaktów pod względem zakupienia</p>
+        <nga-roud-chart [dataLabel] = "dataRoundChart.dataTypeLabel" [dataValue] = "dataRoundChart.dataTypeValue"   class="round_chart"></nga-roud-chart>
+      </div>
+      <div class="round_chart">
+        <p>podział kontaktów zakupionych</p>
+        <nga-roud-chart [dataLabel] = "dataRoundChart.dataTwoLabel" [dataValue] = "dataRoundChart.dataTwoValue"   class="round_chart"></nga-roud-chart>
+      </div>
+    </div>
+
+
+    <div class="column_chart" *ngIf="dataStatuscharts$ | async as DataColumnChart">
+      <p>Liczba sukcesów na poszczególnych agentów obszaru</p>
+      <nga-column-chart [dataLabel] = "DataColumnChart.statusLabel" [dataValue] = "DataColumnChart.statusValue" ></nga-column-chart>
+    </div>
+
+  </div>
+  <div>
+    <h1>TABELA Z WYNIKAMI DLA POSZCZEGÓLNYCH AGENTÓW</h1>
+  </div>
+  <div class="download_data">
+    <div class="download_data_row">
+      <p>kontakty w pliku <b>kontakty_{{userArea$}}.csv</b></p>
+      <button mat-flat-button color="primary" (click)="downloadFile('lead')">Pobierz</button>
+    </div>
+    <div class="download_data_row">
+      <p>statusy w pliku <b>statusy_{{userArea$}}.csv</b></p>
+      <button mat-flat-button color="primary" (click)="downloadFile('status')">Pobierz</button>
+    </div>
+  </div>
+
+</div>

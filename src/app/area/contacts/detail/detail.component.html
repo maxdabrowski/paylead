@@ -1,0 +1,40 @@
+<div class='contact_detail'>
+
+  <div class="lead_status" *ngIf= "status$ | async as status">
+    <ul *ngIf= "status.length>0, else noStatus" >
+      <li>
+        <div class="status_stat_row">
+          <p class="stat_p"><b>DATA</b><p>
+          <p class="stat_p"><b>STATUS</b></p>   
+        </div>
+      </li>
+      <li *ngFor = "let stat of status" class="stat_li">
+        <div class="status_stat_row">
+          <p class="stat_p">{{stat.date}}<p>
+          <p class="stat_p">{{stat.status}}</p> 
+        </div>
+        <p *ngIf="stat.note !== '' " class="status_note"><b>Notatka:</b> {{stat.note}}</p>
+        <div *ngIf="stat.policy !== undefined"  class="status_stat_row">
+          <p class="stat_p"><b>Polisa: {{stat.policy}}</b></p>
+          <p class="stat_p"><b>Przypis: {{stat.income}}zł</b></p>
+        </div>
+      </li>
+    </ul>
+    <ng-template #noStatus><div class="no_status">Kontakt jeszcze nie został zakupiony przez rzadnego agenta, nie posiada statusów z jego obsługi.</div></ng-template>
+  </div>
+
+  <div class="lead_details" *ngIf= "lead$ | async as lead" >
+    <div class="client_specifics">
+      <p>Id kontaktu: {{lead[0].lead_id}}</p>
+      <p><b>{{lead[0].name}} {{lead[0].surname}} <span *ngIf="lead[0].age !== ''"> ({{lead[0].age}} lat)</span></b></p>
+      <p>{{lead[0].post_code}} {{lead[0].town}}, {{lead[0].adress}}</p>
+      <p><mat-icon>phone</mat-icon>{{lead[0].phone}} <mat-icon>alternate_email</mat-icon>{{lead[0].mail}}</p>
+      <p>Typ klienta: {{lead[0].client_type}}</p>
+      <p>Typ: {{lead[0].type}}</p>
+      <p>Kampania: {{lead[0].campaign}}</p>
+      <p>Produkt: {{lead[0].product}}</p>
+      <p class="status">Status: <b>{{lead[0].status}}</b></p>
+    </div>
+  </div>
+
+</div>

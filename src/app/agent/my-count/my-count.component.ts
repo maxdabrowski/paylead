@@ -11,7 +11,6 @@ import {
   State
 } from '../../store'
 
-
 @Component({
   selector: 'nga-my-count',
   templateUrl: './my-count.component.html',

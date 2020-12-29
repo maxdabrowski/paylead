@@ -5,7 +5,7 @@ import { API_BASE_URL } from 'src/app/app.tokens';
 import { Campaign } from 'src/app/models/campaign.model';
 import { Commision } from 'src/app/models/commision.model';
 import { LeadData } from 'src/app/models/leadData.model';
-import { LeadDataCharts } from 'src/app/models/leadDataCharts.model ';
+import { LeadDataCharts } from 'src/app/models/leadDataCharts.model';
 import { LeadOwn } from 'src/app/models/leadOwn.model';
 import { LeadToBuy } from 'src/app/models/leadToBuy.model';
 import { OwnLeadWallet } from 'src/app/models/ownLeadWallet';
@@ -24,6 +24,7 @@ export class LeadService {
     return this.http.post<LeadToBuy[]>(`${this.baseUrl}/lead_buy`, leadData)
   }
 
+  //czy to potrzrbne?????????????
   leadBuy(leadData: LeadData): Observable<LeadToBuy[]>{
     return this.http.post<LeadToBuy[]>(`${this.baseUrl}/lead_buy`, leadData)
   }
@@ -36,8 +37,8 @@ export class LeadService {
     return this.http.post<any>(`${this.baseUrl}/lead_add_agent`, leadToAdd)
   }
 
-  getDataToRoundCharts(user:{user:string}): Observable<LeadDataCharts>{
-    return this.http.post<LeadDataCharts>(`${this.baseUrl}/lead_to_charts`, user)
+  getDataToRoundCharts(data:{user?:string, area?:string, region?:string}): Observable<LeadDataCharts>{
+    return this.http.post<LeadDataCharts>(`${this.baseUrl}/lead_to_charts`, data)
   }
 
   getLeadCommison(user:{user:string}): Observable<Commision[]>{

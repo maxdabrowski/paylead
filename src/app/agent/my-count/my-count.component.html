@@ -37,7 +37,7 @@
       <div class="structure_item" *ngFor="let user of  userStructure">
         <div *ngIf="user.active">
         <p>
-          <span *ngIf="user.role == 'area' "><b>dyrektor regionu: </b></span>
+          <span *ngIf="user.role == 'area' "><b>dyrektor obszaru: </b></span>
           <span *ngIf="user.role == 'agent' "><b>{{user.role}}: </b></span>
           {{user.name}} {{user.surname}}
         </p>

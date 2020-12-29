@@ -47,6 +47,7 @@ const initialState: State = {
     mail: "matkaczorowski@pzu.pl",
     "active": true
   }
+
 };
 
 export function reducer(state = initialState, action: LoginActions): State {

@@ -1,1 +1,77 @@
-<p>contacts works!</p>
+<div class="my_contacts">
+
+  <div class="description">
+    Znajdują się tutaj wsztstkie kontakty udostępnione dla twojej sieci, zarówno zmozliwością kupienia oraz te zakupione już przez agentów, aby dowiedzieć się wiecej o danym kontakcie kliknij przycisk "Szczegóły".
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+    <ng-container matColumnDef="lead_id" >
+      <th mat-header-cell *matHeaderCellDef class="lead_row">
+        <p mat-sort-header>Id</p>
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Wyszukaj</mat-label>
+          <input matInput [formControl]="idFilter">
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let row" class="lead_row"> {{row.lead_id}}</td>
+    </ng-container>
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>
+        <p mat-sort-header>TYP</p>
+        <mat-form-field>
+          <mat-label>wybierz typ</mat-label>
+          <mat-select matSelect  [formControl]="typeFilter">
+            <mat-option *ngFor="let select of  typeList" [value]="select">
+            {{select}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+    </ng-container>
+    <ng-container matColumnDef="campaign">
+      <th mat-header-cell *matHeaderCellDef> 
+        <p mat-sort-header>KAMPANIA</p>
+        <mat-form-field>
+          <mat-label>wybierz kampanie</mat-label>
+          <mat-select matSelect  [formControl]="campaignFilter">
+            <mat-option *ngFor="let select of  campaignList" [value]="select">
+            {{select}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let row"> {{row.campaign}} </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> 
+        <p mat-sort-header>STATUS</p>
+        <mat-form-field>
+          <mat-label>wybierz status</mat-label>
+          <mat-select matSelect  [formControl]="statusFilter">
+            <mat-option *ngFor="let select of  statusList" [value]="select">
+            {{select}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> 
+      </th>
+      <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row" class="small"><button mat-flat-button color="primary" [routerLink]="'/area/lead'"  [queryParams]="{id:row.lead_id}">Szczegóły</button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+
+</div>
+
+
+
+
+

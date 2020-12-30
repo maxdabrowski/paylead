@@ -21,18 +21,30 @@
 .column_chart{
   margin-top: 50px;
 }
+
+mat-form-field{
+  width: 50%;
+}
+table{
+  width: 100%;
+  margin-bottom: 50px;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+}
+
+.area_summary{
+  text-align: center;
+}
+
 .download_data_row{
   display: flex;
   margin-bottom: 15px;
-
-
 }
 
 .download_data_row p{
   width: 90%;
-  margin: 7px  20px 0 ;
+  margin: 7px  20px 0;
    text-align: right;
-
 }
 
 .download_data_row button {

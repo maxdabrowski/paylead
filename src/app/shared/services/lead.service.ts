@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_BASE_URL } from 'src/app/app.tokens';
+import { AreaSummaryData } from 'src/app/models/areaSummary.model';
 import { Campaign } from 'src/app/models/campaign.model';
 import { Commision } from 'src/app/models/commision.model';
 import { LeadData } from 'src/app/models/leadData.model';
@@ -53,4 +54,11 @@ export class LeadService {
     return this.http.get<Campaign[]>(`${this.baseUrl}/campaign`)
   }
 
-}
+  getAreaSummary(data:{area?:string, region?: string; period:string}): Observable<AreaSummaryData[]>{
+    return this.http.post<AreaSummaryData[]>(`${this.baseUrl}/bilans_summary`, data)
+  }
+
+  getDateToAreaSummaryTab(data:{area:string}): Observable<string[]>{
+    return this.http.post<string[]>(`${this.baseUrl}/bilans_summary_date`, data)
+  }
+};

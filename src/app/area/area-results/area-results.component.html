@@ -17,16 +17,58 @@
       </div>
     </div>
 
-
     <div class="column_chart" *ngIf="dataStatuscharts$ | async as DataColumnChart">
       <p>Liczba sukcesów na poszczególnych agentów obszaru</p>
       <nga-column-chart [dataLabel] = "DataColumnChart.statusLabel" [dataValue] = "DataColumnChart.statusValue" ></nga-column-chart>
     </div>
 
   </div>
-  <div>
-    <h1>TABELA Z WYNIKAMI DLA POSZCZEGÓLNYCH AGENTÓW</h1>
+  <div class="area_summary">
+    <p class="area_summary_header">tabela z wynikami dla poszczególnych agentów</p>
+    <div class="selectMonthForm">
+      <mat-form-field>
+        <mat-label>Wybierz miesiąc rozliczenia</mat-label>
+        <mat-select [(ngModel)]="selectedMonth" (ngModelChange)="changeSelect($event)">
+          <mat-option *ngFor="let select of  monthList" [value]="select">
+          {{select}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="areaSummarySource">
+      <ng-container matColumnDef="agent" >
+        <th mat-header-cell *matHeaderCellDef class="small"> AGENT </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.agent}}</td>
+      </ng-container>
+      <ng-container matColumnDef="count_lead">
+        <th mat-header-cell *matHeaderCellDef class="small"> L. KONTAKTÓW </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.count_lead}}</td>
+      </ng-container>
+      <ng-container matColumnDef="count_success">
+        <th mat-header-cell *matHeaderCellDef class="small"> L. SUKCESÓW </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.count_success}}</td>
+      </ng-container>
+      <ng-container matColumnDef="effectiveness">
+        <th mat-header-cell *matHeaderCellDef class="small"> EFEKTYWNOŚĆ </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.effectiveness}} %</td>
+      </ng-container>
+      <ng-container matColumnDef="expense">
+        <th mat-header-cell *matHeaderCellDef class="big"> WYDATEK </th>
+        <td mat-cell *matCellDef="let row" class="big">{{row.expense}} ZŁ</td>
+      </ng-container>
+      <ng-container matColumnDef="income">
+        <th mat-header-cell *matHeaderCellDef class="small"> PRZYCHÓD </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.income}} zł</td>
+      </ng-container>
+      <ng-container matColumnDef="bilans">
+        <th mat-header-cell *matHeaderCellDef class="small"> BILANS </th>
+        <td mat-cell *matCellDef="let row" class="small">{{row.bilans}} zł</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="areaSummaryDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: areaSummaryDisplayedColumns;"></tr>
+    </table>
   </div>
+
   <div class="download_data">
     <div class="download_data_row">
       <p>kontakty w pliku <b>kontakty_{{userArea$}}.csv</b></p>

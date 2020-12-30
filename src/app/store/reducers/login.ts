@@ -35,7 +35,7 @@ const initialState: State = {
     active: true
   }*/
 
-  loginUser:{
+  /*loginUser:{
     id: 13,
     name: "Mateusz",
     surname: "Kaczorowski",
@@ -46,6 +46,20 @@ const initialState: State = {
     phone: "456789890",
     mail: "matkaczorowski@pzu.pl",
     "active": true
+  }*/
+
+
+  loginUser:{
+    id: 4,
+    name: "Michał",
+    surname: "Konarski",
+    nick:"mickonarski",
+    region:"Południe",
+    area:"",
+    role:"region",
+    phone: "565678789",
+    mail: "mickonarski@pzu.pl",
+    active: true
   }
 
 };

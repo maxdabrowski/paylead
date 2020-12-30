@@ -5,7 +5,6 @@
   padding-bottom: 20px;
 }
 
-
 .charts{
   text-align: center;
 }
@@ -25,6 +24,7 @@
 mat-form-field{
   width: 50%;
 }
+
 table{
   width: 100%;
   margin-bottom: 50px;
@@ -60,5 +60,18 @@ table{
   }
   .download_data_row, button{
     font-size: 10px;
+  }
+  mat-form-field{
+    width: 100%;
+  }
+  table{
+  font-size: 10px;
+  }
+  td{
+    font-size: 10px !important;
+    padding: 0px !important;
+  }
+ th{
+    display: none;
   }
 }

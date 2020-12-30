@@ -50,7 +50,6 @@ const routes: Route[] = [
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    MatInputModule,
     MatDialogModule,
     NgApexchartsModule,
     MatIconModule,

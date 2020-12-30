@@ -1,0 +1,79 @@
+.structure{
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.head_structure{
+  display: flex; 
+}
+
+.region_director{
+  width: 50%;
+  text-align: center;
+}
+
+.add_user{
+  width: 50%;
+  text-align: center;
+}
+
+.area_structure{
+  display: flex;  
+  flex-wrap: wrap;
+}
+
+.user_data{
+  display: flex;
+  border: solid 1px #c4e6f7;
+  border-radius: 20px;
+  width: 40%;
+  margin: 4%
+}
+
+.user_data_title{
+  text-align: right;
+  font-weight: bold;
+  width: 50%;
+}
+
+.user_data_result{
+  text-align: left;
+  margin-left: 10px;
+  width: 50%;
+}
+
+button{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.unactive{
+  color: rgb(129, 11, 11);
+}
+
+.active{
+  color: rgb(7, 92, 7);
+}
+
+@media (max-width:425px){
+  .head_structure, .area_structure{
+    display: block;
+  }
+  .region_director, .add_user{
+    width: 100%;
+  }
+  .add_user{
+    margin-top: 30px;
+  }
+  .user_data{
+    width: 90%;
+    font-size: 12px;
+  }
+  button{
+    font-size: 10px;
+  }
+}

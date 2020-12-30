@@ -22,8 +22,12 @@ export class LoginService {
     return this.http.post<LoginDataRes>(`${this.baseUrl}/login`, loginData)
   }
 
-  getstructureByArea(structure: {area?:string, region?:string}): Observable<User[]> {
+  getstructureByArea(structure: {area:string}): Observable<User[]> {
     return this.http.post<User[]>(`${this.baseUrl}/structure`, structure)
+  }
+
+  getstructureByRegion(structure: {region:string}): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/structure_region`, structure)
   }
 
   getDirectorByRegion(structure: {region?:string}): Observable<User> {

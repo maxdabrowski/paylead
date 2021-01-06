@@ -8,11 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { RoudChartComponent } from './roud-chart/roud-chart.component';
 import { ColumnChartComponent } from './column-chart/column-chart.component';
+import { DetailComponent } from './detail/detail.component';
 
 
 
 @NgModule({
-  declarations: [ModalPasswordComponent, RoudChartComponent, ColumnChartComponent],
+  declarations: [ModalPasswordComponent, RoudChartComponent, ColumnChartComponent, DetailComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -26,7 +27,8 @@ import { ColumnChartComponent } from './column-chart/column-chart.component';
   exports:[
     ModalPasswordComponent,
     RoudChartComponent,
-    ColumnChartComponent
+    ColumnChartComponent,
+    DetailComponent
   ]
 })
 export class ComponentsModule { }

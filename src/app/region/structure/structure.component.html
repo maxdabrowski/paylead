@@ -1,33 +1,48 @@
 <div class="structure">
+  <div *ngIf ="regionStructure$ | async  as regionStructure">
+    <div class="structure_item" *ngFor="let user of  regionStructure">
 
-  <div #usersStructure *ngIf ="userStructure$ | async  as userStructure" class="area_structure">
-    <div class="structure_item" *ngFor="let user of  userStructure" class="user_data">
-      <div class="user_data_title">
-        <p>
-          <span *ngIf="user.role == 'area' "><b>Dyrektor obszaru : </b></span>
-          <span *ngIf="user.role == 'agent' "><b>Agent: </b></span>
+      <div class="structure_director_all">
+        <p class="structure_area">Obszar {{user.area}}</p>
+        <div class="structure_director">
+          <div class="user_data_title">
+            <p>Dyrektor obszaru: </p>
+            <p>Login:</p>
+            <p>Telefon:</p>
+            <p>Adres mailowy:</p>
+            <p>Status aktywności:</p>
+          </div>
+          <div class="user_data_result">
+            <p>{{user.director.name}} {{user.director.surname}}</p>
+            <p> {{user.director.nick}}</p>
+            <p>{{user.director.phone}}</p>
+            <p>{{user.director.mail}}</p>
+            <p>
+              <span *ngIf="user.director.active"><b class="active">Aktywny</b></span>
+              <span *ngIf="!user.director.active"><b class="unactive">Nieaktywny</b></span>
+            </p>
+          </div>
+        </div>
+        <p class="structure_button">
+          <button mat-flat-button color="primary" (click) = changeUserData(user.director)>zmień dane / zmień dyrektora</button>
         </p>
-        <p>Login:</p>
-        <p>Telefon:</p>
-        <p>Adres mailowy:</p>
-        <p>Region:</p>
-        <p>Obszar:</p>
-        <p>Status aktywności:</p>
-        <button *ngIf="user.active" mat-flat-button color="primary" (click) = changeUserData(user)>zmień dane</button>
+      </div> 
+
+      <div class="structure_agents">
+        <ul class="" *ngFor="let agent of  user.agents" >
+          <li>
+            <p><b>Agent:</b> {{agent.name}} {{agent.surname}}</p>
+            <p><b>Status aktywności: </b> 
+              <span *ngIf="agent.active"><b class="active">Aktywny</b></span>
+              <span *ngIf="!agent.active"><b class="unactive">Nieaktywny</b></span>
+            </p>
+            <p><mat-icon [inline]="true"> phone</mat-icon> {{agent.phone}}</p>
+            <p><mat-icon [inline]="true">alternate_email</mat-icon> {{agent.mail}}</p>
+            <button mat-flat-button color="primary" (click) = changeAreaData(agent)>zmień obszar</button>
+          </li> 
+        </ul>
       </div>
-      <div class="user_data_result">
-        <p>{{user.name}} {{user.surname}}</p>
-        <p> {{user.nick}}</p>
-        <p>{{user.phone}}</p>
-        <p>{{user.mail}}</p>
-        <p>{{user.region}}</p>
-        <p>{{user.area}}</p>
-        <p>
-          <span *ngIf="user.active"><b class="active">Aktywny</b></span>
-          <span *ngIf="!user.active"><b class="unactive">Nieaktywny</b></span>
-        </p>
-      </div>
+
     </div>
-  </div> 
-
+  </div>  
 </div>

@@ -54,11 +54,11 @@ export class LeadService {
     return this.http.get<Campaign[]>(`${this.baseUrl}/campaign`)
   }
 
-  getAreaSummary(data:{area?:string, region?: string; period:string}): Observable<AreaSummaryData[]>{
+  getSummaryData(data:{area?:string, region?: string; period:string}): Observable<AreaSummaryData[]>{
     return this.http.post<AreaSummaryData[]>(`${this.baseUrl}/bilans_summary`, data)
   }
 
-  getDateToAreaSummaryTab(data:{area:string}): Observable<string[]>{
+  getDateToSummaryTab(data:{area?:string, region?:string}): Observable<string[]>{
     return this.http.post<string[]>(`${this.baseUrl}/bilans_summary_date`, data)
   }
 };

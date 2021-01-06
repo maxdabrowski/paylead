@@ -7,6 +7,7 @@ import { LoginData } from '../../models/loginData.model';
 import { LoginDataRes } from '../../models/loginDataRes.model';
 import { ChangePassword } from '../../models/changePassword.model'
 import { NewUser } from 'src/app/models/newUser.model';
+import { RegionStructure } from 'src/app/models/regionStructure.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,8 @@ export class LoginService {
     return this.http.post<User[]>(`${this.baseUrl}/structure`, structure)
   }
 
-  getstructureByRegion(structure: {region:string}): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/structure_region`, structure)
+  getstructureByRegion(structure: {region:string}): Observable<RegionStructure> {
+    return this.http.post<RegionStructure>(`${this.baseUrl}/structure_region`, structure)
   }
 
   getDirectorByRegion(structure: {region?:string}): Observable<User> {
@@ -38,8 +39,16 @@ export class LoginService {
     return this.http.post<boolean>(`${this.baseUrl}/add_agent`, newUser)
   }
 
+  addNewAreaDirector(newAreaDirector:NewUser): Observable<boolean> {
+    return this.http.post<boolean>(`${this.baseUrl}/add_area_director`, newAreaDirector)
+  }
+  
   changeDataUser(changeUser:NewUser): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}/change_agent`, changeUser)
+  }
+
+  changeAreaUser(changeAreaUser:{nick:string, newArea:string}): Observable<boolean> {
+    return this.http.post<boolean>(`${this.baseUrl}/change_area_agent`, changeAreaUser)
   }
 
   deactivateAgent(deactivatedData:{dectivatedAgent:string, agentToWalletChange: string }): Observable<boolean> {

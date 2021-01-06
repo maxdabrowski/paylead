@@ -17,23 +17,31 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentsModule } from '../shared/components/components.module';
 import { ChangeDataModalComponent } from './structure/change-data-modal/change-data-modal.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { ChangeAreaModalComponent } from './structure/change-area-modal/change-area-modal.component';
+import { ChangeOwnDataModalComponent } from './my-count/change-own-data-modal/change-own-data-modal.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DetailComponent } from '../shared/components/detail/detail.component';
 
 const routes: Route[] = [
   {path: '', pathMatch: 'full', redirectTo: 'contacts'}, 
   {path: '', component: RegionComponent, children: [
     { path: 'contacts', component: ContactsComponent, canActivate: [LoginGuard]},
+    { path: 'lead', component: DetailComponent, canActivate: [LoginGuard]},
     { path: 'structure', component: StructureComponent, canActivate: [LoginGuard]},
     { path: 'my_count', component: MyCountComponent, canActivate: [LoginGuard]},
-    { path: 'results', component: RegionResultsComponent, canActivate: [LoginGuard]}
+    { path: 'results', component: RegionResultsComponent, canActivate: [LoginGuard]},
+ 
   ]},
 ];
 @NgModule({
-  declarations: [RegionComponent, MyCountComponent, RegionResultsComponent, StructureComponent, ContactsComponent, ChangeDataModalComponent],
+  declarations: [RegionComponent, MyCountComponent, RegionResultsComponent, StructureComponent, ContactsComponent, ChangeDataModalComponent, ChangeAreaModalComponent, ChangeOwnDataModalComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     MatButtonModule,
     MatTableModule,
+    MatPaginatorModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
@@ -43,6 +51,7 @@ const routes: Route[] = [
     RouterModule.forChild(routes),
     ComponentsModule,
     MatIconModule,
+    MatSelectModule
   ],
   exports: [RegionComponent]
 })

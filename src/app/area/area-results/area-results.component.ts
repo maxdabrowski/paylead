@@ -34,8 +34,8 @@ export class AreaResultsComponent {
     this.store.dispatch(new GetStatus({ leadStatusData: {area: this.userArea$}}));
     this.store.pipe(select(getLeadsOwnLead)).subscribe((value) => this.lead$ = value);
     this.store.pipe(select(getLeadStatusLead)).subscribe((value) => this.status$ = value);
-    this.leadService.getDateToAreaSummaryTab({area:this.userArea$}).subscribe((value) => this.monthList = value); 
-    this.leadService.getAreaSummary({area:this.userArea$, period: "Wszystkie"}).subscribe(value => {
+    this.leadService.getDateToSummaryTab({area:this.userArea$}).subscribe((value) => this.monthList = value); 
+    this.leadService.getSummaryData({area:this.userArea$, period: "Wszystkie"}).subscribe(value => {
       this.areaSummarySource = new MatTableDataSource(value);
     });
 
@@ -44,7 +44,7 @@ export class AreaResultsComponent {
   };
 
   changeSelect(event:string){
-    this.leadService.getAreaSummary({area:this.userArea$, period: event}).subscribe(value => {
+    this.leadService.getSummaryData({area:this.userArea$, period: event}).subscribe(value => {
       this.areaSummarySource = new MatTableDataSource(value);
     });
   };

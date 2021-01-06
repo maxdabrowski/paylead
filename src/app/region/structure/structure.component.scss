@@ -5,31 +5,30 @@
   padding-bottom: 20px;
 }
 
-.head_structure{
-  display: flex; 
+.structure_area{
+text-align: center;
+font-size: 20px;
 }
 
-.region_director{
-  width: 50%;
-  text-align: center;
-}
-
-.add_user{
-  width: 50%;
-  text-align: center;
-}
-
-.area_structure{
-  display: flex;  
-  flex-wrap: wrap;
-}
-
-.user_data{
+.structure_item{
   display: flex;
   border: solid 1px #c4e6f7;
   border-radius: 20px;
-  width: 40%;
-  margin: 4%
+  padding: 2%;
+  margin: 2%
+}
+
+.structure_director_all{
+  width: 50%;
+}
+
+.structure_director{
+  display: flex;
+}
+
+.structure_agents{
+  text-align: center;
+  width: 50%;
 }
 
 .user_data_title{
@@ -37,11 +36,28 @@
   font-weight: bold;
   width: 50%;
 }
+.structure_button{
+  text-align: center;
+}
 
 .user_data_result{
   text-align: left;
   margin-left: 10px;
   width: 50%;
+}
+
+ul{
+  display: block;
+list-style: none;
+}
+ 
+li{
+  margin: 10px;
+}
+
+li p {
+  margin: 0;
+  line-height: 25px;
 }
 
 button{
@@ -60,14 +76,14 @@ button{
 }
 
 @media (max-width:425px){
-  .head_structure, .area_structure{
-    display: block;
+  .structure_item{
+    display: block
   }
-  .region_director, .add_user{
+  ul{
+    padding: 0;
+  }
+  .structure_director_all, .structure_agents{
     width: 100%;
-  }
-  .add_user{
-    margin-top: 30px;
   }
   .user_data{
     width: 90%;

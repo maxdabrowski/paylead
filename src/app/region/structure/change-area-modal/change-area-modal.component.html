@@ -1,0 +1,16 @@
+<div class="modal">
+  <div class="selectAreaForm">
+    <p class="req_alert">Wybierz, do jakiego innego obszaru chcesz zmienić przypisanie.</p> 
+    <p><b>Agent: {{user.name}} {{user.surname}}</b></p>
+    <p><b>Obecny obszar: {{user.area}}</b></p>
+    <mat-form-field>
+      <mat-label>Wybierz nowy obszar do przypisania</mat-label>
+      <mat-select [(ngModel)]="selectedArea">
+        <mat-option *ngFor="let select of  areasList" [value]="select">
+        {{select}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click) = changeAreaData()>zmień obszar użytkownika</button>
+  </div>
+</div>

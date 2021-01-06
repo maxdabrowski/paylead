@@ -1,0 +1,60 @@
+.my_contacts{
+  width: 95%;
+  margin: 0 auto;
+}
+
+.description{
+margin-top: 15px;
+margin-bottom: 15px;
+line-height: 1.5rem;
+}
+
+.filter{
+  text-align: center;
+}
+
+ //tabela wyników
+table {
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+tr p{
+  margin: 0px;
+}
+
+ .at-form-field-flex{
+width: 90%;
+ }
+
+button{
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 20px;
+}
+
+@media (max-width:768px){
+  td{
+    font-size: 12px !important;
+    padding: 0px !important;
+  }
+  mat-form-field{
+    width: 100px;
+  }
+  button{
+    font-size: 12px;
+  }
+}
+
+@media (max-width:425px){
+  td{
+    font-size: 10px !important;
+    padding: 0px !important;
+  }
+  mat-form-field{
+    width: 20px;
+  }
+  button{
+  font-size: 10px;
+  padding: 1px !important;
+  }
+}

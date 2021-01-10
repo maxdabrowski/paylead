@@ -1,0 +1,37 @@
+<div class="my_count">
+
+  <div class="user_data">
+    <p class="header">TWOJE DANE</p>
+    <div class="data_all"  *ngIf ="loginUser$ | async  as loginUser ">
+      <div  class="user_data_all">
+        <div class="user_data_title">
+          <p>Identyfikator:</p>
+          <p>Imię:</p>
+          <p>Nazwisko:</p>
+          <p>Login:</p>
+          <p>Hasło:</p>
+          <p>Rola:</p>
+          <p>Region:</p>
+          <p>Telefon:</p>
+          <p>Email:</p>
+        </div>
+        <div class="user_data_result">
+          <p>{{loginUser.id}}</p>
+          <p>{{loginUser.name}}</p>     
+          <p>{{loginUser.surname }}</p>
+          <p>{{loginUser.nick}}</p>
+          <p><span class="btn" (click)= "hangePassword()">zmień hasło</span></p>
+          <p>{{loginUser.role}}</p>
+          <p>{{loginUser.region}}</p>
+          <p>{{loginUser.phone}}</p>
+          <p>{{loginUser.mail}}</p>
+        </div>
+      </div>
+      <button mat-flat-button color="primary" (click) = changeUserData(loginUser)>zmień dane</button>
+    </div>
+    <p class="user_footer">W celu zaktualizowania danych dyrektorów obszarów oraz podglądu danych agentów przej do zakładki "Struktura regionu".</p>
+  </div>
+ 
+</div>
+
+

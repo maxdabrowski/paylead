@@ -14,7 +14,6 @@ import {
   getLeadsOwnLead,
   getUserNickData
 } from '../../store'
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'nga-my-contacts',

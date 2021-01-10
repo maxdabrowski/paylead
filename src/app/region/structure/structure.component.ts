@@ -5,13 +5,14 @@ import { User } from 'src/app/models/user.model';
 import {MatDialog} from '@angular/material/dialog';
 import { LoginService } from 'src/app/shared/services';
 import { switchMap } from 'rxjs/operators';
-import { ChangeDataModalComponent } from './change-data-modal/change-data-modal.component';
+import { ChangeUserModalComponent } from 'src/app/shared/components/change-user-modal/change-user-modal.component';
 import { ChangeAreaModalComponent } from './change-area-modal/change-area-modal.component';
 import { RegionStructure } from 'src/app/models/regionStructure.model';
 import {
   getUserRegionData,
   State
 } from '../../store'
+
 
 @Component({
   selector: 'nga-structure',
@@ -32,7 +33,7 @@ export class StructureComponent {
   };
 
   openChangeDataModal(user: User): void {
-    const changeDataModalRef = this.dialog.open(ChangeDataModalComponent, {
+    const changeDataModalRef = this.dialog.open(ChangeUserModalComponent, {
     width: '450px',
     data: {user: user}
     });

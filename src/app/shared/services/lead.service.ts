@@ -25,7 +25,6 @@ export class LeadService {
     return this.http.post<LeadToBuy[]>(`${this.baseUrl}/lead_buy`, leadData)
   }
 
-  //czy to potrzrbne?????????????
   leadBuy(leadData: LeadData): Observable<LeadToBuy[]>{
     return this.http.post<LeadToBuy[]>(`${this.baseUrl}/lead_buy`, leadData)
   }
@@ -35,7 +34,11 @@ export class LeadService {
   }
 
   addLead(leadToAdd: LeadOwn ): Observable<boolean>{
-    return this.http.post<any>(`${this.baseUrl}/lead_add_agent`, leadToAdd)
+    return this.http.post<boolean>(`${this.baseUrl}/lead_add_agent`, leadToAdd)
+  }
+
+  deleteLead(lead: {lead_id: number} ): Observable<boolean>{
+    return this.http.post<boolean>(`${this.baseUrl}/lead_delete`, lead)
   }
 
   getDataToRoundCharts(data:{user?:string, area?:string, region?:string}): Observable<LeadDataCharts>{

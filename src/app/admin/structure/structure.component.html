@@ -1,0 +1,94 @@
+<div class="my_contacts">
+  <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+    <ng-container matColumnDef="name" >
+      <th mat-header-cell *matHeaderCellDef class="lead_row">
+        <p mat-sort-header>IMIĘ NAZWISKO</p>
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Wyszukaj</mat-label>
+          <input matInput [formControl]="nameSurnameFilter">
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let row" class="lead_row"> {{row.name}} {{row.surname}}</td>
+    </ng-container>
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> 
+        <p mat-sort-header>ROLA</p>
+        <mat-form-field>
+            <mat-label>wybierz role</mat-label>
+            <mat-select matSelect  [formControl]="roleFilter">
+              <mat-option *ngFor="let select of  roleList" [value]="select">
+              {{select}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let row"> {{row.role}}</td>
+    </ng-container>
+    <ng-container matColumnDef="region">
+      <th mat-header-cell *matHeaderCellDef>
+        <p mat-sort-header>REGION</p>
+          <mat-form-field>
+            <mat-label>wybierz region</mat-label>
+            <mat-select matSelect  [formControl]="regionFilter">
+              <mat-option *ngFor="let select of  regionList" [value]="select">
+              {{select}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+      </th>
+      <td mat-cell *matCellDef="let row"> {{row.region}} </td>
+    </ng-container>
+    <ng-container matColumnDef="area">
+      <th mat-header-cell *matHeaderCellDef> 
+        <p mat-sort-header>OBSZAR</p>
+          <mat-form-field>
+            <mat-label>wybierz obszar</mat-label>
+            <mat-select matSelect  [formControl]="areaFilter">
+              <mat-option *ngFor="let select of  areasList" [value]="select">
+              {{select}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let row"> {{row.area}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div class="detail"
+          [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="detail_adress">
+            <p><b>Identyfikator: </b>{{element.id}}</p>
+            <p><b>Login: </b>{{element.nick}}</p>
+            <p><mat-icon> phone</mat-icon> {{element.phone}}</p>
+            <p><mat-icon>alternate_email</mat-icon> {{element.mail}}</p> 
+            <p>
+              <span *ngIf="element.active"><b class="active">Aktywny</b></span>
+              <span *ngIf="!element.active"><b class="unactive">Nieaktywny</b></span>
+            </p>
+          </div>
+          <div class="detail_contact">
+            <button *ngIf="element.active && element.role=='agent'" mat-flat-button color="primary" (click) = changeUserData(element)>zmień dane</button>
+            <button *ngIf="element.active && element.role !=='agent'" mat-flat-button color="primary" (click) = changeNotAgentData(element)>zmień dane</button>
+            <button *ngIf="element.active && element.role=='agent'" mat-flat-button color="primary" (click) = unactiveUser(element)>dezaktywacja agenta</button>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      class="element-row"
+      [class.example-expanded-row]="expandedElement === row"
+      (click)="expandedElement = expandedElement === row ? null : row">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+</div>
+
+
+
+
+
+

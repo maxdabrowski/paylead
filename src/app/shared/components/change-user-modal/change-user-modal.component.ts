@@ -2,18 +2,16 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { LoginService } from 'src/app/shared/services';
-import { State } from 'src/app/store';
 import { User } from 'src/app/models/user.model';
 import { NewUser } from 'src/app/models/newUser.model';
 
 @Component({
-  selector: 'nga-change-data-modal',
-  templateUrl: './change-data-modal.component.html',
-  styleUrls: ['./change-data-modal.component.scss']
+  selector: 'nga-change-user-modal',
+  templateUrl: './change-user-modal.component.html',
+  styleUrls: ['./change-user-modal.component.scss']
 })
-export class ChangeDataModalComponent {
+export class ChangeUserModalComponent {
 
   userForm: FormGroup;
   userToSend: NewUser;
@@ -21,7 +19,7 @@ export class ChangeDataModalComponent {
 
   constructor(private fb:FormBuilder, 
     private loginService: LoginService,
-    public dialogRef: MatDialogRef<ChangeDataModalComponent>,
+    public dialogRef: MatDialogRef<ChangeUserModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.user = data.user
   }
@@ -68,7 +66,7 @@ export class ChangeDataModalComponent {
           region: this.user.region,
           area: this.user.area,
         }; 
-        this.loginService.addNewAreaDirector(this.userToSend).subscribe(data => {
+        this.loginService.changeNotUser(this.userToSend).subscribe(data => {
           console.log(data)
           if(data){
             this.dialogRef.close(true);

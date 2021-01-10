@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import {MatDialog} from '@angular/material/dialog';
 import { ModalPasswordComponent } from 'src/app/shared/components/modal-password/modal-password.component';
-import { ChangeUserDataModalComponent } from 'src/app/shared/components/change-user-data-modal/change-user-data-modal.component';
 import {
   getUserDataLogin,
   State
 } from '../../store'
+import { ChangeUserDataModalComponent } from 'src/app/shared/components/change-user-data-modal/change-user-data-modal.component';
 
 
 @Component({
@@ -16,8 +16,9 @@ import {
   templateUrl: './my-count.component.html',
   styleUrls: ['./my-count.component.scss']
 })
-export class MyCountComponent  {
+export class MyCountComponent {
   readonly loginUser$: Observable<User>;
+
 
   constructor( private store: Store<State>, private dialog: MatDialog) {
     this.loginUser$ = this.store.pipe(select(getUserDataLogin));
@@ -43,5 +44,4 @@ export class MyCountComponent  {
   changeUserData(user: User):void {
     this.openChangeDataModal(user);
   };
-
 }

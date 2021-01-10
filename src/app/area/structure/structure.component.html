@@ -37,7 +37,7 @@
           <span *ngIf="user.active"><b class="active">Aktywny</b></span>
           <span *ngIf="!user.active"><b class="unactive">Nieaktywny</b></span>
         </p>
-        <button *ngIf="user.active && user.role=='agent'" mat-flat-button color="primary" (click) = unactiveUser(user.nick)>dezaktywacja agenta</button>
+        <button *ngIf="user.active && user.role=='agent'" mat-flat-button color="primary" (click) = unactiveUser(user)>dezaktywacja agenta</button>
       </div>
     </div>
   </div> 

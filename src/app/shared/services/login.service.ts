@@ -24,11 +24,15 @@ export class LoginService {
   }
 
   getstructureByArea(structure: {area:string}): Observable<User[]> {
-    return this.http.post<User[]>(`${this.baseUrl}/structure`, structure)
+    return this.http.post<User[]>(`${this.baseUrl}/structure_area`, structure)
   }
 
   getstructureByRegion(structure: {region:string}): Observable<RegionStructure> {
     return this.http.post<RegionStructure>(`${this.baseUrl}/structure_region`, structure)
+  }
+
+  getstructureAll(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.baseUrl}/structure_all`)
   }
 
   getDirectorByRegion(structure: {region?:string}): Observable<User> {
@@ -39,8 +43,8 @@ export class LoginService {
     return this.http.post<boolean>(`${this.baseUrl}/add_agent`, newUser)
   }
 
-  addNewAreaDirector(newAreaDirector:NewUser): Observable<boolean> {
-    return this.http.post<boolean>(`${this.baseUrl}/add_area_director`, newAreaDirector)
+  changeNotUser(newAreaDirector:NewUser): Observable<boolean> {
+    return this.http.post<boolean>(`${this.baseUrl}/add_director`, newAreaDirector)
   }
   
   changeDataUser(changeUser:NewUser): Observable<boolean> {

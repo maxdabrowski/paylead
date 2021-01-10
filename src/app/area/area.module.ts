@@ -18,13 +18,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentsModule } from '../shared/components/components.module';
-
 import { MatIconModule } from '@angular/material/icon';
 import { AddAgentComponent } from './structure/add-agent/add-agent.component';
-import { ChangeDataModalComponent } from './structure/change-data-modal/change-data-modal.component';
-import { DeactivationModalComponent } from './structure/deactivation-modal/deactivation-modal.component';
 import { DetailComponent } from '../shared/components/detail/detail.component';
-
 
 const routes: Route[] = [
   {path: '', pathMatch: 'full', redirectTo: 'contacts'}, 
@@ -39,7 +35,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [AreaComponent, ContactsComponent, StructureComponent, AreaResultsComponent, MyCountComponent, AddAgentComponent, ChangeDataModalComponent, DeactivationModalComponent],
+  declarations: [AreaComponent, ContactsComponent, StructureComponent, AreaResultsComponent, MyCountComponent, AddAgentComponent],
   imports: [
     CommonModule,
     MatButtonModule,

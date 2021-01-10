@@ -5,8 +5,8 @@ import { User } from 'src/app/models/user.model';
 import {MatDialog} from '@angular/material/dialog';
 import { LoginService } from 'src/app/shared/services';
 import { switchMap } from 'rxjs/operators';
-import { DeactivationModalComponent } from './deactivation-modal/deactivation-modal.component';
-import { ChangeDataModalComponent } from './change-data-modal/change-data-modal.component';
+import { DeactivationModalComponent } from 'src/app/shared/components/deactivation-modal/deactivation-modal.component';
+import { ChangeUserDataModalComponent } from 'src/app/shared/components/change-user-data-modal/change-user-data-modal.component';
 import {
   getUserAreaData,
   getUserRegionData,
@@ -36,7 +36,7 @@ export class StructureComponent {
   };
 
   openChangeDataModal(user: User): void {
-    const changeDataModalRef = this.dialog.open(ChangeDataModalComponent, {
+    const changeDataModalRef = this.dialog.open(ChangeUserDataModalComponent, {
     width: '450px',
     data: {user: user}
     });
@@ -48,10 +48,10 @@ export class StructureComponent {
     });
   };
 
-  openDeactivationModal(user_nick: string): void {
+  openDeactivationModal(user: User): void {
     const deactivationModalRef = this.dialog.open(DeactivationModalComponent, {
     width: '450px',
-    data: {user_nick: user_nick}
+    data: {user: user}
     });
     deactivationModalRef.afterClosed().subscribe( result =>{
       if(result){
@@ -60,11 +60,11 @@ export class StructureComponent {
     });
   };
 
-  changeUserData(user_nick: User):void {
-    this.openChangeDataModal(user_nick);
+  changeUserData(user: User):void {
+    this.openChangeDataModal(user);
   };
 
-  unactiveUser(user_nick: string):void {
-    this.openDeactivationModal(user_nick);
+  unactiveUser(user: User):void {
+    this.openDeactivationModal(user);
   };
 };

@@ -9,11 +9,11 @@ import { User } from 'src/app/models/user.model';
 import { NewUser } from 'src/app/models/newUser.model';
 
 @Component({
-  selector: 'nga-change-data-modal',
-  templateUrl: './change-data-modal.component.html',
-  styleUrls: ['./change-data-modal.component.scss']
+  selector: 'nga-change-own-data-modal',
+  templateUrl: './change-user-data-modal.component.html',
+  styleUrls: ['./change-user-data-modal.component.scss']
 })
-export class ChangeDataModalComponent {
+export class ChangeUserDataModalComponent {
 
   userForm: FormGroup;
   userToSend: NewUser;
@@ -21,7 +21,7 @@ export class ChangeDataModalComponent {
 
   constructor(private fb:FormBuilder, 
     private loginService: LoginService,
-    public dialogRef: MatDialogRef<ChangeDataModalComponent>,
+    public dialogRef: MatDialogRef<ChangeUserDataModalComponent>,
     private store: Store<State>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.user = data.user
@@ -57,4 +57,4 @@ export class ChangeDataModalComponent {
     };
   };
 
-};
+}

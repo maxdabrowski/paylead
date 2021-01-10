@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { select,Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user.model';
+import {
+  getUserDataLogin,
+  State
+} from '../../store'
 
 @Component({
   selector: 'nga-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
 
-  constructor() { }
+  readonly loginUser$: Observable<User>;
 
-  ngOnInit(): void {
-  }
-
+  constructor( private store: Store<State>) {
+    this.loginUser$ = this.store.pipe(select(getUserDataLogin))
+   }
 }

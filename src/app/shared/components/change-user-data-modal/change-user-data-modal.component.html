@@ -1,6 +1,6 @@
 <div class="modal">
   <form class="form" [formGroup]="userForm"  (ngSubmit)="onSubmit()"> 
-    <p class="req_alert">Uwaga!! Można zmienić poniższe dane agenta, login i hasło, pozostaną bez zmian. Aby zmnienić przynależność danego agenta do innego obszaru neleży skontaktować sie z dyrektorem regionu.</p>
+    <p class="req_alert">Uwaga!! Możesz zmienić dane, login i hasło, pozostaną bez zmian.</p>
     <mat-form-field>
       <mat-label>Imię</mat-label>
       <input matInput formControlName="name">
@@ -21,6 +21,6 @@
       <input matInput formControlName="mail">
       <mat-error *ngIf=true>błędny adres email</mat-error>
     </mat-form-field>
-    <button mat-flat-button color="primary" type="submit" class="submit-btn" >zmień dane agenta </button>
+    <button mat-flat-button color="primary" type="submit" class="submit-btn" >zmień swoje dane </button>
   </form>
 </div>

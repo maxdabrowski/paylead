@@ -15,11 +15,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentsModule } from '../shared/components/components.module';
-import { ChangeDataModalComponent } from './structure/change-data-modal/change-data-modal.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { ChangeAreaModalComponent } from './structure/change-area-modal/change-area-modal.component';
-import { ChangeOwnDataModalComponent } from './my-count/change-own-data-modal/change-own-data-modal.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DetailComponent } from '../shared/components/detail/detail.component';
 
@@ -31,11 +29,11 @@ const routes: Route[] = [
     { path: 'structure', component: StructureComponent, canActivate: [LoginGuard]},
     { path: 'my_count', component: MyCountComponent, canActivate: [LoginGuard]},
     { path: 'results', component: RegionResultsComponent, canActivate: [LoginGuard]},
- 
   ]},
 ];
+
 @NgModule({
-  declarations: [RegionComponent, MyCountComponent, RegionResultsComponent, StructureComponent, ContactsComponent, ChangeDataModalComponent, ChangeAreaModalComponent, ChangeOwnDataModalComponent],
+  declarations: [RegionComponent, MyCountComponent, RegionResultsComponent, StructureComponent, ContactsComponent, ChangeAreaModalComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

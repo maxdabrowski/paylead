@@ -17,12 +17,10 @@ export class DeactivationModalComponent {
   selectedAgent: string;
 
   constructor(private loginService: LoginService,
-    private store: Store<State>,
     public dialogRef: MatDialogRef<DeactivationModalComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: any) {
-
-    this.deactivatedAgent = data.user_nick;
-    this.store.pipe(select(getUserAreaData)).subscribe((value) => this.userArea$ = value);
+    this.deactivatedAgent = data.user.nick;
+    this.userArea$ = data.user.area;
     this.loginService.getstructureByArea({area:this.userArea$}).subscribe(data => {
       data.forEach(agent => {
         if(agent.role === "agent" && agent.active){

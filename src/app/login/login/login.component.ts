@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { select,Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -8,6 +9,7 @@ import {
   LogIn,
   State
 } from '../../store'
+import { PasswordRecoveryComponent } from '../password-recovery/password-recovery.component';
 
 @Component({
   selector: 'nga-login',
@@ -24,13 +26,22 @@ export class LoginComponent {
     password:[""]
   });
 
-  constructor(private fb:FormBuilder,
-              private store: Store<State>) { 
+  constructor( private store: Store<State>, private fb:FormBuilder, private dialog: MatDialog) { 
         this.loginError$ = this.store.pipe(select(getLoginErrorLogin))
      }
   //funkcja do wykonania logowania   
   login(){
     this.store.dispatch( new LogIn({LoginData: this.loginForm.value}))
+  }
+
+  openDialog(): void {
+    this.dialog.open(PasswordRecoveryComponent, {
+    width: '450px',
+    });
+  };
+
+  recoveryPassword():void {
+    this.openDialog();
   }
 }
 

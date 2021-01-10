@@ -1,1 +1,30 @@
-<p>admin works!</p>
+<div class="user">
+  
+  <a class="link" routerLinkActive="active" [routerLink]="'my_count'" >
+    <div class="user_link agent">
+      <img src='../../../data//img/central.png'>
+      <span class="link_descript">CENTRALA</span>
+    </div>
+  </a>
+
+  <div class="user_data"  *ngIf ="loginUser$ | async  as loginUser ">
+    <div class="user_data_title">
+      <p>Centrala:</p>
+      <p>Rola:</p>
+    </div>
+    <div class="user_data_result">
+      <p>{{loginUser.name}} {{loginUser.surname }}</p>
+      <p>{{loginUser.region}}</p>
+    </div>
+  </div>
+
+</div>
+<div class="navigation">
+  <ul>
+    <li class="one"><a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'contacts'"> Obsługa kontaktów </a></li>
+    <li class="two"><a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'results'" >Wyniki centralne</a></li>
+    <li class="three"><a mat-button color="primary" routerLinkActive="active"  class="nav-link" [routerLink]="'structure'" >Struktura centralna</a></li>
+    <hr />
+  </ul>
+</div>
+<router-outlet></router-outlet>

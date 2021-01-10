@@ -1,6 +1,6 @@
 <div class="modal">
   <form class="form" [formGroup]="userForm"  (ngSubmit)="onSubmit()"> 
-    <p class="req_alert">Uwaga!!  W celu zmiany danych osbowych dyrektora wybierz "zmiana danych obecnego dyrektora", login i hasło, pozostaną bez zmian. Aby zmnienić dyrektora obszaru uzupełnijn formularz nowymi danymi i wybierz "zmiana dyrektora", dyrektor może być tylko jeden więc autoamtycznie dane nowego dyrektora będą obowiązujące, jego login pokaże się w strukturze, a hasło będzie wynosić "test".</p>
+    <p class="req_alert">Uwaga!!  W celu zmiany danych osbowych wybierz "zmiana danych obecnych", login i hasło, pozostaną bez zmian. Aby zmnienić osobę na stanowisku uzupełnij formularz nowymi danymi i wybierz "zmiana osoby na stanowisku".Nowym hasłem bedzie "test".</p>
     <mat-form-field>
       <mat-label>Imię</mat-label>
       <input matInput formControlName="name">
@@ -24,8 +24,8 @@
     <mat-form-field>
       <mat-label>Typ zmiany danych</mat-label>
       <mat-select matSelect formControlName="action">
-        <mat-option  value="changeDirectorData">zmiana danych obecnego dyrektora</mat-option>
-        <mat-option  value="changeDirector">zmiana dyrektora</mat-option>
+        <mat-option  value="changeDirectorData">zmiana danych obecnych</mat-option>
+        <mat-option  value="changeDirector">zmiana osoby na stanowisku</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-flat-button color="primary" type="submit" class="submit-btn" name="action" value="Update" >zmień dane</button>

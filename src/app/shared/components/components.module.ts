@@ -9,11 +9,14 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { RoudChartComponent } from './roud-chart/roud-chart.component';
 import { ColumnChartComponent } from './column-chart/column-chart.component';
 import { DetailComponent } from './detail/detail.component';
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { DeactivationModalComponent } from './deactivation-modal/deactivation-modal.component';
+import { ChangeUserDataModalComponent } from './change-user-data-modal/change-user-data-modal.component';
+import { ChangeUserModalComponent } from './change-user-modal/change-user-modal.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [ModalPasswordComponent, RoudChartComponent, ColumnChartComponent, DetailComponent],
+  declarations: [ModalPasswordComponent, RoudChartComponent, ColumnChartComponent, DetailComponent,  DeactivationModalComponent, ChangeUserDataModalComponent, ChangeUserModalComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -23,12 +26,17 @@ import { DetailComponent } from './detail/detail.component';
     MatInputModule,
     MatInputModule,
     NgApexchartsModule,
+    MatButtonModule,
+    MatSelectModule
   ],
   exports:[
     ModalPasswordComponent,
     RoudChartComponent,
     ColumnChartComponent,
-    DetailComponent
+    DetailComponent,
+    DeactivationModalComponent,
+    ChangeUserDataModalComponent,
+    ChangeUserModalComponent
   ]
 })
 export class ComponentsModule { }

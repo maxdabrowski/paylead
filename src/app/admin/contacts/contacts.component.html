@@ -1,5 +1,26 @@
 <div class="my_contacts">
 
+  <div class="send_file_container">
+    <p>Tutaj możesz dodać nowe kontakty, które zostaną dodane do sklepu, pamiętaj aby miały okresloną strukturę, aby ja poznać, w zakładce "Wyniki centralne" pobierz plik  kontakty_wszystkie.csv. Tak powinna wyglądac struktura pliku wsadowego.</p>
+    <form class="load_file_form" enctype="multipart/form-data"> 
+
+<div class="parent">
+  <div class="child child-1">
+    <button class="load_file_button" mat-flat-button color="primary" #file class="btn btn-light">Wybierz plik</button>
+    <span> {{selectFileName}}</span>
+  </div>
+  <div class="child child-2">
+    <input class="input_file" #myInput type="file" name="csvreport" id="csvreport" (change)="fileupload($event.target.files)">
+  </div>
+</div>
+  </form>
+    <button class="send_button" mat-flat-button color="primary" (click) = sendCsvFile()>Wyślij</button>
+    <p *ngIf="addContactFailed$ | async" class="warn">Błędne dane logowania, spróbuj ponownie</p>
+    <p *ngIf="addContactSuccess$ | async" >Dodano kontakty</p>
+  </div>
+
+
+
   <div class="description">
     Znajdują się tutaj wsztstkie kontakty udostępnione dla twojej sieci, zarówno zmozliwością kupienia oraz te zakupione już przez agentów, aby dowiedzieć się wiecej o danym kontakcie kliknij przycisk "Szczegóły".
   </div>
@@ -74,11 +95,11 @@
     
     <ng-container matColumnDef="details">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row" class="small"><button mat-flat-button color="primary" [routerLink]="'/admin/lead'"  [queryParams]="{id:row.lead_id}">Szczegóły</button></td>
+      <td mat-cell *matCellDef="let row" class="small"><button class="button_tab" mat-flat-button color="primary" [routerLink]="'/admin/lead'"  [queryParams]="{id:row.lead_id}">Szczegóły</button></td>
     </ng-container>
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row" class="small"><button mat-flat-button color="primary" (click) = deleteLead(row.lead_id)>Usuń</button></td>
+      <td mat-cell *matCellDef="let row" class="small"><button class="button_tab" mat-flat-button color="primary" (click) = deleteLead(row.lead_id)>Usuń</button></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

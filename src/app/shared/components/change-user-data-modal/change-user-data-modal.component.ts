@@ -2,9 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { LoginService } from 'src/app/shared/services';
-import { State } from 'src/app/store';
 import { User } from 'src/app/models/user.model';
 import { NewUser } from 'src/app/models/newUser.model';
 
@@ -22,7 +20,6 @@ export class ChangeUserDataModalComponent {
   constructor(private fb:FormBuilder, 
     private loginService: LoginService,
     public dialogRef: MatDialogRef<ChangeUserDataModalComponent>,
-    private store: Store<State>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.user = data.user
   }

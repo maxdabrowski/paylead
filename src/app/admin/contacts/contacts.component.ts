@@ -12,6 +12,7 @@ import {
   GetLeadsOwn,
   getLeadsOwnLead,
 } from '../../store';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'nga-contacts',
@@ -22,8 +23,10 @@ export class ContactsComponent implements OnInit {
 
       //zmienne do pobrania danych i użytkowniku
       userRola$: string;
+      selectFileName: string = ''; 
+      addContactFailed$ = new BehaviorSubject(false);
+      addContactSuccess$ =  new BehaviorSubject(false);
 
-  
       //zmienne do filtrowania
       idFilter = new FormControl('');
       typeFilter = new FormControl('');
@@ -144,4 +147,30 @@ reloadData(){
       }
     })
   }
-}
+
+  bodyCsvFile: {data:string}
+
+  fileupload(files: FileList) {
+    if (files && files.length > 0) {
+      let file: File = files.item(0);
+      this.selectFileName = file.name;
+      let fileReader: FileReader = new FileReader();
+      fileReader.readAsText(file);
+      fileReader.onload = ev => {
+        let csvdata = fileReader.result.toString();
+        this.bodyCsvFile = {data:csvdata};
+      };
+    };
+  };
+  
+  sendCsvFile(){
+    if(this.bodyCsvFile !== undefined){
+      this.leadService.addLeadFromCsv(this.bodyCsvFile).subscribe(res => {
+        console.log(res)
+        this.addContactFailed$.next(true);
+        this.addContactSuccess$.next(true);
+      });
+    };
+  };
+
+};

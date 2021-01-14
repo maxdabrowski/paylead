@@ -37,6 +37,11 @@ export class LeadService {
     return this.http.post<boolean>(`${this.baseUrl}/lead_add_agent`, leadToAdd)
   }
 
+  addLeadFromCsv(leadFile:any ): Observable<boolean>{
+    return this.http.post<boolean>(`${this.baseUrl}/lead_add_csv_file`, leadFile)
+  }
+
+
   deleteLead(lead: {lead_id: number} ): Observable<boolean>{
     return this.http.post<boolean>(`${this.baseUrl}/lead_delete`, lead)
   }

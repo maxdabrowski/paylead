@@ -23,6 +23,10 @@ export class LoginService {
     return this.http.post<LoginDataRes>(`${this.baseUrl}/login`, loginData)
   }
 
+  passwordRecovery(login:{login:string}): Observable<boolean>{
+    return this.http.post<boolean>(`${this.baseUrl}/password_recovery`, login)
+  }
+
   getstructureByArea(structure: {area:string}): Observable<User[]> {
     return this.http.post<User[]>(`${this.baseUrl}/structure_area`, structure)
   }

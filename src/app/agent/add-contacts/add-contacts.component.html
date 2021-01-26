@@ -1,9 +1,9 @@
 <div class="add_contact">
   <div class="description">
-    Jeżlei posiadasz kontkat możesz dodać go do swojego portfela, wtedy masz pewność, że nie stracisz danych klienta, następnie możesz podjąć się obsługi kontaktu.
+    Jeżeli posiadasz kontakt możesz dodać go do swojego portfela, wtedy masz pewność, że nie stracisz danych klienta, następnie możesz podjąć się obsługi kontaktu.
   </div>
   <form class="form" [formGroup]="contactForm"  (ngSubmit)="onSubmit()"> 
-    <p class="req_alert">pola oznaczone gwizadką są polami wymaganymi</p>
+    <p class="req_alert">pola oznaczone gwiazdką są polami wymaganymi</p>
     <mat-form-field>
       <mat-label>Typ kontaktu *</mat-label>
       <mat-select formControlName="type">

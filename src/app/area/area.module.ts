@@ -17,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { ComponentsModule } from '../shared/components/components.module';
+import { SharedComponentsModule } from '../shared/components/shared-components.module';
 import { MatIconModule } from '@angular/material/icon';
 import { AddAgentComponent } from './structure/add-agent/add-agent.component';
 import { DetailComponent } from '../shared/components/detail/detail.component';
@@ -51,7 +51,7 @@ const routes: Route[] = [
     NgApexchartsModule,
     MatIconModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    SharedComponentsModule
   ],
   exports: [AreaComponent]
 })

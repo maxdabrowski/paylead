@@ -11,5 +11,5 @@ export class ModalComponent{
   constructor(public dialogRef: MatDialogRef<ModalComponent>) { }
   onNoClick(): void {
     this.dialogRef.close();
-  }
+  };
 }

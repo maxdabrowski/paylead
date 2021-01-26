@@ -14,6 +14,7 @@ import { DeactivationModalComponent } from './deactivation-modal/deactivation-mo
 import { ChangeUserDataModalComponent } from './change-user-data-modal/change-user-data-modal.component';
 import { ChangeUserModalComponent } from './change-user-modal/change-user-modal.component';
 import { MatSelectModule } from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [ModalPasswordComponent, RoudChartComponent, ColumnChartComponent, DetailComponent,  DeactivationModalComponent, ChangeUserDataModalComponent, ChangeUserModalComponent],
@@ -27,7 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     NgApexchartsModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   exports:[
     ModalPasswordComponent,
@@ -39,4 +41,4 @@ import { MatSelectModule } from '@angular/material/select';
     ChangeUserModalComponent
   ]
 })
-export class ComponentsModule { }
+export class SharedComponentsModule { }

@@ -52,21 +52,20 @@ export class MyContactsComponent implements OnInit{
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private store: Store<State>) {
-
     this.store.pipe(select(getUserRoleData)).subscribe((value) => this.userRola$ = value);
     this.store.pipe(select(getUserAreaData)).subscribe((value) => this.userArea$ = value);
     this.store.pipe(select(getUserNickData)).subscribe((value) => this.userNick$ = value);
     this.store.dispatch(new GetLeadsOwn({ leadData: {agent: this.userNick$} }));
-
     this.store.pipe(select(getLeadsOwnLead)).subscribe(value => {
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.dataSource.filterPredicate = this.createFilter();
-    })
-   }
+    });
+  };
 
-   ngOnInit() {
+  //inicjalizacja i zmiany w akcji filtrowania
+  ngOnInit() {
     this.idFilter.valueChanges
       .subscribe(
         id => {
@@ -74,7 +73,7 @@ export class MyContactsComponent implements OnInit{
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
-      this.clientFilter.valueChanges
+    this.clientFilter.valueChanges
       .subscribe(
         client => {
           this.filterValues.client = client;
@@ -95,8 +94,9 @@ export class MyContactsComponent implements OnInit{
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
-  }
+  };
 
+  //filtrowanie danych w MatTable
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function(data:any, filter:any): boolean {
       let searchTerms = JSON.parse(filter);
@@ -107,16 +107,6 @@ export class MyContactsComponent implements OnInit{
         && data.campaign.toLowerCase().indexOf(searchTerms.campaign) !== -1;
     }
     return filterFunction;
-  }
-
-
-
-
-
-
-
-
+  };
 
 }
-
-

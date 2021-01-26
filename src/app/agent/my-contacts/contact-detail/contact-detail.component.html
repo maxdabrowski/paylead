@@ -15,7 +15,7 @@
             <p class="stat_p">{{stat.status}}</p> 
           </div>
           <p *ngIf="stat.note !== '' " class="status_note"><b>Notatka:</b> {{stat.note}}</p>
-          <div *ngIf="stat.policy !== undefined"  class="status_stat_row">
+          <div *ngIf="stat.policy !== '' "  class="status_stat_row">
             <p class="stat_p"><b>Polisa: {{stat.policy}}</b></p>
             <p class="stat_p"><b>Przypis: {{stat.income}}zł</b></p>
           </div>

@@ -15,7 +15,7 @@ import {
 
 export class AppComponent{
   
-  userNick$: string
+  userNick$: string;
   
   constructor(private store: Store<State>) {
    this.store.pipe(select(getUserNickData)).subscribe(value => this.userNick$ = value)

@@ -13,7 +13,6 @@ import {
   State
 } from '../../store';
 
-
 @Component({
   selector: 'nga-add-contacts',
   templateUrl: './add-contacts.component.html',
@@ -23,7 +22,6 @@ import {
 export class AddContactsComponent implements OnInit {
 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
-
   userRegion$: string;
   userArea$: string;
   userNick$: string;
@@ -38,7 +36,6 @@ export class AddContactsComponent implements OnInit {
     this.store.pipe(select(getUserAreaData)).subscribe((value) => this.userArea$ = value);
     this.store.pipe(select(getUserNickData)).subscribe((value) => this.userNick$ = value);
     this.leadService.getCampaign().subscribe(data =>  {
-
       data.forEach(el => {
         if(el.type === "Życie"){
           let campaign = el.campaign   
@@ -47,22 +44,24 @@ export class AddContactsComponent implements OnInit {
           let campaign = el.campaign
           this.campaingnAssetsList.push(campaign)
         }
-      })
-    })
+      });
+    });
+  };
 
-  }
-
+  //otwarcie okna modalnego z powiadomieniem o pozytywnym dodaniu kontaktu
   openDialog(): void {
       this.dialog.open(ModalComponent, {
       width: '450px',
     });
-  }
+  };
 
+  //inicjalizacja formularza oraz dynamicznych zmian wyboru
   ngOnInit(){
     this.initContactForm();
     this.onChanges();
   };
 
+  //inicjalizacja formularza
   initContactForm(){
     this.contactForm = this.fb.group({
       name:["", [Validators.required, Validators.pattern("^[a-zA-Ząćęłńóśżź]+$")]],
@@ -80,6 +79,7 @@ export class AddContactsComponent implements OnInit {
     });
   };
 
+  //dynamiczna zmiana przypisania kampanii do wyboru w zależności od typu kontaktu
   onChanges(){
     this.contactForm.get('type').valueChanges.subscribe(selectedType => {
       if(selectedType === 'Majątek') {
@@ -93,9 +93,9 @@ export class AddContactsComponent implements OnInit {
     });
   };
 
+  //dodanie kontaktu do bazy
   onSubmit(){
     if(this.contactForm.dirty && this.contactForm.valid){
-
       this.contactToSend = {
         lead_id: 0,
         name: this.contactForm.value.name,
@@ -117,13 +117,13 @@ export class AddContactsComponent implements OnInit {
         owner: this.userNick$,
         status: 'Własny'
       };
-      
       this.leadService.addLead(this.contactToSend).subscribe(data => {
         if(data){
           this.openDialog();
           this.formDirective.resetForm();
         }
       });
-    }
-  }
+    };
+  };
+  
 }

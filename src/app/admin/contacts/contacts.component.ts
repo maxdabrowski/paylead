@@ -166,9 +166,13 @@ reloadData(){
   sendCsvFile(){
     if(this.bodyCsvFile !== undefined){
       this.leadService.addLeadFromCsv(this.bodyCsvFile).subscribe(res => {
-        console.log(res)
-        this.addContactFailed$.next(true);
-        this.addContactSuccess$.next(true);
+        if(res){
+          this.addContactFailed$.next(false);
+          this.addContactSuccess$.next(true);
+        }else{
+          this.addContactFailed$.next(true);
+          this.addContactSuccess$.next(false);
+        }
       });
     };
   };

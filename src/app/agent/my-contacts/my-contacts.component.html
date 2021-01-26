@@ -1,7 +1,7 @@
 <div class="my_contacts">
 
   <div class="description">
-    Tutaj znajdziesz swoje zakupione kontakty. W poszczególnych kontaktach znajdują się niezbędne dane do podjęcia kontaktu oraz dane o kliencie. W celu uzyskania bardziej szczegółowych danych kiknij w poszczególne kontakty, a po wykonanej czyności możesz zaraportować wykonane czynności.
+    Tutaj znajdziesz swoje zakupione kontakty. W poszczególnych kontaktach znajdują się niezbędne dane do podjęcia kontaktu oraz dane o kliencie. W celu uzyskania bardziej szczegółowych danych rozwiń kontakt i wybierz 'obsługa kontaktu'.
   </div>
 
   <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
@@ -51,7 +51,6 @@
       </th>
       <td mat-cell *matCellDef="let row"> {{row.status}} </td>
     </ng-container>
-
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
         <div class="detail"
@@ -68,12 +67,11 @@
           <div class="detail_contact">
             <p><mat-icon> phone</mat-icon> {{element.phone}}</p>
             <p><mat-icon>alternate_email</mat-icon> {{element.mail}}</p>
-            <button mat-flat-button color="primary" [routerLink]="'/agent/lead'"  [queryParams]="{id:element.lead_id}">obłsuga kontaktu</button>
+            <button mat-flat-button color="primary" [routerLink]="'/agent/lead'"  [queryParams]="{id:element.lead_id}">obsługa kontaktu</button>
           </div>
         </div>
       </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
       class="element-row"
@@ -82,7 +80,7 @@
     </tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
 
 </div>
 

@@ -29,8 +29,9 @@ export class ResultsComponent{
     this.store.pipe(select(getLeadStatusLead)).subscribe((value) => this.status$ = value); 
     this.dataLeadcharts$ = this.leadSerice.getDataToRoundCharts({user:this.userNick$});
     this.dataStatuscharts$ = this.leadStatusService.getDataToColumnChart({user:this.userNick$});
-   }
+  };
 
+  //pobieranie danych o kontaktach lub statusach
   downloadFile(type:string){
     if(type === 'status'){
       let csv = 'lead_id, agent, obszar, region, data, status, notatka, polisa, przychód\n';
@@ -59,6 +60,7 @@ export class ResultsComponent{
         a.download=fileName;
         a.click();
       }
-    }
-  }
+    };
+  };
+  
 }

@@ -22,7 +22,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './add-contacts/modal/modal.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { LoginGuard } from '../login.guard';
-import { ComponentsModule } from '../shared/components/components.module';
+import { SharedComponentsModule } from '../shared/components/shared-components.module';
 
 const routes: Route[] = [
   {path: '', pathMatch: 'full', redirectTo: 'shop'}, 
@@ -54,7 +54,7 @@ const routes: Route[] = [
     MatDialogModule,
     NgApexchartsModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    SharedComponentsModule
   ],
   exports: [],
 })

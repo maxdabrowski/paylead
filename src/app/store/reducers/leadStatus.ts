@@ -12,24 +12,30 @@ const initialState: State = {
 export function reducer(state = initialState, action: LeadStatusActions ): State {
 
   switch (action.type) {
+    
+    //ustawienie statusów zwróconymi danymi
     case LeadStatusActionTypes.GetStatusSuccess: {
       return {
         ...state,
         leadStatus: action.payload.leadStatus,
       };
-    }
+    };
 
+    //pobranie statusów zakończonie niepowodzeniem, ustawienia stanu poczatkowego
     case LeadStatusActionTypes.GetStatusFailed: {
       return {
         ...state,
         leadStatus: [],   
       };
-    }
+    };
 
     default: {
       return state;
-    }
-  }
-}
+    };
 
+  };
+
+};
+
+//metoda pobrania statusów
 export const getStatus = (state: State) => state.leadStatus;

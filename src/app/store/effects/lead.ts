@@ -9,11 +9,9 @@ import { LeadService } from 'src/app/shared/services/lead.service';
 @Injectable()
 export class LeadEffects {
 
-  constructor(
-    private readonly actions$: Actions,
-    private readonly leadService: LeadService,
-    ) {}
+  constructor( private readonly actions$: Actions, private readonly leadService: LeadService ){}
 
+  //efekt pobrania kontaktów do kupienia 
   @Effect()
   leadsToBuy$: Observable<Action> = this.actions$
     .pipe(
@@ -27,7 +25,22 @@ export class LeadEffects {
       }),    
     );
 
-    @Effect()
+  //efekt pobrania kontktów własnych
+  @Effect()
+  leadsOwn$: Observable<Action> = this.actions$
+    .pipe(
+      ofType(LeadActionTypes.GetLeadsOwn),
+      map((action:GetLeadsOwn) => action.payload.leadData),
+      switchMap((leadOwn) => this.leadService.leadOwn(leadOwn)),
+      map(data =>  new GetLeadsOwnSuccess({leadOwn: data})),
+      catchError(error => {
+        console.error(`Błąd podczas pobierania kontkaktów: ${error}`);
+        return of(new  GetLeadsOwnFailed());
+      }),    
+    );
+
+  //efekt kupienia kontaktu przez agenta
+  @Effect()
   leadBuy$: Observable<Action> = this.actions$
     .pipe(
       ofType(LeadActionTypes.LeadBuy),
@@ -39,19 +52,5 @@ export class LeadEffects {
         return of(new GetLeadsToBuyFailed());
       }),    
     );
-
-    @Effect()
-    leadsOwn$: Observable<Action> = this.actions$
-      .pipe(
-        ofType(LeadActionTypes.GetLeadsOwn),
-        map((action:GetLeadsOwn) => action.payload.leadData),
-        switchMap((leadOwn) => this.leadService.leadOwn(leadOwn)),
-        map(data =>  new GetLeadsOwnSuccess({leadOwn: data})),
-        catchError(error => {
-          console.error(`Błąd podczas pobierania kontkaktów: ${error}`);
-          return of(new  GetLeadsOwnFailed());
-        }),    
-      );
-
 
 }

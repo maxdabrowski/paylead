@@ -1,18 +1,18 @@
 .add_contact{
   width: 95%;
   margin: 0 auto;
-
 }
 
 .description{
-margin-top: 15px;
-margin-bottom: 15px;
-line-height: 1.5rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.5rem;
+  text-align: center;
 }
 
 form{
   margin:0 auto;
-padding-bottom: 50px;
+  padding-bottom: 50px;
   min-width: 150px;
   max-width: 300px;
   width: 100%;
@@ -29,7 +29,6 @@ padding-bottom: 50px;
 input, select {
   height: 20px;
 }
-
 
 mat-form-field{
   width: 100%;
@@ -50,5 +49,4 @@ mat-select{
   width: 100%;
   border-radius: 25px;
   font-family: 'Open Sans', sans-serif;
-
 }

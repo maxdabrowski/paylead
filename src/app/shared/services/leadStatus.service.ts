@@ -17,16 +17,19 @@ export class LeadStatusService {
     @Inject(API_BASE_URL) private baseUrl: string,
     ) { }
 
+  //pobranie statusów dla podanej jednostki
   getLeadStatus(leadStatusData: LeadStatusData): Observable<LeadStatus[]>{
     return this.http.post<LeadStatus[]>(`${this.baseUrl}/status_get`, leadStatusData)
-  }
+  };
 
+  //dodanie statusu
   postLeadStatus(leadStatusPost: LeadStatusPost): Observable<LeadStatus[]>{
     return this.http.post<any>(`${this.baseUrl}/status_post`, leadStatusPost)
-  }
+  };
 
+  //pobranie danych o sukcesach do wykresów
   getDataToColumnChart(data:{user?:string, area?:string, region?: string}): Observable<StatusDataCharts>{
     return this.http.post<StatusDataCharts>(`${this.baseUrl}/status_to_charts`, data)
-  }
+  };
   
-}
+};

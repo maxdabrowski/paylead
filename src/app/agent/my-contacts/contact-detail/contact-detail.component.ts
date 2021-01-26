@@ -29,16 +29,17 @@ export class ContactDetailComponent implements OnInit {
     this.store.pipe(select(getRouteQueryParams)).subscribe((value) => this.leadId$ = value.id);
     this.store.dispatch(new GetStatus({ leadStatusData: {lead_id: parseInt(this.leadId$)} }));
     this.store.dispatch(new GetLeadsOwn({ leadData: {lead_id: parseInt(this.leadId$)} }));
-
     this.lead$ = this.store.pipe(select(getLeadsOwnLead));
     this.status$ = this.store.pipe(select(getLeadStatusLead))
   }
 
+  //inicjalizajca formularza oraz dynamiczna zmiana dostępnych pól
   ngOnInit(){  
     this.initStatusForm();
     this.onChanges();
-  }
+  };
 
+  //inicjalizacja formularza
   initStatusForm(){
     this.statusForm = this.fb.group({
       status:["", [Validators.required]],
@@ -47,10 +48,12 @@ export class ContactDetailComponent implements OnInit {
     });
   };
 
+  //metoda dodająca dane do tabeli success w formularzu 
   success(): FormArray{
     return this.statusForm.get("success") as FormArray
   };
 
+  //dodanie pól do reaktywnego formularza
   successForm(): FormGroup{
     return this.fb.group({
       policy:["", [Validators.required, Validators.pattern("[0-9]{9}") ]],
@@ -58,14 +61,17 @@ export class ContactDetailComponent implements OnInit {
     })
   };
 
+  //dodanie pól formularza jeżeli wybrano status sukces
   addSuccessForm(){
     this.success().push(this.successForm());
-  }
+  };
 
+  //usunięcie pól formularza jeżeli nie wybrano statusu sukces
   removeSuccessForm(){
     this.success().removeAt(0);
-  }
+  };
 
+  //obsługa zmian wyboru statusu w formularzu
   onChanges(){
     this.statusForm.get('status').valueChanges.subscribe(selectedType => {
       if(selectedType !== 'Sukces') {
@@ -79,6 +85,7 @@ export class ContactDetailComponent implements OnInit {
     });
   };
 
+  //dodanie statusu
   addStatus(){
     if(this.statusForm.dirty && this.statusForm.valid){
       this.statusToSend = {
@@ -89,18 +96,19 @@ export class ContactDetailComponent implements OnInit {
       };
       
       this.leadStatusService.postLeadStatus(this.statusToSend).subscribe(data => {
+        //jeżeli dodano pomyślnie to czysci formularz i pobiera najnowsze dane
         if(data){
           this.store.dispatch(new GetStatus({ leadStatusData: {lead_id: parseInt(this.leadId$)} }));
           this.store.dispatch(new GetLeadsOwn({ leadData: {lead_id: parseInt(this.leadId$)}}));
           this.formDirective.resetForm();
+        // jeżeli sukces już istniał to nie można dodac innego statusu i kontakt jest zamknięty na dodawanie statusów
         }if (!data){
           this.formDirective.resetForm();
           this.statusForm.get('status').disable();
           this.statusForm.get('note').disable();
         }
-
-
       });
-    }
-  }
+    };
+  };
+
 }

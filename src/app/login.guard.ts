@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate} from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { getUserNickData, LogOff, State } from './store';
 
@@ -12,6 +12,7 @@ export class LoginGuard implements CanActivate{
     this.store.pipe(select(getUserNickData)).subscribe((value) => this.userNick$ = value);
   }
 
+  //sprawdzanie czy nick użytkownika jest inny niż pusty string
   canActivate() {
     if(this.userNick$ !== ''){
       return true; 

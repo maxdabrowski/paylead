@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/shared/services';
   templateUrl: './password-recovery.component.html',
   styleUrls: ['./password-recovery.component.scss']
 })
+
 export class PasswordRecoveryComponent{
 
   nick: string = '';
@@ -15,6 +16,7 @@ export class PasswordRecoveryComponent{
 
   constructor(private loginService: LoginService, public dialogRef: MatDialogRef<PasswordRecoveryComponent>) { }
 
+  //przesłanie akcji wysłania maila
   sendMail():void{
     if(this.nick !== ""){
       this.loginService.passwordRecovery({login:this.nick}).subscribe(res => {
@@ -24,8 +26,8 @@ export class PasswordRecoveryComponent{
         }else if (!res){
           this.subject$.next(true);
         }
-      })
-  }
+      });
+    };
   };
 
 };

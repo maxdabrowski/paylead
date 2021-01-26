@@ -8,8 +8,7 @@ export interface State {
 
 const initialState: State = {
   loginError: false,
-
-  /*loginUser: {
+  loginUser: {
     id: 0,
     name: '',
     surname: '',
@@ -20,84 +19,31 @@ const initialState: State = {
     phone: '',
     mail: '',
     active: true
-  }*/
-
-  /*loginUser: {
-    id: 29,
-    name: 'Damian',
-    surname: 'Zając',
-    nick: 'damzajac',
-    region: 'Południe',
-    area: 'Łódzkie',
-    role: 'agent',
-    phone: '723325576',
-    mail: 'makdabrowski@pzu.pl',
-    active: true
-  }*/
-
-  /*loginUser:{
-    id: 13,
-    name: "Mateusz",
-    surname: "Kaczorowski",
-    nick:"matkaczorowski",
-    region:"Południe",
-    area:"Łódzkie",
-    role:"area",
-    phone: "456789890",
-    mail: "matkaczorowski@pzu.pl",
-    "active": true
-  }*/
-
-
-  /*loginUser:{
-    id: 4,
-    name: "Michał",
-    surname: "Konarski",
-    nick:"mickonarski",
-    region:"Południe",
-    area:"",
-    role:"region",
-    phone: "565678789",
-    mail: "mickonarski@pzu.pl",
-    active: true
-  }*/
-
-  loginUser:{
-    id: 1,
-    name: "Maksymilian",
-    surname: "Dąbrowski",
-    nick:"makdabrowski",
-    password:"test",
-    region:"Administrator",
-    area:"",
-    role:"admin", 
-    phone: "723325576",
-    mail: "makdabrowski@pzu.pl",
-    active: true
-  },
-
-
+  }
 };
 
 export function reducer(state = initialState, action: LoginActions): State {
 
   switch (action.type) {
 
+    //ustawienia stanu pobranymi danymi
     case LoginActionTypes.LogInSucces: {
       return {
         ...state,
         loginError: action.payload.LoginDataRes.loginError,
         loginUser: action.payload.LoginDataRes.loginUser
       };
-    }
+    };
 
+    //niepowodzneia pobrania danych, ustawieni błedu logowania na true
     case LoginActionTypes.LogInFailed: {
       return {
         ...state,
         loginError: true,
       };
-    }
+    };
 
+    //wylogowanie użytkownika, ustawienia stanu początkowego
     case LoginActionTypes.LogOff: {
       return {
         ...state,
@@ -115,14 +61,17 @@ export function reducer(state = initialState, action: LoginActions): State {
           active: true,
         },
       };
-    }
+    };
 
     default: {
       return state;
-    }
-  }
-}
+    };
 
+  };
+
+};
+
+//metody do pobierania poszczególnych danych u zalogowanym użytkowniku
 export const getLoginError = (state: State) => state.loginError;
 export const getUserData = (state: State) => state.loginUser;
 export const getUserRole = (state: State) => state.loginUser.role;

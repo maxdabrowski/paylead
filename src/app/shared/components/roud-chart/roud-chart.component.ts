@@ -1,5 +1,4 @@
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
-
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
@@ -51,9 +50,5 @@ export class RoudChartComponent implements OnChanges {
         }
       ]
     };
-  }
-  }
-
-
-
-
+  };
+};

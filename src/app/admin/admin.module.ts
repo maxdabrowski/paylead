@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { ComponentsModule } from '../shared/components/components.module';
+import { SharedComponentsModule } from '../shared/components/shared-components.module';
 import { MyCountComponent } from './my-count/my-count.component';
 import { StructureComponent } from './structure/structure.component';
 import { ContactsComponent } from './contacts/contacts.component';
@@ -52,7 +52,7 @@ const routes: Route[] = [
     MatIconModule,
     MatSelectModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    SharedComponentsModule
   ],
   exports: [AdminComponent]
 })

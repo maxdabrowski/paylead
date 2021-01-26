@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { ComponentsModule } from '../shared/components/components.module';
+import { SharedComponentsModule } from '../shared/components/shared-components.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { ChangeAreaModalComponent } from './structure/change-area-modal/change-area-modal.component';
@@ -47,7 +47,7 @@ const routes: Route[] = [
     MatDialogModule,
     NgApexchartsModule,
     RouterModule.forChild(routes),
-    ComponentsModule,
+    SharedComponentsModule,
     MatIconModule,
     MatSelectModule
   ],

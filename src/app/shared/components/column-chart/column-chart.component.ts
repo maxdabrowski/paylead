@@ -36,8 +36,8 @@ export type ChartOptions = {
 @Component({
   selector: 'nga-column-chart',
   templateUrl: './column-chart.component.html',
-  styleUrls: ['./column-chart.component.scss']
 })
+
 export class ColumnChartComponent implements OnInit{
 
   @Input() dataLabel: [];
@@ -104,10 +104,10 @@ export class ColumnChartComponent implements OnInit{
               "#D10CE8"
             ],
             fontSize: "12px"
-        }
+          }
+        } 
       }
-    }
+    };
   };
-}
 
-}
+};

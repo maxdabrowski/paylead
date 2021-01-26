@@ -9,11 +9,9 @@ import { LeadStatusService } from 'src/app/shared/services/leadStatus.service';
 @Injectable()
 export class StatusEffects {
 
-  constructor(
-    private readonly actions$: Actions,
-    private readonly leadStatusService: LeadStatusService,
-    ) {}
+  constructor( private readonly actions$: Actions, private readonly leadStatusService: LeadStatusService ) {}
 
+  //efekt pobrania statusów danego kontaktu 
   @Effect()
   leadsToBuy$: Observable<Action> = this.actions$
     .pipe(

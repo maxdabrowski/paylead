@@ -2,18 +2,16 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { iif, Observable, of  } from 'rxjs';
-import { map, switchMap, catchError, tap, mergeMap} from 'rxjs/operators';
+import { map, switchMap, catchError, mergeMap} from 'rxjs/operators';
 import { LogIn, LogOff, LoginActionTypes, LogInSuccess, Go, LogInFailed } from '../actions';
 import { LoginService } from 'src/app/shared/services/login.service';
 
 @Injectable()
 export class LoginEffects {
 
-  constructor(
-    private readonly actions$: Actions,
-    private readonly loginService: LoginService,
-    ) {}
+  constructor( private readonly actions$: Actions, private readonly loginService: LoginService ) {}
 
+  //efekt logowania użytkownika
   @Effect()
   login$: Observable<Action> = this.actions$
     .pipe(
@@ -27,6 +25,7 @@ export class LoginEffects {
       }),    
     );
 
+  //efekt logowania uźytkownika zakończony powodzeniem
   @Effect()
   loginSuccess$: Observable<Action> = this.actions$
     .pipe(
@@ -39,6 +38,7 @@ export class LoginEffects {
       }),    
     );
 
+  // efekt logowania użytkownika niepowodzeniem lub wylogownaie użytkownia
   @Effect()
   logOff$: Observable<Action> = this.actions$
     .pipe(

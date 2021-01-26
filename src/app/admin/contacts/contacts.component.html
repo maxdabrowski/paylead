@@ -15,8 +15,8 @@
 </div>
   </form>
     <button class="send_button" mat-flat-button color="primary" (click) = sendCsvFile()>Wyślij</button>
-    <p *ngIf="addContactFailed$ | async" class="warn">Błędne dane logowania, spróbuj ponownie</p>
-    <p *ngIf="addContactSuccess$ | async" >Dodano kontakty</p>
+    <p *ngIf="addContactFailed$ | async" class="warn">Błędne dane, lub struktura</p>
+    <p *ngIf="addContactSuccess$ | async" class="warn">Dodano kontakty</p>
   </div>
 
 

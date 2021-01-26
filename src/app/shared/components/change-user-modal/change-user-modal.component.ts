@@ -72,8 +72,8 @@ export class ChangeUserModalComponent {
             this.dialogRef.close(true);
           };
         });
-      }
+      };
 
     };
   };
-}
+};

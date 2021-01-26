@@ -6,7 +6,7 @@ export interface RouterStateUrl {
   url: string;
   params: Params;
   queryParams: Params;
-}
+};
 
 @Injectable()
 export class RouterStateSerializerService implements RouterStateSerializer<RouterStateUrl> {
@@ -15,11 +15,11 @@ export class RouterStateSerializerService implements RouterStateSerializer<Route
 
     while (route.firstChild) {
       route = route.firstChild;
-    }
+    };
 
     const { url, root: { queryParams } } = routerState;
     const { params } = route;
 
     return { url, params, queryParams };
-  }
-}
+  };
+};

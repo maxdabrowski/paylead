@@ -5,7 +5,6 @@ import { LoginService} from './login.service';
 import { LeadService} from './lead.service'
 import { LeadStatusService } from './leadStatus.service'
 
-
 export { RouterStateSerializerService, RouterStateUrl } from './router-state-serializer.service';
 export { LeadService} from  './lead.service';
 export { LoginService } from  './login.service';

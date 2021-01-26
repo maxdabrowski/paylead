@@ -22,25 +22,21 @@ export class WalletComponent{
   public expense = 0;
   public income = 0;
   public bilans = 0;
-
   commisionDisplayedColumns: string[] = ['lead_id', 'campaign', 'date', 'income', 'commision', 'policy'];
   commisionSource: MatTableDataSource<Commision>;
-
   ownLeadWalletDisplayedColumns: string[] = ['lead_id', 'campaign', 'date', 'price'];
   ownLeadWalletSource: MatTableDataSource<OwnLeadWallet>;
 
   constructor(private store: Store<State>, private leadService: LeadService) { 
     this.store.pipe(select(getUserNickData)).subscribe((value) => this.userNick$ = value);
     this.campaign$ = this.leadService.getCampaign();
-
     this.leadService.getLeadCommison({user:this.userNick$}).subscribe(value => {
       value.forEach(el => {
         this.income += el.commision
-      })
+      });
       this.commisionSource = new MatTableDataSource(value);
       this.commisionSource.filterPredicate = this.createFilter();
     });
-
     this.leadService.getOwnLeadWallet({user:this.userNick$}).subscribe(value => {
       value.forEach(el => {
         this.monthList.push(el.month)
@@ -52,8 +48,9 @@ export class WalletComponent{
       this.ownLeadWalletSource = new MatTableDataSource(value);
       this.ownLeadWalletSource.filterPredicate = this.createFilter();
     });
-  }
+  };
 
+  //zmiana przeliczenia  bilansu w zależności od wybranego okresu czasu 
   changeSelect(event: string){
     this.expense = 0;
     this.income = 0;
@@ -86,13 +83,15 @@ export class WalletComponent{
     this.expense = filteredExpense;
     this.income = filteredIncome;
     this.bilans = filteredIncome-filteredExpense
-  }
+  };
 
+  //filter do zmian w tabelach MatTable
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function(data:any, filter:any): boolean {
       let searchTerms = JSON.parse(filter);
       return data.month.toString().toLowerCase().indexOf(searchTerms) !== -1;
     }
     return filterFunction;
-  }
+  };
+
 }

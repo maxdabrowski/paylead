@@ -1,7 +1,6 @@
 <div class="structure">
   <div *ngIf ="regionStructure$ | async  as regionStructure">
     <div class="structure_item" *ngFor="let user of  regionStructure">
-
       <div class="structure_director_all">
         <p class="structure_area">Obszar {{user.area}}</p>
         <div class="structure_director">
@@ -27,7 +26,6 @@
           <button mat-flat-button color="primary" (click) = changeUserData(user.director)>zmień dane / zmień dyrektora</button>
         </p>
       </div> 
-
       <div class="structure_agents">
         <ul class="" *ngFor="let agent of  user.agents" >
           <li>
@@ -42,7 +40,6 @@
           </li> 
         </ul>
       </div>
-
     </div>
   </div>  
 </div>

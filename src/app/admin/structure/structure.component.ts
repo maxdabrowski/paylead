@@ -32,11 +32,6 @@ export class StructureComponent implements OnInit {
   areaFilter = new FormControl('');
   regionFilter = new FormControl('');
   roleFilter = new FormControl('');
-
-  regionList: string[] = ['','Administrator', 'Dyrektor Centralny', 'Północ', "Południe"];
-  roleList: string[] = ["", "agent", "area", "region", "admin"];
-  areasList: string[] = ["", "Dolnośląskie", "Lubelskie", "Małopolskie", "Opolskie", "Podkarpackie", "Łódzkie", "Śląskie", "Świętokrzyskie", "Zachodnio-Pomorskie", "Pomorskie", "Warmińsko-Mazurskie", "Kujawsko-Pomorskie", "Podlaskie", "Lubuskie", "Wielkopolskie", "Mazowieckie" ];
-
   filterValues = {
     nameSurname: '',
     area: '',
@@ -45,6 +40,9 @@ export class StructureComponent implements OnInit {
   };
 
   // zmienne do tabeli
+  regionList: string[] = ['','Administrator', 'Dyrektor Centralny', 'Północ', "Południe"];
+  roleList: string[] = ["", "agent", "area", "region", "admin"];
+  areasList: string[] = ["", "Dolnośląskie", "Lubelskie", "Małopolskie", "Opolskie", "Podkarpackie", "Łódzkie", "Śląskie", "Świętokrzyskie", "Zachodnio-Pomorskie", "Pomorskie", "Warmińsko-Mazurskie", "Kujawsko-Pomorskie", "Podlaskie", "Lubuskie", "Wielkopolskie", "Mazowieckie" ];
   displayedColumns: string[] = ['name','role', 'region', 'area'];
   dataSource: MatTableDataSource<User>;
   expandedElement: User | null;
@@ -61,15 +59,7 @@ export class StructureComponent implements OnInit {
     });
   };
 
-  changeData(){
-    this.loginService.getstructureAll().subscribe(value => {
-      this.dataSource = new MatTableDataSource(value);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.dataSource.filterPredicate = this.createFilter();
-    });
-  };
-
+  //inicjalizacja filtrowania 
   ngOnInit() {
     this.nameSurnameFilter.valueChanges
       .subscribe(
@@ -101,6 +91,7 @@ export class StructureComponent implements OnInit {
       )
   };
 
+  //funckja fultrująca
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function(data:any, filter:any): boolean {
       let searchTerms = JSON.parse(filter);
@@ -112,11 +103,8 @@ export class StructureComponent implements OnInit {
     return filterFunction;
   };
 
+  //otwarcie okna moalnego do dezaktywacji uźytkownika
   unactiveUser(user:User){
-    this.openDeactivationModal(user);
-  };
-
-  openDeactivationModal(user: User): void {
     const deactivationModalRef = this.dialog.open(DeactivationModalComponent, {
       width: '450px',
       data: {user: user}
@@ -128,16 +116,12 @@ export class StructureComponent implements OnInit {
     });
   };
 
+  //otwarcie okna modalnego do zmiany danych użytkownika
   changeUserData(user: User):void {
-    this.openChangeDataModal(user);
-  };
-
-  openChangeDataModal(user: User): void {
     const changeDataModalRef = this.dialog.open(ChangeUserDataModalComponent, {
       width: '450px',
       data: {user: user}
     });
-  
     changeDataModalRef.afterClosed().subscribe(result => {
       if(result){
         this.changeData();
@@ -145,20 +129,26 @@ export class StructureComponent implements OnInit {
     });
   };
 
+  //zmiana danych osoby nie będącej agentem
   changeNotAgentData(user:User){
-    this.openChangeUserModal(user);
-  };
-
-  openChangeUserModal(user: User): void {
     const changeDataModalRef = this.dialog.open(ChangeUserModalComponent, {
       width: '450px',
       data: {user: user}
     });
-  
     changeDataModalRef.afterClosed().subscribe(result => {
       if(result){
         this.changeData();
       };
+    });
+  };
+
+  //aktualizacja tabeli po wykonaniu jakieś akcji na użytkowniku
+  changeData(){
+    this.loginService.getstructureAll().subscribe(value => {
+      this.dataSource = new MatTableDataSource(value);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.dataSource.filterPredicate = this.createFilter();
     });
   };
 

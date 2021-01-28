@@ -6,53 +6,55 @@ import {FormControl} from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { LeadService } from 'src/app/shared/services';
+import { BehaviorSubject } from 'rxjs';
 import {
   getUserRoleData,
   State,
   GetLeadsOwn,
   getLeadsOwnLead,
 } from '../../store';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'nga-contacts',
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss']
 })
+
 export class ContactsComponent implements OnInit {
 
-      //zmienne do pobrania danych i użytkowniku
-      userRola$: string;
-      selectFileName: string = ''; 
-      addContactFailed$ = new BehaviorSubject(false);
-      addContactSuccess$ =  new BehaviorSubject(false);
+  //zmienne do pobrania danych i użytkowniku
+  userRola$: string;
+  selectFileName: string = ''; 
+  addContactFailed$ = new BehaviorSubject(false);
+  addContactSuccess$ =  new BehaviorSubject(false);
 
-      //zmienne do filtrowania
-      idFilter = new FormControl('');
-      typeFilter = new FormControl('');
-      campaignFilter = new FormControl('');
-      areaFilter = new FormControl('');
-      statusFilter = new FormControl('');
-  
-      typeList: string[] = [''];
-      campaignList: string[] = [''];
-      areasList: string[] = [''];
-      statusList: string[] = [''];
+  //zmienne do filtrowania
+  idFilter = new FormControl('');
+  typeFilter = new FormControl('');
+  campaignFilter = new FormControl('');
+  areaFilter = new FormControl('');
+  statusFilter = new FormControl('');
+  filterValues = {
+    id: '',
+    type: '',
+    campaign: '',
+    area: '',
+    status: ''
+  };
 
-      filterValues = {
-        id: '',
-        type: '',
-        campaign: '',
-        area: '',
-        status: ''
-      };
-  
-      // zmienne do tabeli
-      displayedColumns: string[] = ['lead_id', 'type', 'campaign', 'status', 'area', 'details', 'delete'];
-      dataSource: MatTableDataSource<LeadOwn>;
-      expandedElement: LeadOwn | null;
-      @ViewChild(MatPaginator) paginator: MatPaginator;
-      @ViewChild(MatSort) sort: MatSort;
+  // zmienne do tabeli
+  typeList: string[] = [''];
+  campaignList: string[] = [''];
+  areasList: string[] = [''];
+  statusList: string[] = [''];
+  displayedColumns: string[] = ['lead_id', 'type', 'campaign', 'status', 'area', 'details', 'delete'];
+  dataSource: MatTableDataSource<LeadOwn>;
+  expandedElement: LeadOwn | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  //kontakty do wysłania
+  bodyCsvFile: {data:string}
 
   constructor(private store: Store<State>, private leadService: LeadService) { 
     this.store.pipe(select(getUserRoleData)).subscribe((value) => this.userRola$ = value);
@@ -64,31 +66,18 @@ export class ContactsComponent implements OnInit {
         this.areasList.push(lead.area);
         this.statusList.push(lead.status);
       });
-
       this.typeList = [...new Set(this.typeList)].sort();
       this.campaignList = [...new Set(this.campaignList)].sort();
       this.areasList = [...new Set(this.areasList)].sort();
       this.statusList = [...new Set(this.statusList)].sort();
-
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.dataSource.filterPredicate = this.createFilter();
-    })
+    });
+  };
 
-  }
-
-reloadData(){
-  this.store.dispatch(new GetLeadsOwn({ leadData: {role: this.userRola$} }));
-  this.store.pipe(select(getLeadsOwnLead)).subscribe(value => {
-    this.dataSource = new MatTableDataSource(value);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    this.dataSource.filterPredicate = this.createFilter();
-  })
-
-}
-
+  //inicjalizacjia filtrowania
   ngOnInit() {
     this.idFilter.valueChanges
       .subscribe(
@@ -125,9 +114,9 @@ reloadData(){
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
+  };
 
-  }
-
+  //funkcja do filtrowania tabli 
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function(data:any, filter:any): boolean {
       let searchTerms = JSON.parse(filter);
@@ -138,18 +127,18 @@ reloadData(){
         && data.status.indexOf(searchTerms.status) !== -1;
     }
     return filterFunction;
-  }
+  };
 
+  //usuwanie kontaktów
   deleteLead(lead_id:number){
     this.leadService.deleteLead({lead_id}).subscribe(data => {
       if(data){
-        this.reloadData()
+        this.reloadData();
       }
     })
-  }
+  };
 
-  bodyCsvFile: {data:string}
-
+  //załadowanie kontaków z pliku
   fileupload(files: FileList) {
     if (files && files.length > 0) {
       let file: File = files.item(0);
@@ -163,6 +152,7 @@ reloadData(){
     };
   };
   
+  //wysłanie danych z pliku na serwer
   sendCsvFile(){
     if(this.bodyCsvFile !== undefined){
       this.leadService.addLeadFromCsv(this.bodyCsvFile).subscribe(res => {
@@ -175,6 +165,17 @@ reloadData(){
         }
       });
     };
+  };
+
+  //pobranie nowych danych po usunięciu lub dodaniu kontaktów
+  reloadData(){
+    this.store.dispatch(new GetLeadsOwn({ leadData: {role: this.userRola$} }));
+    this.store.pipe(select(getLeadsOwnLead)).subscribe(value => {
+      this.dataSource = new MatTableDataSource(value);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.dataSource.filterPredicate = this.createFilter();
+    });
   };
 
 };

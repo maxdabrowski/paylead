@@ -28,11 +28,9 @@ export class ContactsComponent implements OnInit {
     typeFilter = new FormControl('');
     campaignFilter = new FormControl('');
     statusFilter = new FormControl('');
-
     typeList: string[] = [''];
     campaignList: string[] = [''];
     statusList: string[] = [''];
-
     filterValues = {
       id: '',
       type: '',
@@ -51,25 +49,23 @@ export class ContactsComponent implements OnInit {
     this.store.pipe(select(getUserRoleData)).subscribe((value) => this.userRola$ = value);
     this.store.pipe(select(getUserAreaData)).subscribe((value) => this.userArea$ = value);
     this.store.dispatch(new GetLeadsOwn({ leadData: {role: this.userRola$, type: this.userArea$} }));
-
     this.store.pipe(select(getLeadsOwnLead)).subscribe(value => {
       value.forEach(lead =>{
         this.typeList.push(lead.type);
         this.campaignList.push(lead.campaign);
         this.statusList.push(lead.status);
       });
-
       this.typeList = [...new Set(this.typeList)].sort();
       this.campaignList = [...new Set(this.campaignList)].sort();
       this.statusList = [...new Set(this.statusList)].sort();
-
       this.dataSource = new MatTableDataSource(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.dataSource.filterPredicate = this.createFilter();
-    })
+    });
+  };
 
-  }
+  //inicjalizacja filtrowania 
   ngOnInit() {
     this.idFilter.valueChanges
       .subscribe(
@@ -99,9 +95,9 @@ export class ContactsComponent implements OnInit {
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
+  };
 
-  }
-
+  //funkcja do filtrowania
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function(data:any, filter:any): boolean {
       let searchTerms = JSON.parse(filter);
@@ -111,6 +107,6 @@ export class ContactsComponent implements OnInit {
         && data.status.indexOf(searchTerms.status) !== -1;
     }
     return filterFunction;
-  }
+  };
 
 }

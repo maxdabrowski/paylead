@@ -7,17 +7,17 @@ import {
   State
 } from '../../store'
 
-
 @Component({
   selector: 'nga-area',
   templateUrl: './area.component.html',
   styleUrls: ['./area.component.scss']
 })
+
 export class AreaComponent  {
   readonly loginUser$: Observable<User>;
   
   constructor( private store: Store<State>) {
     this.loginUser$ = this.store.pipe(select(getUserDataLogin))
-   }
+  };
 
 }

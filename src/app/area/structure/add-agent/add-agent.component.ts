@@ -22,12 +22,14 @@ export class AddAgentComponent implements OnInit {
   constructor(private fb:FormBuilder, private store: Store<State>, private loginService: LoginService) {
     this.store.pipe(select(getUserRegionData)).subscribe((value) => this.userRegion$ = value);
     this.store.pipe(select(getUserAreaData)).subscribe((value) => this.userArea$ = value);
-  }
+  };
 
+  //inicjalizacja formularza
   ngOnInit(): void {
     this.initContactForm();
   }
 
+  //formularz
   initContactForm(){
     this.userForm = this.fb.group({
       name:["", [Validators.required, Validators.pattern("^[a-zA-Ząćęłńóśżź]+$")]],
@@ -37,9 +39,9 @@ export class AddAgentComponent implements OnInit {
     });
   };
 
+  //dodoanie nowego agenta
   onSubmit(){
     if(this.userForm.dirty && this.userForm.valid){
-
       this.userToSend = {
         name: this.userForm.value.name,
         surname: this.userForm.value.surname,
@@ -48,10 +50,9 @@ export class AddAgentComponent implements OnInit {
         phone:this.userForm.value.phone,
         mail: this.userForm.value.mail,
       };
-      
       this.loginService.addNewAgent(this.userToSend).subscribe(data => {
         if(data){
-          this.store.dispatch(new Go({ commands: [ `/structure` ]}));
+          this.store.dispatch(new Go({ commands: [ `/area/structure` ]}));
         };
       });
     };

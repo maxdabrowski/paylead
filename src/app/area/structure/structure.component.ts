@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { LoginService } from 'src/app/shared/services';
 import { switchMap } from 'rxjs/operators';
 import { DeactivationModalComponent } from 'src/app/shared/components/deactivation-modal/deactivation-modal.component';
@@ -18,6 +18,7 @@ import {
   templateUrl: './structure.component.html',
   styleUrls: ['./structure.component.scss']
 })
+
 export class StructureComponent {
 
   userStructure$: Observable<User[]>;
@@ -35,23 +36,11 @@ export class StructureComponent {
     );  
   };
 
-  openChangeDataModal(user: User): void {
-    const changeDataModalRef = this.dialog.open(ChangeUserDataModalComponent, {
-    width: '450px',
-    data: {user: user}
-    });
-    
-    changeDataModalRef.afterClosed().subscribe(result => {
-      if(result){
-        this.subject$.next(1);
-      };
-    });
-  };
-
-  openDeactivationModal(user: User): void {
+  //otwarcie okna modalnego do dezaktywacji użytkownika
+  unactiveUser(user: User):void {
     const deactivationModalRef = this.dialog.open(DeactivationModalComponent, {
-    width: '450px',
-    data: {user: user}
+      width: '450px',
+      data: {user: user}
     });
     deactivationModalRef.afterClosed().subscribe( result =>{
       if(result){
@@ -60,11 +49,17 @@ export class StructureComponent {
     });
   };
 
+  //otwarcie okna modalnego do zmiany danych użytkownika
   changeUserData(user: User):void {
-    this.openChangeDataModal(user);
+    const changeDataModalRef = this.dialog.open(ChangeUserDataModalComponent, {
+      width: '450px',
+      data: {user: user}
+    });
+    changeDataModalRef.afterClosed().subscribe(result => {
+      if(result){
+        this.subject$.next(1);
+      };
+    });
   };
 
-  unactiveUser(user: User):void {
-    this.openDeactivationModal(user);
-  };
 };

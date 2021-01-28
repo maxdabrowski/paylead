@@ -10,12 +10,12 @@ import { StatusDataCharts } from 'src/app/models/statusDataCharts.model';
 import { LeadService, LeadStatusService } from 'src/app/shared/services';
 import { GetLeadsOwn, getLeadsOwnLead, getLeadStatusLead, GetStatus, getUserRegionData, getUserRoleData, State } from 'src/app/store';
 
-
 @Component({
   selector: 'nga-region-results',
   templateUrl: './region-results.component.html',
   styleUrls: ['./region-results.component.scss']
 })
+
 export class RegionResultsComponent {
 
   userRola$: string;
@@ -40,17 +40,18 @@ export class RegionResultsComponent {
     this.leadService.getSummaryData({region:this.userRegion$, period: "Wszystkie"}).subscribe(value => {
       this.regionSummarySource = new MatTableDataSource(value);
     });
-
     this.dataLeadcharts$ = this.leadService.getDataToRoundCharts({region:this.userRegion$});
     this.dataStatuscharts$ = this.leadStatusService.getDataToColumnChart({region:this.userRegion$});
   };
 
+  //zmiana okresu czasu do wyników w tabeli
   changeSelect(event:string){
     this.leadService.getSummaryData({region:this.userRegion$, period: event}).subscribe(value => {
       this.regionSummarySource = new MatTableDataSource(value);
     });
   };
 
+  //pobieranie plików z danymi
   downloadFile(type:string){
     if(type === 'status'){
       let csv = 'lead_id, agent, obszar, region, data, status, notatka, polisa, przychód\n';
@@ -59,7 +60,6 @@ export class RegionResultsComponent {
               csv += "\n";
       });
       createCsvFile(csv,`statusy_${this.userRegion$}.csv`);
-
     }else if(type === 'lead'){
       let csv = 'lead_id, imię, nazwisko, telefon, mail, miejscowość, kod pocztowy, adres, typ klienta, wiek, typ, kampania, produkt, cena, region, obszar, agent, status\n';
       this.lead$.forEach(el =>  {
@@ -81,4 +81,5 @@ export class RegionResultsComponent {
       };
     };
   };
+
 }

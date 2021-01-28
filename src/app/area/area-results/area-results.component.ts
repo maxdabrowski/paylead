@@ -15,6 +15,7 @@ import { GetLeadsOwn, getLeadsOwnLead, getLeadStatusLead, GetStatus, getUserArea
   templateUrl: './area-results.component.html',
   styleUrls: ['./area-results.component.scss']
 })
+
 export class AreaResultsComponent {
   userRola$: string;
   userArea$: string;
@@ -38,17 +39,18 @@ export class AreaResultsComponent {
     this.leadService.getSummaryData({area:this.userArea$, period: "Wszystkie"}).subscribe(value => {
       this.areaSummarySource = new MatTableDataSource(value);
     });
-
     this.dataLeadcharts$ = this.leadService.getDataToRoundCharts({area:this.userArea$});
     this.dataStatuscharts$ = this.leadStatusService.getDataToColumnChart({area:this.userArea$});
   };
 
+  //zmiana miesiąca do przeliczenia danych w tabeli 
   changeSelect(event:string){
     this.leadService.getSummaryData({area:this.userArea$, period: event}).subscribe(value => {
       this.areaSummarySource = new MatTableDataSource(value);
     });
   };
 
+  //pobieranie plików z danymi
   downloadFile(type:string){
     if(type === 'status'){
       let csv = 'lead_id, agent, obszar, region, data, status, notatka, polisa, przychód\n';
@@ -57,7 +59,6 @@ export class AreaResultsComponent {
               csv += "\n";
       });
       createCsvFile(csv,`statusy_${this.userArea$}.csv`);
-
     }else if(type === 'lead'){
       let csv = 'lead_id, imię, nazwisko, telefon, mail, miejscowość, kod pocztowy, adres, typ klienta, wiek, typ, kampania, produkt, cena, region, obszar, agent, status\n';
       this.lead$.forEach(el =>  {

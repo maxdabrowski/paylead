@@ -19,16 +19,13 @@ export class MyCountComponent  {
 
   constructor( private store: Store<State>, private dialog: MatDialog) {
     this.loginUser$ = this.store.pipe(select(getUserDataLogin));
-   }
+  };
 
-   openDialog(): void {
+  //otwarcie okna modalnego do zmiany hasła 
+  hangePassword():void {
     this.dialog.open(ModalPasswordComponent, {
-    width: '450px',
-  });
-}
-
-   hangePassword():void {
-     this.openDialog();
-   }
+      width: '450px',
+    });
+  };
 
 }

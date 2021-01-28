@@ -1,12 +1,10 @@
 <div class="user">
-  
   <a class="link" routerLinkActive="active" [routerLink]="'my_count'" >
     <div class="user_link agent">
       <img src='../../../data//img/dyrektor.png'>
       <span class="link_descript">DYR. REGIONU</span>
     </div>
   </a>
-
   <div class="user_data"  *ngIf ="loginUser$ | async  as loginUser ">
     <div class="user_data_title">
       <p>Dyrektor:</p>

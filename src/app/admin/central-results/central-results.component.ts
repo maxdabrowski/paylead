@@ -10,7 +10,6 @@ import { StatusDataCharts } from 'src/app/models/statusDataCharts.model';
 import { LeadService, LeadStatusService } from 'src/app/shared/services';
 import { GetLeadsOwn, getLeadsOwnLead, getLeadStatusLead, GetStatus, getUserRoleData, State } from 'src/app/store';
 
-
 @Component({
   selector: 'nga-central-results',
   templateUrl: './central-results.component.html',
@@ -35,24 +34,24 @@ export class CentralResultsComponent{
     this.store.dispatch(new GetStatus({ leadStatusData: {region: "Wszystkie"}}));
     this.store.pipe(select(getLeadsOwnLead)).subscribe((value) => this.lead$ = value);
     this.store.pipe(select(getLeadStatusLead)).subscribe((value) => this.status$ = value);
-
     this.leadService.getDateToSummaryTab({region:"Wszystkie"}).subscribe((value) => this.monthList = value); 
     this.leadService.getSummaryData({region:"Wszystkie", period: "Wszystkie"}).subscribe(value => {
       this.regionSummarySource = new MatTableDataSource(value);
     });
-
     this.dataLeadcharts$ = this.leadService.getDataToRoundCharts({region:"Wszystkie"});
     this.dataStatuscharts$_Region = this.leadStatusService.getDataToColumnChart({region:"Wszystkie"});
     this.dataStatuscharts$_North = this.leadStatusService.getDataToColumnChart({region:"Północ"});
     this.dataStatuscharts$_South = this.leadStatusService.getDataToColumnChart({region:"Południe"});
   };
 
+  //zmiana okresu czasu do wyników w tabeli 
   changeSelect(event:string){
     this.leadService.getSummaryData({region:"Wszystkie", period: event}).subscribe(value => {
       this.regionSummarySource = new MatTableDataSource(value);
     });
   };
 
+  //pobranie danych
   downloadFile(type:string){
     if(type === 'status'){
       let csv = 'lead_id, agent, obszar, region, data, status, notatka, polisa, przychód\n';
@@ -61,7 +60,6 @@ export class CentralResultsComponent{
               csv += "\n";
       });
       createCsvFile(csv,`statusy_wszystkie.csv`);
-
     }else if(type === 'lead'){
       let csv = 'lead_id, imię, nazwisko, telefon, mail, miejscowość, kod pocztowy, adres, typ klienta, wiek, typ, kampania, produkt, cena, region, obszar, agent, status\n';
       this.lead$.forEach(el =>  {
@@ -83,7 +81,5 @@ export class CentralResultsComponent{
       };
     };
   };
-
-
 
 }

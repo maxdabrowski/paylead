@@ -1,7 +1,6 @@
 <div class="results">
   <div class="charts">
     <h1>WYNIKI CENTRALNE</h1> 
-
     <div *ngIf="dataLeadcharts$ | async as dataRoundChart"  class="round_charts_group">
       <div class="round_chart">
         <p>podział kontaktów niezakupionych</p>
@@ -16,7 +15,6 @@
         <nga-roud-chart [dataLabel] = "dataRoundChart.dataTwoLabel" [dataValue] = "dataRoundChart.dataTwoValue"   class="round_chart"></nga-roud-chart>
       </div>
     </div>
-
     <div class="column_chart" *ngIf="dataStatuscharts$_Region | async as DataColumnChart">
       <p>Liczba sukcesów na poszczególnych Regionach</p>
       <nga-column-chart [dataLabel] = "DataColumnChart.statusLabel" [dataValue] = "DataColumnChart.statusValue" ></nga-column-chart>
@@ -29,7 +27,6 @@
       <p>Liczba sukcesów na poszczególnych obszarach regionu Południe</p>
       <nga-column-chart [dataLabel] = "DataColumnChart.statusLabel" [dataValue] = "DataColumnChart.statusValue" ></nga-column-chart>
     </div>
-
   </div>
   <div class="area_summary">
     <p class="area_summary_header">tabela z wynikami dla poszczególnych obszarów</p>
@@ -76,7 +73,6 @@
       <tr mat-row *matRowDef="let row; columns: regionSummaryDisplayedColumns;"></tr>
     </table>
   </div>
-
   <div class="download_data">
     <div class="download_data_row">
       <p>kontakty w pliku <b>kontakty_wszystkie.csv</b></p>
@@ -87,6 +83,4 @@
       <button mat-flat-button color="primary" (click)="downloadFile('status')">Pobierz</button>
     </div>
   </div>
-
 </div>
-

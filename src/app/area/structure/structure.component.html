@@ -10,7 +10,6 @@
       <button  mat-flat-button color="primary"[routerLink]="'/area/add_agent'">dodaj nowego agenta</button>
     </div>
 </div>
-  
   <div *ngIf ="userStructure$ | async  as userStructure" class="area_structure">
     <div class="structure_item" *ngFor="let user of  userStructure" class="user_data">
       <div class="user_data_title">
@@ -41,5 +40,4 @@
       </div>
     </div>
   </div> 
-
 </div>

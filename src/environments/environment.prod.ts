@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: '/',
+  apiBaseUrl: 'https://paylead-server.herokuapp.com/api',
 };

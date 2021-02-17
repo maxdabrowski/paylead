@@ -1,3 +1,4 @@
+import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { select, Store } from '@ngrx/store';
@@ -28,7 +29,7 @@ export class AreaResultsComponent {
   dataLeadcharts$: Observable<LeadDataCharts>;
   dataStatuscharts$: Observable<StatusDataCharts>;
 
-  constructor(private store: Store<State>, private leadService: LeadService, private leadStatusService: LeadStatusService) {
+  constructor(private store: Store<State>, private leadService: LeadService, private leadStatusService: LeadStatusService, private ref: ChangeDetectorRef) {
     this.store.pipe(select(getUserRoleData)).subscribe((value) => this.userRola$ = value);
     this.store.pipe(select(getUserAreaData)).subscribe((value) => this.userArea$ = value);
     this.store.dispatch(new GetLeadsOwn({ leadData: {role: this.userRola$, type: this.userArea$} }));
@@ -36,8 +37,9 @@ export class AreaResultsComponent {
     this.store.pipe(select(getLeadsOwnLead)).subscribe((value) => this.lead$ = value);
     this.store.pipe(select(getLeadStatusLead)).subscribe((value) => this.status$ = value);
     this.leadService.getDateToSummaryTab({area:this.userArea$}).subscribe((value) => this.monthList = value); 
-    this.leadService.getSummaryData({area:this.userArea$, period: "Wszystkie"}).subscribe(value => {
+    this.leadService.getSummaryDataArea({area:this.userArea$, period: "Wszystkie"}).subscribe(value => {
       this.areaSummarySource = new MatTableDataSource(value);
+      this.ref.detectChanges();
     });
     this.dataLeadcharts$ = this.leadService.getDataToRoundCharts({area:this.userArea$});
     this.dataStatuscharts$ = this.leadStatusService.getDataToColumnChart({area:this.userArea$});
@@ -45,8 +47,9 @@ export class AreaResultsComponent {
 
   //zmiana miesiąca do przeliczenia danych w tabeli 
   changeSelect(event:string){
-    this.leadService.getSummaryData({area:this.userArea$, period: event}).subscribe(value => {
+    this.leadService.getSummaryDataArea({area:this.userArea$, period: event}).subscribe(value => {
       this.areaSummarySource = new MatTableDataSource(value);
+      this.ref.detectChanges();
     });
   };
 

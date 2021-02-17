@@ -67,7 +67,6 @@ export class ChangeUserModalComponent {
           area: this.user.area,
         }; 
         this.loginService.changeNotUser(this.userToSend).subscribe(data => {
-          console.log(data)
           if(data){
             this.dialogRef.close(true);
           };

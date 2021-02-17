@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -28,15 +28,16 @@ export class CentralResultsComponent{
   dataStatuscharts$_North: Observable<StatusDataCharts>;
   dataStatuscharts$_South: Observable<StatusDataCharts>;
 
-  constructor(private store: Store<State>, private leadService: LeadService, private leadStatusService: LeadStatusService) {
+  constructor(private store: Store<State>, private leadService: LeadService, private leadStatusService: LeadStatusService, private ref: ChangeDetectorRef) {
     this.store.pipe(select(getUserRoleData)).subscribe((value) => this.userRola$ = value);
     this.store.dispatch(new GetLeadsOwn({ leadData: {role: this.userRola$} }));
     this.store.dispatch(new GetStatus({ leadStatusData: {region: "Wszystkie"}}));
     this.store.pipe(select(getLeadsOwnLead)).subscribe((value) => this.lead$ = value);
     this.store.pipe(select(getLeadStatusLead)).subscribe((value) => this.status$ = value);
     this.leadService.getDateToSummaryTab({region:"Wszystkie"}).subscribe((value) => this.monthList = value); 
-    this.leadService.getSummaryData({region:"Wszystkie", period: "Wszystkie"}).subscribe(value => {
+    this.leadService.getSummaryDataRegion({region:"Wszystkie", period: "Wszystkie"}).subscribe(value => {
       this.regionSummarySource = new MatTableDataSource(value);
+      this.ref.detectChanges();
     });
     this.dataLeadcharts$ = this.leadService.getDataToRoundCharts({region:"Wszystkie"});
     this.dataStatuscharts$_Region = this.leadStatusService.getDataToColumnChart({region:"Wszystkie"});
@@ -46,8 +47,9 @@ export class CentralResultsComponent{
 
   //zmiana okresu czasu do wyników w tabeli 
   changeSelect(event:string){
-    this.leadService.getSummaryData({region:"Wszystkie", period: event}).subscribe(value => {
+    this.leadService.getSummaryDataRegion({region:"Wszystkie", period: event}).subscribe(value => {
       this.regionSummarySource = new MatTableDataSource(value);
+      this.ref.detectChanges();
     });
   };
 

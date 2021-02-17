@@ -1,5 +1,7 @@
+import { ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Campaign } from 'src/app/models/campaign.model';
@@ -26,27 +28,34 @@ export class WalletComponent{
   commisionSource: MatTableDataSource<Commision>;
   ownLeadWalletDisplayedColumns: string[] = ['lead_id', 'campaign', 'date', 'price'];
   ownLeadWalletSource: MatTableDataSource<OwnLeadWallet>;
+  @ViewChild(MatTable) table: MatTable<Commision>;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private store: Store<State>, private leadService: LeadService) { 
+  constructor(private store: Store<State>, private leadService: LeadService, private ref: ChangeDetectorRef) { 
     this.store.pipe(select(getUserNickData)).subscribe((value) => this.userNick$ = value);
     this.campaign$ = this.leadService.getCampaign();
+  };
+
+  ngOnInit(){
     this.leadService.getLeadCommison({user:this.userNick$}).subscribe(value => {
+      this.commisionSource = new MatTableDataSource(value);
+      this.commisionSource.sort = this.sort;
+      this.commisionSource.filterPredicate = this.createFilter();
       value.forEach(el => {
         this.income += el.commision
       });
-      this.commisionSource = new MatTableDataSource(value);
-      this.commisionSource.filterPredicate = this.createFilter();
-    });
-    this.leadService.getOwnLeadWallet({user:this.userNick$}).subscribe(value => {
-      value.forEach(el => {
-        this.monthList.push(el.month)
-        this.expense += el.price
-      })
-      const tabSet = [...new Set(this.monthList)].sort();
-      this.monthList = ['Wszystkie', ...tabSet];
-      this.bilans = this.income - this.expense
-      this.ownLeadWalletSource = new MatTableDataSource(value);
-      this.ownLeadWalletSource.filterPredicate = this.createFilter();
+      this.leadService.getOwnLeadWallet({user:this.userNick$}).subscribe(value => {
+        this.ownLeadWalletSource = new MatTableDataSource(value);
+        this.ownLeadWalletSource.filterPredicate = this.createFilter();
+        value.forEach(el => {
+          this.monthList.push(el.month)
+          this.expense += el.price
+        })
+        const tabSet = [...new Set(this.monthList)].sort();
+        this.monthList = ['Wszystkie', ...tabSet];
+        this.bilans = this.income - this.expense;
+        this.ref.detectChanges();
+      });
     });
   };
 

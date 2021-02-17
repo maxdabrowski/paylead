@@ -2,5 +2,4 @@ export const environment = {
   production: false,
   //apiBaseUrl: 'http://localhost:9090/api',
   apiBaseUrl: 'https://paylead-server.herokuapp.com/api',
-  
 };

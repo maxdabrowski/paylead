@@ -1,4 +1,5 @@
 export interface LeadStatus{
+  _id?: string;
   lead_id: number;
   owner: string;
   area: string;

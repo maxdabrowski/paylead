@@ -4,7 +4,7 @@
     <h1>TWOJE WYNIKI</h1> 
     <div *ngIf="dataLeadcharts$ | async as dataRoundChart"  class="round_charts_group">
       <div class="round_chart">
-        <p>podział kontaktów żyiowych</p>
+        <p>podział kontaktów życiowych</p>
         <nga-roud-chart [dataLabel] = "dataRoundChart.dataOneLabel" [dataValue] = "dataRoundChart.dataOneValue"   class="round_chart"></nga-roud-chart>
       </div>
       <div class="round_chart">

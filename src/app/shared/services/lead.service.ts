@@ -72,8 +72,13 @@ export class LeadService {
   };
 
   //pobranie sumarycznych danych dla dnej jednostki i okresu czasu
-  getSummaryData(data:{area?:string, region?: string; period:string}): Observable<AreaSummaryData[]>{
-    return this.http.post<AreaSummaryData[]>(`${this.baseUrl}/bilans_summary`, data)
+  getSummaryDataArea(data:{area:string, period:string}): Observable<AreaSummaryData[]>{
+    return this.http.post<AreaSummaryData[]>(`${this.baseUrl}/bilans_summary_area`, data)
+  };
+
+  //pobranie sumarycznych danych dla dnej jednostki i okresu czasu
+  getSummaryDataRegion(data:{region: string; period:string}): Observable<AreaSummaryData[]>{
+    return this.http.post<AreaSummaryData[]>(`${this.baseUrl}/bilans_summary_region`, data)
   };
 
   //pobranie danych do tabeli podsumuwujcej

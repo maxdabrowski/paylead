@@ -1,4 +1,5 @@
 export interface LeadOwn {
+  _id?: string;
   lead_id: number;
   name: string;
   surname: string;
